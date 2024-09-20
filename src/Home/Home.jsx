@@ -1,7 +1,10 @@
+import ThemeToggleButton from "../Components/ThemeToggle";
+
 const Home = () => {
   return (
     <div>
-      Home
+     <ThemeToggleButton/> 
+     <p className="text-bodydark1">hello</p>
     </div>
   );
 };

@@ -1,20 +1,22 @@
-import { useState, useEffect } from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Moon, Sun } from "lucide-react";
 
 const ThemeToggleButton = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    const isDarkMode = localStorage.theme === 'dark' || 
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDarkMode =
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
     setDarkMode(isDarkMode);
-    document.documentElement.classList.toggle('dark', isDarkMode);
+    document.documentElement.classList.toggle("dark", isDarkMode);
   }, []);
 
   const toggleTheme = () => {
     setDarkMode(!darkMode);
-    document.documentElement.classList.toggle('dark');
-    localStorage.theme = darkMode ? 'light' : 'dark';
+    document.documentElement.classList.toggle("dark");
+    localStorage.theme = darkMode ? "light" : "dark";
   };
 
   return (
@@ -29,7 +31,7 @@ const ThemeToggleButton = () => {
       </div>
       <div
         className={`absolute top-0.5 left-0.5 w-7 h-7 rounded-full dark:bg-primary bg-white shadow-md transform transition-transform duration-200 ease-in-out ${
-          darkMode ? 'translate-x-8' : ''
+          darkMode ? "translate-x-8" : ""
         }`}
       />
     </button>

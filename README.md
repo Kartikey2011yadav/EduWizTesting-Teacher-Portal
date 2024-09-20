@@ -1,12 +1,12 @@
 # Color Schema
 
-  Light Mode:
+Light Mode:
 - background: #F3F4F6
 - login/any centeral container: #FFFFFF
 - primary Button: #1E3A8A / bg-blue-900
 - hover Button: bg-blue-800
 
-  Dark Mode:
+Dark Mode:
 - background: #010B18
 - login/any central container: #1F2937
 - primary Button: #3B82F6 / bg-blue-500

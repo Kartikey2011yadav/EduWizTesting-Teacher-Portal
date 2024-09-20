@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* styles.css */
+
+/* Light Theme (default) */
+:root {
+    --background-color: #F3F4F6;
+    --container-color: #FFFFFF;
+    --primary-button-color: #1E3A8A;
+    --hover-button-color: #1C3AA9;
+    --text-color: #000000;
+  }
+  
+  /* Dark Theme */
+  html.dark {
+    --background-color: #010B18;
+    --container-color: #1F2937;
+    --primary-button-color: #3B82F6;
+    --hover-button-color: #2563EB;
+    --text-color: #FFFFFF;
+  }
+  
+  /* Apply these theme variables to your elements */
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .container {
+    background-color: var(--container-color);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  button {
+    /* background-color: var(--primary-button-color); */
+    /* color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer; */
+  }
+  
+  button:hover {
+    background-color: var(--hover-button-color);
+  }
+
+  
+.cool{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.cool .dark{
+    background-color: yellow;
+}

@@ -1,8 +1,13 @@
-# React + Vite
+# Color Schema
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  Light Mode:
+- background: #F3F4F6
+- login/any centeral container: #FFFFFF
+- primary Button: #1E3A8A / bg-blue-900
+- hover Button: bg-blue-800
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  Dark Mode:
+- background: #010B18
+- login/any central container: #1F2937
+- primary Button: #3B82F6 / bg-blue-500
+- hover Button: bg-blue-600

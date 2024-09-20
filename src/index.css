@@ -57,6 +57,6 @@
     border-radius: 4px;
     cursor: pointer;
 }
-.cool .dark{
+.cool.dark{
     background-color: yellow;
 }

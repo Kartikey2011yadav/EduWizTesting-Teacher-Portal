@@ -4,7 +4,6 @@ const Home = () => {
   return (
     <div>
      <ThemeToggleButton/> 
-     <p className="text-bodydark1">hello</p>
     </div>
   );
 };

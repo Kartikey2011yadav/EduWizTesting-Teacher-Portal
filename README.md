@@ -18,12 +18,13 @@ Dark Mode:
 #### For CSS
 - prefix your className with .dark 
 
-
+```
   eg .dark .className
-
+```
 
 #### For Tailwind
 - use directly
 
-
-  dark:bg-red
+```
+  dark:bg-red-400
+```

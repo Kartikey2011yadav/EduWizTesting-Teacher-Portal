@@ -30,7 +30,7 @@ const ThemeToggleButton = () => {
       </div>
       <div
         className={`absolute top-0.5 left-0.5 w-7 h-7 rounded-full dark:bg-primary bg-white shadow-md transform transition-transform duration-200 ease-in-out ${
-          darkMode ? 'translate-x-8' : ''
+          darkMode ? "translate-x-8" : ""
         }`}
       />
     </button>

@@ -6,6 +6,7 @@ import { initializeTheme } from './utils/theme.js';
 import Login from "./Login/Login.jsx";
 import SignUp from './SignUp/SignUp.jsx'
 
+
 const App = () => {
   useEffect(() => {
     initializeTheme(); // Initialize theme on page load
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+       
       </Routes>
     </Router>
   );

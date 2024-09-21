@@ -4,7 +4,7 @@ import './index.css'
 import { useEffect } from 'react';
 import { initializeTheme } from './utils/theme.js';
 import Login from "./Login/Login.jsx";
-import SignUp from "./SignUp/Signup.jsx";
+import SignUp from './SignUp/SignUp.jsx'
 
 const App = () => {
   useEffect(() => {

@@ -14,19 +14,19 @@ const SideBar = () => {
     const menus = [
         { name: "Dashboard", link: "/", icon: MdOutlineDashboard },
         { name: "User", link: "/", icon: AiOutlineUser },
-        { name: "Analytics", link: "/", icon: TbReportAnalytics,},
-        { name: "Paper Upload", link: "/", icon: FiMessageSquare, margin: true},
+        { name: "Analytics", link: "/", icon: TbReportAnalytics, },
+        { name: "Paper Upload", link: "/", icon: FiMessageSquare, margin: true },
         { name: "Content Upload", link: "/", icon: FiFolder },
         { name: "Assessments", link: "/", icon: PiExamBold },
         { name: "Checking & Results", link: "/", icon: AiOutlineHeart, margin: true },
         { name: "Setting", link: "/", icon: RiSettings4Line },
     ];
     const [open, setOpen] = useState(false);
-    const isDark = (localStorage.theme == 'dark') ? true : false; 
+    const isDark = (localStorage.theme == 'dark') ? true : false;
     return (
 
         <div
-            className={` ${ isDark && "bg-black" } min-h-screen ${open ? "w-60" : "w-16"
+            className={` ${isDark ? "bg-black" : " bg-zinc-200"} min-h-screen ${open ? "w-60" : "w-16"
                 } duration-500 text-gray-100 px-4`}
         >
             <div className="py-3 flex justify-end">
@@ -37,8 +37,8 @@ const SideBar = () => {
                 />
             </div>
             <div>
-                <img src={isDark? logodark: logolight } alt="" />
-                <hr className="h-0.5 bg-gray-100 border-0 rounded md:my-1 dark:bg-gray-3"></hr>
+                <img src={isDark ? logodark : logolight} alt="" />
+                <hr className={`h-0.5 bg-gray-100 border-0 rounded md:my-1 ${isDark ? "dark:bg-gray-3" : " bg-black"} `} />
             </div>
             <div className="mt-4 flex flex-col gap-4 relative">
                 {menus?.map((menu, i) => (
@@ -46,7 +46,7 @@ const SideBar = () => {
                         to={menu?.link}
                         key={i}
                         className={` ${menu?.margin && "mt-5"
-                            } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-blue-800 rounded-md`}
+                            } group flex items-center text-sm gap-3.5 font-medium p-2 ${isDark ? "hover:bg-blue-800" : "hover:bg-blue-500"} rounded-md`}
                     >
 
                         <div>{React.createElement(menu?.icon, { size: "20" })}</div>
@@ -61,7 +61,7 @@ const SideBar = () => {
                         </h2>
                         <h2
                             className={`${open && "hidden"
-                                } absolute left-48 bg-black font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+                                } absolute left-48 ${isDark ? "bg-black" : "bg-white"} font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
                         >
                             {menu?.name}
                         </h2>

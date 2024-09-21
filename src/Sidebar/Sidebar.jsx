@@ -3,30 +3,30 @@ import logodark from "../assets/logo-dark.svg"
 import logolight from "../assets/logo-light.svg"
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
-import { RiSettings4Line } from "react-icons/ri";
 import { TbReportAnalytics } from "react-icons/tb";
-import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 import { PiExamBold } from "react-icons/pi";
-import { FiMessageSquare, FiFolder } from "react-icons/fi";
+import { FiFolder } from "react-icons/fi";
+import { FaRegCalendarCheck } from "react-icons/fa6";
+import { BsClipboardCheck } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const SideBar = () => {
+const Sidebar = () => {
     const menus = [
         { name: "Dashboard", link: "/", icon: MdOutlineDashboard },
-        { name: "User", link: "/", icon: AiOutlineUser },
+        { name: "User Profile", link: "/", icon: AiOutlineUser },
         { name: "Analytics", link: "/", icon: TbReportAnalytics, },
-        { name: "Paper Upload", link: "/", icon: FiMessageSquare, margin: true },
-        { name: "Content Upload", link: "/", icon: FiFolder },
-        { name: "Assessments", link: "/", icon: PiExamBold },
-        { name: "Checking & Results", link: "/", icon: AiOutlineHeart, margin: true },
-        { name: "Setting", link: "/", icon: RiSettings4Line },
+        { name: "Schedule Paper", link: "/", icon: FaRegCalendarCheck, margin: true },
+        { name: "Questions Upload", link: "/", icon: FiFolder, },
+        { name: "Assessment Report", link: "/", icon: PiExamBold },
+        { name: "Checking & Results", link: "/", icon: BsClipboardCheck, },
     ];
     const [open, setOpen] = useState(false);
     const isDark = (localStorage.theme == 'dark') ? true : false;
     return (
 
         <div
-            className={` ${isDark ? "bg-black" : " bg-zinc-200"} min-h-screen ${open ? "w-60" : "w-16"
+            className={` dark:bg-black bg-zinc-200 min-h-screen ${open ? "w-60" : "w-16"
                 } duration-500 text-gray-100 px-4`}
         >
             <div className="py-3 flex justify-end">
@@ -36,9 +36,18 @@ const SideBar = () => {
                     onClick={() => setOpen(!open)}
                 />
             </div>
-            <div>
-                <img src={isDark ? logodark : logolight} alt="" />
-                <hr className={`h-0.5 bg-gray-100 border-0 rounded md:my-1 ${isDark ? "dark:bg-gray-3" : " bg-black"} `} />
+            <div className=" items-center flex flex-col">
+                <img src={isDark ? logodark : logolight} className={`${open && "w-20"} `} alt="" />
+                <h3
+                    style={{
+                        transitionDelay: `200ms`,
+                    }}
+                    className={`whitespace-pre font-semibold duration-500 ${!open && "opacity-0 translate-x-5 overflow-hidden h-0"
+                        }`}
+                >
+                    {"EduWiz"}
+                </h3>
+                <hr className={`h-0.5 bg-gray-100 border-0 rounded md:my-1 dark:bg-gray-3 bg-black ${open ? " w-30" : "w-10"} `} />
             </div>
             <div className="mt-4 flex flex-col gap-4 relative">
                 {menus?.map((menu, i) => (
@@ -46,7 +55,7 @@ const SideBar = () => {
                         to={menu?.link}
                         key={i}
                         className={` ${menu?.margin && "mt-5"
-                            } group flex items-center text-sm gap-3.5 font-medium p-2 ${isDark ? "hover:bg-blue-800" : "hover:bg-blue-500"} rounded-md`}
+                            } group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-blue-800 hover:bg-blue-500} rounded-md`}
                     >
 
                         <div>{React.createElement(menu?.icon, { size: "20" })}</div>
@@ -61,7 +70,7 @@ const SideBar = () => {
                         </h2>
                         <h2
                             className={`${open && "hidden"
-                                } absolute left-48 ${isDark ? "bg-black" : "bg-white"} font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+                                } absolute left-48 dark:bg-black bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
                         >
                             {menu?.name}
                         </h2>
@@ -73,4 +82,4 @@ const SideBar = () => {
     );
 };
 
-export default SideBar;
+export default Sidebar;

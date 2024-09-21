@@ -3,6 +3,8 @@ import Home from "./Home/Home";
 import './index.css'
 import { useEffect } from 'react';
 import { initializeTheme } from './utils/theme.js';
+import Login from "./Login/Login.jsx";
+import SignUp from "./SignUp/Signup.jsx";
 
 const App = () => {
   useEffect(() => {
@@ -14,6 +16,8 @@ const App = () => {
       <Routes>
         {/* Define your routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
   );

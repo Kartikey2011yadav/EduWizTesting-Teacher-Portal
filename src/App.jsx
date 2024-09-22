@@ -5,6 +5,10 @@ import Reset from "./Reset/Reset";
 import './index.css'
 import { useEffect } from 'react';
 import { initializeTheme } from './utils/theme.js';
+import Login from "./Login/Login.jsx";
+import SignUp from './SignUp/SignUp.jsx'
+
+
 
 const App = () => {
   useEffect(() => {
@@ -18,6 +22,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/reset" element={<Reset />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
   );

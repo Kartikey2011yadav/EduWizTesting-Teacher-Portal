@@ -3,6 +3,8 @@ import Home from "./Home/Home";
 import './index.css'
 import { useEffect } from 'react';
 import { initializeTheme } from './utils/theme.js';
+import Reset from "./ResetPassword/Reset.jsx";
+import Forget from "./ForgetPassword/Forget.jsx";
 
 const App = () => {
   useEffect(() => {
@@ -14,6 +16,8 @@ const App = () => {
       <Routes>
         {/* Define your routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/reset_password" element={<Reset/>} />
+        <Route path="/forget_password" element={<Forget />} />
       </Routes>
     </Router>
   );

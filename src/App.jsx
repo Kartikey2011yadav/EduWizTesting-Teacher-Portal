@@ -4,6 +4,10 @@ import Test from "./Test/test.jsx";
 import './index.css'
 import { useEffect } from 'react';
 import { initializeTheme } from './utils/theme.js';
+import Login from "./Login/Login.jsx";
+import SignUp from './SignUp/SignUp.jsx'
+
+
 import Reset from "./ResetPassword/Reset.jsx";
 import Forget from "./ForgetPassword/Forget.jsx";
 
@@ -20,6 +24,8 @@ const App = () => {
         <Route path="/test" element={<Test />} />
         <Route path="/reset_password" element={<Reset/>} />
         <Route path="/forget_password" element={<Forget />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
   );

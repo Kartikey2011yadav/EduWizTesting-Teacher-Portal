@@ -1,33 +1,32 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.svg';
-import { useEffect, useState } from 'react';
-import logo_light from '../assets/logo_light.svg';
+import {  useState } from 'react';
 import ThemeToggleButton from '../Components/ThemeToggle';
 
+
 const Reset = () => {
-  const [logoSrc, setLogoSrc] = useState(logo);
-  const [theme] = useState(localStorage.getItem('theme') || 'dark');
+  const [logoSrc] = useState(logo);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(''); 
 
-  useEffect(() => {
-    if (theme === 'light') {
-      setLogoSrc(logo_light);
-    } else {
-      setLogoSrc(logo);
-    }
-  }, [localStorage.getItem('theme')]);
+  const validatePasswordStrength = (password) => {
+    // Check for at least one uppercase letter, one lowercase letter, one digit, one special character, and a minimum length of 8
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    return passwordRegex.test(password);
+  };
 
   const handleResetPassword = async () => {
     // Simple client-side validation
+   
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
-
+    
     setError(''); // Clear any existing errors
-
+    validatePasswordStrength(password) || setError('Password should have atleast one uppercase letter, one lowercase letter, one digit, one special character, and a minimum length of 8');
+    
     try {
       const response = await fetch('https://your-api-endpoint.com/reset-password', {
         method: 'POST',
@@ -36,7 +35,7 @@ const Reset = () => {
         },
         body: JSON.stringify({
           newpassword: password,
-          email
+         
           
         }),
       });

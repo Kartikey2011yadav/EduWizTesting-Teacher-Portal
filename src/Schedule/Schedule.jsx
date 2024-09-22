@@ -4,6 +4,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
 
 const SchedulePaper = () => {
+  const [paperName, setpaperName] = useState('');
   const [className, setClassName] = useState('');
   const [subject, setSubject] = useState('');
   const [marks, setMarks] = useState('');
@@ -31,7 +32,19 @@ const SchedulePaper = () => {
         <h2 className="text-2xl font-bold text-left dark:text-white text-primary">Schedule a Paper</h2>
 
       </div>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-5">
+
+      {/* Paper name  */}
+      <div className='flex justify-start items-center'>
+          <label className="block dark:text-white text-wrap w-full font-semibold">Paper Type</label>
+          <input
+            type="text"
+            value={paperName}
+            onChange={(e) => setpaperName(e.target.value)}
+            className="w-full px-3 py-2  border-none rounded-md shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-gray-700 dark:text-black  leading-tight focus:shadow-outline"
+            placeholder="Enter paper type"
+          />
+        </div>
 
         {/* Class Name Input */}
         <div className='flex justify-start items-center'>
@@ -91,7 +104,7 @@ const SchedulePaper = () => {
         {/* Date Picker */}
         <div className='flex justify-start items-center'>
           <label className="block w-full  font-semibold mb-1">Date</label>
-          <div className='w-full  dark:bg-white rounded-md'>
+          <div className='w-full  dark:bg-white rounded-md shadow-md'>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
                 value={date}
@@ -101,7 +114,7 @@ const SchedulePaper = () => {
                     <input
                       ref={inputRef}
                       {...inputProps}
-                      className="w-full px-3 py-2 border-none text-black rounded-md shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-gray-700 dark:text-black leading-tight focus:shadow-outline"
+                      className="w-full  border-none text-black focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-gray-700 dark:text-black leading-tight focus:shadow-outline"
                     />
                     <span className="absolute  right-3 top-2">{InputProps?.endAdornment}</span>
                   </div>
@@ -114,7 +127,7 @@ const SchedulePaper = () => {
         {/* Time Picker */}
         <div className='flex justify-start items-center'>
           <label className="block w-full text-gray-700 dark:text-gray-300 font-semibold mb-1">Time</label>
-          <div className='w-full dark:bg-white rounded-md'>
+          <div className='w-full dark:bg-white rounded-md shadow-md'>
             <LocalizationProvider dateAdapter={AdapterDateFns} >
               <TimePicker
                 ampm
@@ -125,7 +138,7 @@ const SchedulePaper = () => {
                     <input
                       ref={inputRef}
                       {...inputProps}
-                      className="w-full px-3 py-2 border-none  rounded-md shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-gray-700 dark:text-black leading-tight focus:shadow-outline"
+                      className="w-full px-3 py-2 border-none focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-gray-700 dark:text-black leading-tight focus:shadow-outline"
                     />
                     <span className="absolute right-3 top-2">{InputProps?.endAdornment}</span>
                   </div>

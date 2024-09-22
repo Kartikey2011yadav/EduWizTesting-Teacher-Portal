@@ -254,6 +254,35 @@ export default {
         'spin-2': 'spin 2s linear infinite',
         'spin-3': 'spin 3s linear infinite',
       },
+      keyframes: {
+        scaleY: {
+          '0%': { transform: 'scaleY(0)' },
+          '100%': { transform: 'scaleY(1)' },
+        },
+        scaleX: {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideInRight: {
+          '0%': { transform: 'translateX(100px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        fly: {
+          '0%': { transform: 'translate(-50px, -50px) rotate(-45deg)' },
+          '100%': { transform: 'translate(20px, 20px) rotate(0)' },
+        },
+      },
+      animation: {
+        scaleY: 'scaleY 0.5s forwards',
+        scaleX: 'scaleX 0.5s forwards',
+        fadeIn: 'fadeIn 0.3s forwards',
+        slideInRight: 'slideInRight 1s forwards 0.4s ',
+        fly: 'fly 1s forwards 0.5s',
+      },
     },
   },
   darkMode: "class",

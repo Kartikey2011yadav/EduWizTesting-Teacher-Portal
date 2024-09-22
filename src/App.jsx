@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home/Home";
+import Test from "./Test/test.jsx";
 import './index.css'
 import { useEffect } from 'react';
 import { initializeTheme } from './utils/theme.js';
@@ -16,6 +17,7 @@ const App = () => {
       <Routes>
         {/* Define your routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/test" element={<Test />} />
         <Route path="/reset_password" element={<Reset/>} />
         <Route path="/forget_password" element={<Forget />} />
       </Routes>

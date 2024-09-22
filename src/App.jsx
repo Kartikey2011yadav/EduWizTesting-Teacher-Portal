@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home/Home";
+import Test from "./Test/test.jsx";
 import Reset from "./Reset/Reset";
 import './index.css'
 import { useEffect } from 'react';
@@ -16,6 +17,7 @@ const App = () => {
         {/* Define your routes */}
         <Route path="/" element={<Home />} />
         <Route path="/reset" element={<Reset />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </Router>
   );

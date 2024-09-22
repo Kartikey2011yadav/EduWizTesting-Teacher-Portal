@@ -21,6 +21,9 @@ const App = () => {
         {/* Define your routes */}
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );

@@ -13,12 +13,12 @@ const TestScheduleCard = (props) => {
                 <button className='TEST_CARD_BUTTON_DELETE bg-[#FF2121] rounded-md px-3 py-1 '>Delete</button>
             </div>
             {/* main content */}
-            <div className='TEST_CARD_BOX relative flex justify-between px-6 py-3 w-full rounded-md bg-[#1E293B]'>
+            <div className='TEST_CARD_BOX relative flex justify-between px-6 py-3 w-full rounded-md border-l-4 border-[#0EA5E9] bg-[#F1F5F9]'>
                 {/* info */}
                 <div className="TEST_CARD_DETAILS relative flex flex-col">
-                    <p className='TEST_CARD_DETAILS_COURSE text-white font-bold text-[20px]'>Course Name: {props.course}</p>
-                    <p className='TEST_CARD_DETAILS_SMALL text-slate-200 text-[14px]'>Duration: {`${props.duration}`}</p>
-                    <p className='TEST_CARD_DETAILS_SMALL text-slate-200 text-[14px]'>Subject: {props.subject}</p>
+                    <p className='TEST_CARD_DETAILS_COURSE text-[#1E293B] font-bold text-[20px]'>Course Name: {props.course}</p>
+                    <p className='TEST_CARD_DETAILS_SMALL text-[#1E293B] text-[14px]'>Duration: {`${props.duration}`}</p>
+                    <p className='TEST_CARD_DETAILS_SMALL text-[#1E293B] text-[14px]'>Subject: {props.subject}</p>
                 </div>
                 <p className=' relative text-[#FF2121] font-semibold'>Scheduled on: {props.scheduleDate}</p>
             </div>

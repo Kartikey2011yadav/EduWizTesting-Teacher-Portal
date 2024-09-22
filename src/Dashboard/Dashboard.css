@@ -2,3 +2,16 @@
     height: 40px;
     border-bottom: 2px solid rgb(213, 213, 213);
 }
+
+.dark .DASH_BOARD_SECTION{
+    background-color: #1E293B;
+}
+
+.dark .QUESTIONS_TABLE_HEADER{
+    background-color: #21324d;
+    color: white;
+}
+
+.dark .QUESTIONS_TABLE tr{
+    color: white;
+}

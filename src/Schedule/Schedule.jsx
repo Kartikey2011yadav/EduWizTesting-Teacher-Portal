@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
+import axios from 'axios';
 
 const SchedulePaper = () => {
   const [paperName, setpaperName] = useState('');
@@ -14,16 +15,36 @@ const SchedulePaper = () => {
 
   const subjects = ['Math', 'Science', 'History', 'English', 'Computer Science'];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({
+    const paperData = {
+      paperName,
       className,
       subject,
       marks,
       duration,
       date,
       time,
-    });
+    }
+    try {
+      axios.post('http://localhost:5000/teacher/schedule-paper', paperData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      alert('Paper scheduled successfully');
+
+      // Clear form fields after successful submission
+      setpaperName('');
+      setClassName('');
+      setSubject('');
+      setMarks('');
+      setDuration('');
+      setDate(null);
+      setTime(null);
+    } catch (error) {
+      console.error('Error scheduling paper:', error);
+    }
   };
 
   return (
@@ -34,8 +55,8 @@ const SchedulePaper = () => {
       </div>
       <form onSubmit={handleSubmit} className="space-y-5">
 
-      {/* Paper name  */}
-      <div className='flex justify-start items-center'>
+        {/* Paper name  */}
+        <div className='flex justify-start items-center'>
           <label className="block dark:text-white text-wrap w-full font-semibold">Paper Type</label>
           <input
             type="text"
@@ -43,6 +64,7 @@ const SchedulePaper = () => {
             onChange={(e) => setpaperName(e.target.value)}
             className="w-full px-3 py-2  border-none rounded-md shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-gray-700 dark:text-black  leading-tight focus:shadow-outline"
             placeholder="Enter paper type"
+            required
           />
         </div>
 
@@ -55,6 +77,7 @@ const SchedulePaper = () => {
             onChange={(e) => setClassName(e.target.value)}
             className="w-full px-3 py-2  border-none rounded-md shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-gray-700 dark:text-black  leading-tight focus:shadow-outline"
             placeholder="Enter class"
+            required
           />
         </div>
 
@@ -64,6 +87,7 @@ const SchedulePaper = () => {
           <select
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
+            required
             className="w-full px-3 py-2 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
           >
             <option value="" disabled >
@@ -86,6 +110,7 @@ const SchedulePaper = () => {
             onChange={(e) => setMarks(e.target.value)}
             className="w-full px-3 py-2 border-none  rounded-md shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none dark:text-black  leading-tight focus:shadow-outline"
             placeholder="Enter marks"
+            required
           />
         </div>
 
@@ -98,6 +123,7 @@ const SchedulePaper = () => {
             onChange={(e) => setDuration(e.target.value)}
             className="w-full px-3 py-2  border-none rounded-md shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none dark:text-black  leading-tight focus:shadow-outline"
             placeholder="Enter duration"
+            required
           />
         </div>
 
@@ -114,6 +140,7 @@ const SchedulePaper = () => {
                     <input
                       ref={inputRef}
                       {...inputProps}
+                      required
                       className="w-full  border-none text-black focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-gray-700 dark:text-black leading-tight focus:shadow-outline"
                     />
                     <span className="absolute  right-3 top-2">{InputProps?.endAdornment}</span>
@@ -138,6 +165,7 @@ const SchedulePaper = () => {
                     <input
                       ref={inputRef}
                       {...inputProps}
+                      required
                       className="w-full px-3 py-2 border-none focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-gray-700 dark:text-black leading-tight focus:shadow-outline"
                     />
                     <span className="absolute right-3 top-2">{InputProps?.endAdornment}</span>

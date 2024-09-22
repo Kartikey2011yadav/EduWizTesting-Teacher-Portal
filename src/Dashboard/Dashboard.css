@@ -1,0 +1,4 @@
+.QUESTIONS_TABLE tr{
+    height: 40px;
+    border-bottom: 2px solid rgb(213, 213, 213);
+}

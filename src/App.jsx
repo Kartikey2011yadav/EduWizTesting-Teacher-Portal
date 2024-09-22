@@ -3,6 +3,7 @@ import Home from "./Home/Home";
 import './index.css'
 import { useEffect } from 'react';
 import { initializeTheme } from './utils/theme.js';
+import Dashboard from "./Dashboard/Dashboard.jsx";
 
 const App = () => {
   useEffect(() => {
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         {/* Define your routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/Dashboard" element = {<Dashboard />} />
       </Routes>
     </Router>
   );

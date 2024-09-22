@@ -4,6 +4,7 @@ import Test from "./Test/test.jsx";
 import './index.css'
 import { useEffect } from 'react';
 import { initializeTheme } from './utils/theme.js';
+import SchedulePaper from "./Schedule/Schedule.jsx";
 
 const App = () => {
   useEffect(() => {
@@ -16,6 +17,7 @@ const App = () => {
         {/* Define your routes */}
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/schedule" element={<SchedulePaper />} />
       </Routes>
     </Router>
   );

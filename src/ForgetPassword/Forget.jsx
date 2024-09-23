@@ -44,7 +44,7 @@ const Forget = () => {
   return (
     <div className='m-0 w-screen h-screen flex justify-center items-center bg-[#F3F4F6] text-black dark:bg-[#010B18] dark:text-white'>
       <ThemeToggleButton />
-      <div className='m-auto rounded-lg w-[40%] h-[62%] flex flex-col justify-start items-center bg-[#FFFFFF] text-black dark:bg-[#1F2937] dark:text-white'>
+      <div className='m-auto rounded-lg w-[40%] h-[69%] flex flex-col justify-start items-center bg-[#FFFFFF] text-black dark:bg-[#1F2937] dark:text-white'>
         <div className='flex-col mt-6 px-10 w-full h-fit flex justify-start items-center'>
           <img src={isDark ? logodark : logolight} className="w-[60px] h-[60px] mb-4" alt="logo" />
 

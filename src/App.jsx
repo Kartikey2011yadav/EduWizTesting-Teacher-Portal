@@ -8,6 +8,7 @@ import Login from "./Login/Login.jsx";
 import SignUp from './SignUp/SignUp.jsx'
 
 
+import SchedulePaper from "./Schedule/Schedule.jsx";
 
 const App = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/test" element={<Test />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/schedule" element={<SchedulePaper />} />
       </Routes>
     </Router>
   );

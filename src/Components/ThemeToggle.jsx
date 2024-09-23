@@ -1,27 +1,26 @@
-import { useState, useEffect } from "react";
-import { Moon, Sun } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { Moon, Sun } from 'lucide-react';
+import { initializeTheme, toggleTheme } from '../utils/theme.js';
 
 const ThemeToggleButton = () => {
-  const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    const isDarkMode =
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setDarkMode(isDarkMode);
-    document.documentElement.classList.toggle("dark", isDarkMode);
-  }, []);
-
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark");
-    localStorage.theme = darkMode ? "light" : "dark";
-  };
+    // Initialize theme based on user's preference or system preference on mount
+    useEffect(() => {
+      initializeTheme();
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setDarkMode(savedTheme === 'dark');
+    }, []);
+  
+    // Toggle dark mode
+    const handleToggle = () => {
+      toggleTheme();
+      setDarkMode(!darkMode); // Flip state
+    };
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={handleToggle}
       className="relative w-16 h-8 rounded-full bg-primary dark:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 ease-in-out"
       aria-label="Toggle Dark Mode"
     >

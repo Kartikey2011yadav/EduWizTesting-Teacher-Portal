@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import AlertModal from "../AlertModel/AlertModel";
+import ThemeToggleButton from "../Components/ThemeToggle";
 
 export default function SignUp() {
   const isDark = localStorage.theme === "dark" ? true : false;
@@ -94,7 +95,7 @@ export default function SignUp() {
   return (
     <div
       className={`flex items-center justify-center min-h-screen bg-gray-100 dark:bg-background-dark bg-background-light`}
-    >
+    > <ThemeToggleButton />
       <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img

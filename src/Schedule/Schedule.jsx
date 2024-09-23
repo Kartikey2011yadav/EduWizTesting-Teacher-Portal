@@ -3,32 +3,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
 import axios from 'axios';
-import { TextField, Select, MenuItem } from '@mui/material';
+import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { format } from 'date-fns';
 
 const StyledTimePicker = styled(TimePicker)(({ theme }) => ({
   '& .MuiInputBase-root': {
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.background.paper,
-    color: theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.text.primary,
-    borderRadius: theme.shape.borderRadius,
-    height: '40px',
-    '& fieldset': {
-      border: 'none',
-    },
-  },
-  '& .MuiInputBase-input': {
-    padding: '8px 14px',
-    fontSize: '1rem',
-  },
-  '& .MuiIconButton-root': {
-    color: theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.text.primary,
-  },
-}));
-const StyledDatePicker = styled(DatePicker)(({ theme }) => ({
-  '& .MuiInputBase-root': {
-    // backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.background.paper,
-    // color: theme.palette.mode === 'dark' ? theme.palette.common.black : theme.palette.text.graydark,
+    backgroundColor: '#fff',
     color: '#000',
     borderRadius: theme.shape.borderRadius,
     height: '40px',
@@ -39,16 +20,56 @@ const StyledDatePicker = styled(DatePicker)(({ theme }) => ({
   '& .MuiInputBase-input': {
     padding: '8px 14px',
     fontSize: '1rem',
+    color: '#000',
   },
   '& .MuiIconButton-root': {
-    color: theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.text.primary,
+    color: '#000',
+  },
+  'html[class~="dark"] &': {
+    '& .MuiInputBase-root': {
+      backgroundColor: '#374151',
+      color: '#fff',
+    },
+    '& .MuiInputBase-input': {
+      color: '#fff',
+    },
+    '& .MuiIconButton-root': {
+      color: '#fff',
+    },
   },
 }));
-
-const StyledSelect = styled(Select)(({ theme }) => ({
-  color: theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.text.primary,
-  '& .MuiSelect-icon': {
-    color: theme.palette.mode === 'dark' ? theme.palette.common.white : theme.palette.text.primary,
+const StyledDatePicker = styled(DatePicker)(({ theme }) => ({
+ '& .MuiInputBase-root': {
+    backgroundColor: '#fff',
+    color: '#000',
+    borderRadius: theme.shape.borderRadius,
+    height: '40px',
+    '& fieldset': {
+      border: 'none',
+    },
+  },
+  '& .MuiInputBase-input': {
+    padding: '8px 14px',
+    fontSize: '1rem',
+    color: '#000',
+  },
+  '& .MuiIconButton-root': {
+    color: '#000',
+  },
+  'html[class~="dark"] &': {
+    '& .MuiInputBase-root': {
+      backgroundColor: '#374151',
+      color: '#fff',
+    },
+    '& .MuiInputBase-input': {
+      color: '#fff',
+    },
+    '& .MuiInputBase-input:placeholder': {
+      color: '#fff',
+    },
+    '& .MuiIconButton-root': {
+      color: '#fff',
+    },
   },
 }));
 
@@ -146,13 +167,13 @@ const SchedulePaper = () => {
         <div className="grid grid-cols-2 pb-8 gap-x-8 gap-y-6">
 
           {/* Class Name Input */}
-          <div className='flex gap-10 col-span-2'>
-            <label className="block dark:text-white text-wrap text-lg w-full font-semibold">Course Name</label>
+          <div className='flex gap-2 col-span-2'>
+            <label className="block dark:text-white text-wrap text-lg w-50 font-semibold">Course Name</label>
             <select
               value={className}
               onChange={(e) => setClassName(e.target.value)}
               required
-              className="w-full px-3 py-2 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>--Select a course--</option>
               <option value="mtech">M.Tech.</option>
@@ -167,7 +188,7 @@ const SchedulePaper = () => {
               value={paperName}
               onChange={(e) => setpaperName(e.target.value)}
               required
-              className="w-full px-3 py-2 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>--Select paper type--</option>
               <option value="test1">Test 1</option>
@@ -184,11 +205,11 @@ const SchedulePaper = () => {
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
-              className="w-full px-3 py-2 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>--Select a subject--</option>
               {subjects.map((subj, index) => (
-                <option key={index} value={subj} className="text-black">
+                <option key={index} value={subj}>
                   {subj}
                 </option>
               ))}
@@ -202,7 +223,7 @@ const SchedulePaper = () => {
               type="tel"
               value={marks}
               onChange={(e) => validateMarks(e.target.value)}
-              className="w-full px-3 py-2 border-none rounded-md placeholder:text-graydark shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none dark:text-black leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md dark:placeholder:text-white shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
               placeholder="Enter marks"
               required
             />
@@ -216,7 +237,7 @@ const SchedulePaper = () => {
             <input
               type="number"
               placeholder="Hours"
-              className="w-full px-3 py-2 border-none rounded-md placeholder:text-graydark shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none dark:text-black leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md dark:placeholder:text-white shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
               value={duration.hours}
               onChange={(e) => handleDurationChange('hours', e.target.value)}
             />
@@ -224,7 +245,7 @@ const SchedulePaper = () => {
             <input
               type="number"
               placeholder="Minutes"
-              className="w-full px-3 py-2 border-none rounded-md placeholder:text-graydark shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none dark:text-black leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md placeholder:text-white shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
               value={duration.minutes}
               onChange={(e) => handleDurationChange('minutes', e.target.value)}
             />
@@ -234,7 +255,7 @@ const SchedulePaper = () => {
           {/* Date Picker */}
           <div className='space-y-1 '>
             <label className="block w-full font-semibold mb-1">Date</label>
-            <div className='w-full dark:bg-white rounded-md shadow-md'>
+            <div className='w-full rounded-md shadow-md dark:bg-input-dark dark:text-white dark:shadow-white/10'>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StyledDatePicker
                   value={date}
@@ -254,39 +275,24 @@ const SchedulePaper = () => {
           {/* Time Picker */}
           <div className='space-y-1'>
             <label className="block w-full text-gray-700 dark:text-gray-300 font-semibold mb-1">Time: (12 hrs format)</label>
-            <div className='w-full dark:bg-gray-800 rounded-md shadow-md'>
+            <div className='w-full rounded-md shadow-md dark:bg-input-dark dark:text-white dark:shadow-white/10'>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StyledTimePicker
                   value={time}
                   onChange={(newTime) => setTime(newTime)}
                   ampm={true}
                   views={['hours', 'minutes']}
-                  inputFormat="hh:mm a"
+                  inputFormat="HH:MM A"
                   renderInput={(params) => (
                     <TextField
                       {...params}
                       variant="outlined"
                       fullWidth
                       required
+                      placeholder='HH:MM AA'
                       InputProps={{
                         ...params.InputProps,
-                        endAdornment: (
-                          <StyledSelect
-                            value={time ? (time.getHours() >= 12 ? 'PM' : 'AM') : 'AM'}
-                            onChange={(e) => {
-                              const newTime = new Date(time || new Date());
-                              if (e.target.value === 'PM' && newTime.getHours() < 12) {
-                                newTime.setHours(newTime.getHours() + 12);
-                              } else if (e.target.value === 'AM' && newTime.getHours() >= 12) {
-                                newTime.setHours(newTime.getHours() - 12);
-                              }
-                              setTime(newTime);
-                            }}
-                          >
-                            <MenuItem value="AM">AM</MenuItem>
-                            <MenuItem value="PM">PM</MenuItem>
-                          </StyledSelect>
-                        ),
+                        
                       }}
                     />
                   )}

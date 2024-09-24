@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import AlertModal from "../AlertModel/AlertModel";
-import ThemeToggle from '../Components/ThemeToggle'
+
 
 
 export default function SignUp() {
@@ -129,7 +129,6 @@ export default function SignUp() {
     <div
       className={`min-h-[80vh] flex items-center justify-center bg-gray-100 dark:bg-background-dark bg-background-light p-10`}
     >
-      <ThemeToggle/>
       <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img

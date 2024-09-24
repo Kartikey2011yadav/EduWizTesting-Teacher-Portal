@@ -5,10 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import AlertModal from "../AlertModel/AlertModel";
+import ThemeToggle from '../Components/ThemeToggle'
+
 
 export default function SignUp() {
   const isDark = localStorage.theme === "dark" ? true : false;
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [visible, setVisible] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false); // Control modal visibility
   const [message, setMessage] = useState(""); // Store success/error message
   const [isError, setIsError] = useState(false); // Control error or success state
@@ -20,6 +24,7 @@ export default function SignUp() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: ""
   });
 
   const handleInputChange = (e) => {
@@ -29,6 +34,18 @@ export default function SignUp() {
       [name]: value,
     }));
   };
+
+  const handlePhoneNumberChange = (e) => {
+    const { value } = e.target;
+    // Only allow numbers
+    const filteredValue = value.replace(/\D/g, "");
+    setPhoneNumber(filteredValue);
+  };
+
+  const validatePhoneNumber = (phone) => {
+    return phone.length === 10;
+  };
+
 
   const validatePasswordStrength = (password) => {
     // Check for at least one uppercase letter, one lowercase letter, one digit, one special character, and a minimum length of 8
@@ -42,6 +59,7 @@ export default function SignUp() {
       .post("http://localhost:5000/teacher/signup", {
         name: formData.name,
         email: formData.email,
+        mobileNumber: phoneNumber,
         password: formData.password,
       })
       .then((response) => {
@@ -50,8 +68,9 @@ export default function SignUp() {
           name: "",
           email: "",
           password: "",
+          confirmPassword: ""
         });
-        // setPhoneNumber("");
+        setPhoneNumber("");
         setMessage(response.data.message);
         setIsError(false); // Success
         setModalIsOpen(true); // Open modal
@@ -71,6 +90,13 @@ export default function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!validatePhoneNumber(phoneNumber)) {
+      setMessage("Phone number must be exactly 10 digits!");
+      setIsError(true);
+      setModalIsOpen(true);
+      return;
+    }
+
     // Check if password matches the strength criteria
     if (!validatePasswordStrength(formData.password)) {
       setMessage(
@@ -80,6 +106,14 @@ export default function SignUp() {
       setModalIsOpen(true);
       return;
     }
+
+    if (formData.password !== formData.confirmPassword) {
+      setMessage("Passwords do not match!");
+      setIsError(true);
+      setModalIsOpen(true);
+      return;
+    }
+
 
     handleSignUp();
   };
@@ -93,8 +127,9 @@ export default function SignUp() {
 
   return (
     <div
-      className={`flex items-center justify-center min-h-screen bg-gray-100 dark:bg-background-dark bg-background-light`}
+      className={`min-h-[80vh] flex items-center justify-center bg-gray-100 dark:bg-background-dark bg-background-light p-10`}
     >
+      <ThemeToggle/>
       <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img
@@ -125,7 +160,25 @@ export default function SignUp() {
               value={formData.name}
               onChange={handleInputChange}
               required
-              className="bw-full border p-2 pr-10 rounded-md border-gray text-black dark:text-black"
+              className="bw-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+            />
+          </div>
+
+          {/* Phone Number */}
+          <div className="space-y-2 flex flex-col">
+            <label
+              htmlFor="PhoneNumber"
+              className="text-sm font-medium text-black dark:text-white"
+            >
+              Phone Number
+            </label>
+            <input
+               type="tel"
+               placeholder="Enter Your Phone Number"
+               value={phoneNumber}
+               onChange={handlePhoneNumberChange}
+               required
+              className="bw-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
@@ -144,7 +197,7 @@ export default function SignUp() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:text-black"
+              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
@@ -163,13 +216,40 @@ export default function SignUp() {
                 type={visible ? "text" : "password"}
                 value={formData.password}
                 onChange={handleInputChange}
-                className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:text-black" // Adjusted padding-right (pr-10) for icon spacing
+                className="w-full border p-2 pr-10 rounded-md border-gray text-black  dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
               <span
                 onClick={() => setVisible(!visible)}
-                className="absolute right-2 top-2 cursor-pointer text-gray-500 dark:text-black mt-1"
+                className="absolute right-2 top-2 cursor-pointer text-gray-500 dark:text-white  mt-1"
               >
                 {visible ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
+          </div>
+
+          {/* Confirm Password Input */}
+          <div className="space-y-2 flex flex-col">
+            <label
+              htmlFor="ConfirmPassword"
+              className="text-sm font-medium text-black dark:text-white"
+            >
+              Confirm Password
+            </label>
+            <div className="relative w-full">
+              <input
+                 name="confirmPassword"
+                 placeholder="Confirm Your Password"
+                 type={showConfirmPassword ? "text" : "password"}
+                 value={formData.confirmPassword}
+                 onChange={handleInputChange}
+                 required
+                className="w-full border p-2 pr-10 rounded-md border-gray text-black  dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
+              />
+              <span
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-2 top-2 cursor-pointer text-gray-500 dark:text-white mt-1"
+              >
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
           </div>
@@ -195,6 +275,9 @@ export default function SignUp() {
               >
                 Sign In
               </Link>
+            </p>
+            <p>
+              <Link to="/IHavePassword" className="login_link text-sm text-black dark:text-white mt-2">Have a Passcode?</Link>
             </p>
           </div>
         </form>

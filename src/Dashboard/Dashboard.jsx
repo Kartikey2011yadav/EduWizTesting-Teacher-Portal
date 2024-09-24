@@ -11,10 +11,7 @@ const Dashboard = () => {
 
     const navigate = useNavigate();
     let teacherName = '';
-    let scheduleDate;
-    let course;
-    let subjectName;
-    let duration;
+    let scheduleTests;
 
     useEffect(() => {
 
@@ -27,24 +24,37 @@ const Dashboard = () => {
 
                 const res = JSON.stringify(response);
                 teacherName = res.data.name;
-                scheduleDate = res.data.scheduleDate;
-                course = res.data.course;
-                subjectName = res.data.subjectName;
-                duration = res.data.duration;
+                scheduleTests = res.data.scheduleTests;
               })
               .catch(() => {
-                alert('Could not fetch Teacher data');
+                // alert('Could not fetch Teacher data');
                 // navigate("/teacher"); 
               });
           } else {
-            alert('can not find teacher ID');
+            // alert('can not find teacher ID');
             navigate("/dashboard"); 
           }
     },[])
 
 
-    // Data is not availble so using this name 
+    // Data is not availble so using this sample data 
     teacherName = 'John Doe'
+    scheduleTests = [
+        {
+            id: 0,
+            course : 'MTech',
+            duration : '1hr',
+            subject : 'Maths 2',
+            scheduleDate: new Date(2024, 8, 21, 10, 30)
+        },
+        {
+            id: 1,
+            course : 'MTech',
+            duration : '1hr',
+            subject : 'Maths 2',
+            scheduleDate: new Date(2024, 8, 21, 10, 30)
+        },
+    ]
 
     return(
         <section className="DASHBOARD flex flex-row h-screen w-screen ">
@@ -90,9 +100,11 @@ const Dashboard = () => {
 
                     <div className='relative w-[95%]  mx-auto my-7 flex flex-col gap-10'>
 
-                        <TestScheduleCard date={scheduleDate} duration={duration} course={course} subjectName={subjectName} />
-                        
-                        <TestScheduleCard date={scheduleDate} duration={duration} course={course} subjectName={subjectName}/>
+                        {
+                            scheduleTests.map((test) => (
+                                <TestScheduleCard key={test.id} test={test} />
+                            ))
+                        }
 
                     </div>
                     

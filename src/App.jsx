@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { initializeTheme } from './utils/theme.js';
 import Login from "./Login/Login.jsx";
 import SignUp from './SignUp/SignUp.jsx'
+import NotFound from "./NotFound/NotFound.jsx";
 
 
 
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/test" element={<Test />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

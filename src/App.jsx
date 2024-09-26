@@ -1,3 +1,4 @@
+// src/App.jsx
 import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
@@ -15,6 +16,7 @@ import Dashboard from "./Dashboard/Dashboard.jsx";
 import SchedulePaper from "./Schedule/Schedule.jsx";
 import Reset from "./ResetPassword/Reset.jsx";
 import Forget from "./ForgotPassword/Forget.jsx";
+import ProtectedLayout from "./Layout/ProtectedLayout.jsx";
 
 import "./index.css";
 import { initializeTheme } from "./utils/theme.js";
@@ -75,10 +77,11 @@ const App = () => {
 
       {/* Protected Routes */}
       {isAuthenticated && (
-        <>
+        <Route element={<ProtectedLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/schedule" element={<SchedulePaper />} />
-        </>
+          {/* Add more protected routes here */}
+        </Route>
       )}
 
       {/* Fallback Route for 404 */}

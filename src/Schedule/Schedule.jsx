@@ -159,9 +159,9 @@ const SchedulePaper = () => {
   };
 
   return (
-    <div className={`max-w-xl mx-auto mt-10 p-6 bg-container-light dark:bg-container-dark shadow-md rounded-lg transition-all duration-500}`}>
+    <div className={`max-w-xl mx-auto mt-10 p-6 bg-container-light dark:bg-container-dark shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] rounded-lg transition-all duration-500}`}>
       <div className="mb-4">
-        <h2 className="text-2xl font-bold text-left dark:text-white text-primary">Schedule a Paper</h2>
+        <h2 className="text-2xl font-bold text-black text-left dark:text-white ">Schedule a Paper</h2>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 pb-8 gap-x-8 gap-y-6">
@@ -173,7 +173,7 @@ const SchedulePaper = () => {
               value={className}
               onChange={(e) => setClassName(e.target.value)}
               required
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>--Select a course--</option>
               <option value="mtech">M.Tech.</option>
@@ -188,7 +188,7 @@ const SchedulePaper = () => {
               value={paperName}
               onChange={(e) => setpaperName(e.target.value)}
               required
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>--Select paper type--</option>
               <option value="test1">Test 1</option>
@@ -205,7 +205,7 @@ const SchedulePaper = () => {
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>--Select a subject--</option>
               {subjects.map((subj, index) => (
@@ -223,7 +223,7 @@ const SchedulePaper = () => {
               type="tel"
               value={marks}
               onChange={(e) => validateMarks(e.target.value)}
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md dark:placeholder:text-white shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
               placeholder="Enter marks"
               required
             />
@@ -237,7 +237,7 @@ const SchedulePaper = () => {
             <input
               type="number"
               placeholder="Hours"
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md dark:placeholder:text-white shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
               value={duration.hours}
               onChange={(e) => handleDurationChange('hours', e.target.value)}
             />
@@ -245,7 +245,7 @@ const SchedulePaper = () => {
             <input
               type="number"
               placeholder="Minutes"
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md placeholder:text-white shadow-md focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
               value={duration.minutes}
               onChange={(e) => handleDurationChange('minutes', e.target.value)}
             />
@@ -255,7 +255,7 @@ const SchedulePaper = () => {
           {/* Date Picker */}
           <div className='space-y-1 '>
             <label className="block w-full font-semibold mb-1">Date</label>
-            <div className='w-full rounded-md shadow-md dark:bg-input-dark dark:text-white dark:shadow-white/10'>
+            <div className='w-full rounded-md  dark:bg-input-dark dark:text-white '>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StyledDatePicker
                   value={date}
@@ -275,7 +275,7 @@ const SchedulePaper = () => {
           {/* Time Picker */}
           <div className='space-y-1'>
             <label className="block w-full text-gray-700 dark:text-gray-300 font-semibold mb-1">Time: (12 hrs format)</label>
-            <div className='w-full rounded-md shadow-md dark:bg-input-dark dark:text-white dark:shadow-white/10'>
+            <div className='w-full rounded-md  dark:bg-input-dark dark:text-white '>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StyledTimePicker
                   value={time}

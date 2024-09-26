@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logodark from "../assets/logo-dark.svg";
 import logolight from "../assets/logo-light.svg";
 import { useContext, useState } from 'react';
@@ -12,6 +12,8 @@ const Forget = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
   const [modalMessage, setModalMessage] = useState(''); // State for modal message
   const [isError, setIsError] = useState(false); // State to determine if it's an error modal
+  const [shouldNavigate, setShouldNavigate] = useState(false); // State to determine if navigation should happen after modal closes
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value); // Capture email input value
@@ -20,15 +22,11 @@ const Forget = () => {
   const handleResetPassword = () => {
     axios.post('http://localhost:5000/teacher/forgot-password', { email })
       .then((response) => {
-        if (response.data.success) {
-          setModalMessage('Password reset link sent successfully!');
-          setIsError(false);
-          setIsModalOpen(true); // Open the modal for success
-        } else {
-          setModalMessage('Failed to send password reset link.');
-          setIsError(true);
-          setIsModalOpen(true); // Open the modal for error
-        }
+        console.log(response.data);
+        setModalMessage('Password reset link sent successfully!');
+        setIsError(false);
+        setIsModalOpen(true); // Open the modal for success
+        setShouldNavigate(true); // Set flag to navigate after modal closes
       })
       .catch((error) => {
         setModalMessage('An error occurred: ' + error.message);
@@ -39,6 +37,9 @@ const Forget = () => {
 
   const closeModal = () => {
     setIsModalOpen(false); // Close the modal
+    if (shouldNavigate) {
+      navigate("/"); // Navigate after modal closes if password reset is successful
+    }
   };
 
   return (

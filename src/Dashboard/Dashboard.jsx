@@ -1,6 +1,4 @@
 import './Dashboard.css';
-import Sidebar from "../Sidebar/Sidebar";
-import TeacherNavbar from '../Components/TeacherNavbar';
 import { useEffect } from 'react';
 import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
@@ -16,9 +14,8 @@ const Dashboard = () => {
     // const navigate = useNavigate();
 
 
-    //Variables to pass into components 
-    //like dashboardNavbar and Test Cards
-    let teacherName = '';
+
+
     let scheduleTests;
     const closeModal = () => {
         setModalOpen(false);
@@ -32,7 +29,7 @@ const Dashboard = () => {
             axios
               .post("http://localhost:5000/teacher/getDetails", { teacherID })
               .then((response) => {
-                teacherName = response.data.name;
+                
                 scheduleTests = response.data.scheduleTests;
                 setModalMessage(response.data.message);
                 setModalOpen(true); // Open modal
@@ -54,7 +51,7 @@ const Dashboard = () => {
 
 
     // Data is not availble so using this sample data 
-    teacherName = 'John Doe'
+   
     scheduleTests = [
         {
             id: 0,
@@ -73,21 +70,17 @@ const Dashboard = () => {
     ]
 
     return(
-        <section className="DASHBOARD flex flex-row h-screen w-screen ">
-            <div className=' sticky'>
-            <Sidebar />
-            </div>
-            <section className="DASH_BOARD_SECTION  w-full flex flex-col bg-[#F8FAFC] overflow-y-scroll">
+        <div>
+         
+            <div >
 
-                {/* Teacher Navbar */}
-                <TeacherNavbar name={teacherName}/>
 
                 {/* Questions Table */}
                 <div className="QUESTIONS_TABLE relative flex flex-col w-5/6 mx-auto  mt-8 rounded-lg shadow-3 shadow-slate-300">
                     <h2 className=" relative text-[40px] bg-[#0369A1] text-white  font-bold px-3 rounded-t-lg">Questions</h2>
                     <table className=" relative w-[95%] mx-auto text-center  table-fixed mt-5 mb-7">
                         <thead className="QUESTIONS_TABLE_HEADER bg-[#F1F5F9] text-slate-600">
-                            <tr >
+                            <tr className='bg-[#ececec] dark:bg-[#1F2937]'>
                                 <th>Level</th>
                                 <th>Questions</th>
                             </tr>
@@ -125,14 +118,14 @@ const Dashboard = () => {
                     </div>
                     
                 </div>
-            </section>
+            </div>
             <SuccessModal
                 isOpen={modalOpen}
                 onClose={closeModal}
                 message={modalMessage}
                 isError={isError}
             />
-        </section>
+        </div>
     )
 }
 

@@ -20,7 +20,7 @@ const Sidebar = () => {
     { name: "Analytics", link: "/", icon: TbReportAnalytics },
     {
       name: "Schedule Paper",
-      link: "/",
+      link: "/schedule",
       icon: FaRegCalendarCheck,
       margin: true,
     },

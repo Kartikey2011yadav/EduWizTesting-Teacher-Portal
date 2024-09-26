@@ -39,7 +39,7 @@ export default function Login() {
         .post("http://localhost:5000/teacher/verify-session", { sessionId })
         .then((response) => {
           if (response.data.valid) {
-            navigate("/"); // Navigate to dashboard if session is valid
+            navigate("/dashboard"); // Navigate to dashboard if session is valid
           } else {
             handleLogout();
           }
@@ -99,7 +99,7 @@ export default function Login() {
         setModalOpen(true);
         setShouldNavigate(true);
 
-        localStorage.setItem("adminId", response.data.adminId);
+        localStorage.setItem("teacherId", response.data.teacherId);
         localStorage.setItem("email", response.data.email);
         localStorage.setItem("name", response.data.name);
         localStorage.setItem("mobileNumber", response.data.mobileNumber);

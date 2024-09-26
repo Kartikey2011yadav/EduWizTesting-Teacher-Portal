@@ -8,7 +8,7 @@ const TeacherNavbar = (props) => {
     
 
     return(
-        <div className="TEACHER_NAVBAR flex flex-row justify-between items-center w-full h-[60px] bg-[#0369a1] px-10">
+        <div style={{borderLeft:" 1px solid #ffffff14"}}className="TEACHER_NAVBAR flex flex-row justify-between items-center w-full h-[60px] bg-[#0369a1] dark:bg-[#1C2434] px-10">
 
             {/* Teacher information display */}
             <div className=" w-max h-full relative flex flex-row gap-3 items-center ">

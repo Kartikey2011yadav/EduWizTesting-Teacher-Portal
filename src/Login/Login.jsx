@@ -24,11 +24,10 @@ export default function Login() {
 
   const handleLogout = () => {
     localStorage.removeItem("sessionId"); // Remove session ID from local storage
-    navigate("/"); // Redirect back to login page
+    navigate("/login"); // Redirect back to login page
   };
 
   useEffect(() => {
-    document.title = "Admin:login";
 
     // Check if session ID exists in local storage and is still valid
     const sessionId = localStorage.getItem("sessionId");
@@ -38,7 +37,7 @@ export default function Login() {
         .post("http://localhost:5000/teacher/verify-session", { sessionId })
         .then((response) => {
           if (response.data.valid) {
-            navigate("/Dashboard"); // Navigate to dashboard if session is valid
+            navigate("/"); // Navigate to dashboard if session is valid
           } else {
             handleLogout();
           }
@@ -50,7 +49,7 @@ export default function Login() {
   const closeModal = () => {
     setModalOpen(false);
     if (shouldNavigate) {
-      navigate("/Dashboard");
+      navigate("/");
     }
   };
 
@@ -149,7 +148,7 @@ export default function Login() {
               required
               value={usrEmail}
               onChange={(e) => setusrEmail(e.target.value)}
-              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:text-black"
+              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
           <div className="space-y-2 flex flex-col">
@@ -167,11 +166,11 @@ export default function Login() {
                 required
                 value={usrPass}
                 onChange={(e) => setusrPass(e.target.value)}
-                className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:text-black" // Adjusted padding-right (pr-10) for icon spacing
+                className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
               <span
                 onClick={() => setVisible(!visible)}
-                className="absolute right-2 top-2 cursor-pointer text-gray-500 dark:text-black mt-1"
+                className="absolute right-2 top-2 cursor-pointer text-gray-500 dark:text-white mt-1"
               >
                 {visible ? <FaEyeSlash /> : <FaEye />}
               </span>
@@ -179,14 +178,26 @@ export default function Login() {
           </div>
 
           {showOtp && (
-            <input
-              className="login_otp"
+            <div className="space-y-2 flex flex-col">
+            <label
+              htmlFor="password"
+              className="text-sm font-medium text-black dark:text-white"
+            >
+              OTP
+            </label>
+             <div className="relative w-full">
+               <input
+              className="login_otp w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
               type="text"
               placeholder="Enter OTP"
               required
               value={usrOTP}
               onChange={(e) => setusrOTP(e.target.value)}
             />
+             
+           </div>
+           </div>
+           
           )}
 
           <div className="flex items-center justify-between">

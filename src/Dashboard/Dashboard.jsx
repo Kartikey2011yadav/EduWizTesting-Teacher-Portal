@@ -3,15 +3,26 @@ import Sidebar from "../Sidebar/Sidebar";
 import TeacherNavbar from '../Components/TeacherNavbar';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import TestScheduleCard from '../Test Schedule Card/TestScheduleCard';
+import SuccessModal from '../AlertModel/AlertModel';
+import { useState } from 'react';
 
 
 const Dashboard = () => {
+    const [modalOpen, setModalOpen] = useState(false); // Modal open state
+    const [modalMessage, setModalMessage] = useState(""); // Modal message
+    const [isError, setIsError] = useState(false); // Modal error state
+    // const navigate = useNavigate();
 
-    const navigate = useNavigate();
+
+    //Variables to pass into components 
+    //like dashboardNavbar and Test Cards
     let teacherName = '';
     let scheduleTests;
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     useEffect(() => {
 
@@ -21,19 +32,24 @@ const Dashboard = () => {
             axios
               .post("http://localhost:5000/teacher/getDetails", { teacherID })
               .then((response) => {
-
-                const res = JSON.stringify(response);
-                teacherName = res.data.name;
-                scheduleTests = res.data.scheduleTests;
+                teacherName = response.data.name;
+                scheduleTests = response.data.scheduleTests;
+                setModalMessage(response.data.message);
+                setModalOpen(true); // Open modal
+                setIsError(false); // It's a success
               })
-              .catch(() => {
-                // alert('Could not fetch Teacher data');
-                // navigate("/teacher"); 
+              .catch((error) => {
+                console.error(error);
+                setModalMessage("Could not fetch Teacher Details");
+                setIsError(true); // It's an error
+                setModalOpen(true); // Open modal
               });
           } else {
-            // alert('can not find teacher ID');
-            navigate("/dashboard"); 
-          }
+            setModalMessage("Incorrect teacher ID");
+            setIsError(true); // It's an error
+            setModalOpen(true); // Open modal
+            
+        }
     },[])
 
 
@@ -110,6 +126,12 @@ const Dashboard = () => {
                     
                 </div>
             </section>
+            <SuccessModal
+                isOpen={modalOpen}
+                onClose={closeModal}
+                message={modalMessage}
+                isError={isError}
+            />
         </section>
     )
 }

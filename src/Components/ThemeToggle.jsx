@@ -9,7 +9,7 @@ const ThemeToggleButton = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="relative w-16 h-8 rounded-full bg-primary dark:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 ease-in-out"
+      className="relative w-16 h-8 rounded-full bg-black dark:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 ease-in-out"
       aria-label="Toggle Dark Mode"
     >
       <div className="flex items-center justify-between h-full px-1">

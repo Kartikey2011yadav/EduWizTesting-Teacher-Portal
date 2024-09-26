@@ -120,7 +120,7 @@ export default function Login() {
     <div
       className={`flex items-center justify-center min-h-screen bg-gray-100 dark:bg-background-dark bg-background-light`}
     >
-      <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
+      <div className="w-full max-w-md shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img
             src={theme === "dark" ? logodark : logolight}

@@ -132,7 +132,7 @@ export default function SignUp() {
       className={`min-h-[80vh] flex items-center justify-center bg-gray-100 dark:bg-background-dark bg-background-light p-10`}
     >
 
-      <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
+      <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img
             src={theme === "dark" ? logodark : logolight}

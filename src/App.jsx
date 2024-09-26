@@ -1,25 +1,19 @@
 // src/App.jsx
-import { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
-import Login from "./Login/Login.jsx";
-import SignUp from "./SignUp/SignUp.jsx";
-import NotFound from "./NotFound/NotFound.jsx";
-import Dashboard from "./Dashboard/Dashboard.jsx";
-import SchedulePaper from "./Schedule/Schedule.jsx";
-import Reset from "./ResetPassword/Reset.jsx";
-import Forget from "./ForgotPassword/Forget.jsx";
-import ProtectedLayout from "./Layout/ProtectedLayout.jsx";
+import Login from './Login/Login.jsx';
+import SignUp from './SignUp/SignUp.jsx';
+import NotFound from './NotFound/NotFound.jsx';
+import Dashboard from './Dashboard/Dashboard.jsx';
+import SchedulePaper from './Schedule/Schedule.jsx';
+import Reset from './ResetPassword/Reset.jsx';
+import Forget from './ForgotPassword/Forget.jsx';
+import ProtectedLayout from './Layout/ProtectedLayout.jsx';
 
-import "./index.css";
-import { initializeTheme } from "./utils/theme.js";
+import './index.css';
+import { initializeTheme } from './utils/theme.js';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -27,13 +21,8 @@ const App = () => {
   const location = useLocation(); // Get the current location
 
   useEffect(() => {
-    const publicRoutes = [
-      "/",
-      "/signup",
-      "/forget_password",
-      "/reset_password",
-    ];
-    const sessionId = localStorage.getItem("sessionId");
+    const publicRoutes = ['/', '/signup', '/forget_password', '/reset_password'];
+    const sessionId = localStorage.getItem('sessionId');
 
     // If the current route is public, skip the authentication check
     if (publicRoutes.includes(location.pathname)) {
@@ -42,24 +31,24 @@ const App = () => {
 
     if (sessionId) {
       axios
-        .post("http://localhost:5000/teacher/verify-session", { sessionId })
+        .post('http://localhost:5000/teacher/verify-session', { sessionId })
         .then((response) => {
           if (response.data.valid) {
             setIsAuthenticated(true);
           } else {
-            localStorage.removeItem("sessionId");
+            localStorage.removeItem('sessionId');
             setIsAuthenticated(false);
-            navigate("/"); // Redirect to login
+            navigate('/'); // Redirect to login
           }
         })
         .catch(() => {
-          localStorage.removeItem("sessionId");
+          localStorage.removeItem('sessionId');
           setIsAuthenticated(false);
-          navigate("/"); // Redirect to login
+          navigate('/'); // Redirect to login
         });
     } else {
       setIsAuthenticated(false);
-      navigate("/"); // Redirect to login
+      navigate('/'); // Redirect to login
     }
   }, [navigate, location.pathname]);
 
@@ -80,7 +69,6 @@ const App = () => {
         <Route element={<ProtectedLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/schedule" element={<SchedulePaper />} />
-          {/* Add more protected routes here */}
         </Route>
       )}
 

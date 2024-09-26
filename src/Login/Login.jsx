@@ -1,14 +1,16 @@
 import logodark from "../assets/logo-dark.svg";
 import logolight from "../assets/logo-light.svg";
 import { useNavigate, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import AlertModal from "../AlertModel/AlertModel";
 
+import { ThemeContext } from "../contexts/ThemeContext";
+
 export default function Login() {
-  const isDark = localStorage.theme === "dark" ? true : false;
+
   const [visible, setVisible] = useState(false);
   const [showOtp, setOtp] = useState(false);
   const [usrEmail, setusrEmail] = useState("");
@@ -21,14 +23,13 @@ export default function Login() {
   const [shouldNavigate, setShouldNavigate] = useState(false);
 
   const navigate = useNavigate();
-
+  const { theme } = useContext(ThemeContext);
   const handleLogout = () => {
     localStorage.removeItem("sessionId"); // Remove session ID from local storage
-    navigate("/"); // Redirect back to login page
+    navigate("/login"); // Redirect back to login page
   };
 
   useEffect(() => {
-    document.title = "Admin:login";
 
     // Check if session ID exists in local storage and is still valid
     const sessionId = localStorage.getItem("sessionId");
@@ -38,7 +39,7 @@ export default function Login() {
         .post("http://localhost:5000/teacher/verify-session", { sessionId })
         .then((response) => {
           if (response.data.valid) {
-            navigate("/Dashboard"); // Navigate to dashboard if session is valid
+            navigate("/"); // Navigate to dashboard if session is valid
           } else {
             handleLogout();
           }
@@ -50,7 +51,7 @@ export default function Login() {
   const closeModal = () => {
     setModalOpen(false);
     if (shouldNavigate) {
-      navigate("/Dashboard");
+      navigate("/dashboard");
     }
   };
 
@@ -69,6 +70,7 @@ export default function Login() {
         setModalOpen(true); // Open modal
         setIsError(false); // It's a success
         setOtp(true); // Show OTP input field
+
       })
       .catch((error) => {
         console.error(error);
@@ -121,7 +123,7 @@ export default function Login() {
       <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img
-            src={isDark ? logodark : logolight}
+            src={theme === "dark" ? logodark : logolight}
             className={`${open && "w-20"} `}
             alt=""
           />
@@ -149,7 +151,7 @@ export default function Login() {
               required
               value={usrEmail}
               onChange={(e) => setusrEmail(e.target.value)}
-              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:text-black"
+              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
           <div className="space-y-2 flex flex-col">
@@ -167,11 +169,11 @@ export default function Login() {
                 required
                 value={usrPass}
                 onChange={(e) => setusrPass(e.target.value)}
-                className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:text-black" // Adjusted padding-right (pr-10) for icon spacing
+                className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
               <span
                 onClick={() => setVisible(!visible)}
-                className="absolute right-2 top-2 cursor-pointer text-gray-500 dark:text-black mt-1"
+                className="absolute right-2 top-2 cursor-pointer text-gray-500 dark:text-white mt-1"
               >
                 {visible ? <FaEyeSlash /> : <FaEye />}
               </span>
@@ -179,25 +181,37 @@ export default function Login() {
           </div>
 
           {showOtp && (
-            <input
-              className="login_otp"
+            <div className="space-y-2 flex flex-col">
+            <label
+              htmlFor="password"
+              className="text-sm font-medium text-black dark:text-white"
+            >
+              OTP
+            </label>
+             <div className="relative w-full">
+               <input
+              className="login_otp w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
               type="text"
               placeholder="Enter OTP"
               required
               value={usrOTP}
               onChange={(e) => setusrOTP(e.target.value)}
             />
+             
+           </div>
+           </div>
+           
           )}
 
           <div className="flex items-center justify-between">
             <Link
-              to="/SignUp"
+              to="/signup"
               className="text-sm text-primary-light dark:text-white font-bold hover:underline"
             >
               Create account
             </Link>
             <Link
-              to="/ForgetPassword"
+              to="/forget_password"
               className="text-sm text-primary-light dark:text-white font-bold hover:underline"
             >
               Forgot password?

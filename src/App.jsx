@@ -1,4 +1,3 @@
-// src/App.jsx
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -18,7 +17,7 @@ import { initializeTheme } from './utils/theme.js';
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); // Get the current location
+  const location = useLocation();
 
   useEffect(() => {
     const publicRoutes = ['/', '/signup', '/forget_password', '/reset_password'];
@@ -38,17 +37,17 @@ const App = () => {
           } else {
             localStorage.removeItem('sessionId');
             setIsAuthenticated(false);
-            navigate('/'); // Redirect to login
+            navigate('/');
           }
         })
         .catch(() => {
           localStorage.removeItem('sessionId');
           setIsAuthenticated(false);
-          navigate('/'); // Redirect to login
+          navigate('/');
         });
     } else {
       setIsAuthenticated(false);
-      navigate('/'); // Redirect to login
+      navigate('/');
     }
   }, [navigate, location.pathname]);
 

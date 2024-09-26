@@ -1,13 +1,12 @@
-import  { createContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types'; // Import PropTypes
+import { createContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { initializeTheme as initializeThemeUtils, toggleTheme as toggleThemeUtils } from '../utils/theme';
 
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light'); // Default to light
+  const [theme, setTheme] = useState('light');
 
-  // Initialize theme on mount
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -26,11 +25,7 @@ export const ThemeProvider = ({ children }) => {
     setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
 
 // Define PropTypes for ThemeProvider

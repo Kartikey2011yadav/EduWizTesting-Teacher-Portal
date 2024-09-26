@@ -10,7 +10,6 @@ npm install
 
 ```
 npx install husky
-
 ```
 
 # Color Schema

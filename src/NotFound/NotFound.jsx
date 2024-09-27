@@ -4,22 +4,8 @@ export default function NotFound() {
       <div className="relative w-96 h-96">
         {/* Police Box */}
         <svg viewBox="0 0 100 100" className="absolute inset-0">
-          <rect
-            x="30"
-            y="20"
-            width="40"
-            height="60"
-            fill="#0057B8"
-            className="origin-bottom animate-scaleY"
-          />
-          <rect
-            x="28"
-            y="15"
-            width="44"
-            height="5"
-            fill="#003B7E"
-            className="origin-left animate-scaleX delay-500"
-          />
+          <rect x="30" y="20" width="40" height="60" fill="#0057B8" className="origin-bottom animate-scaleY" />
+          <rect x="28" y="15" width="44" height="5" fill="#003B7E" className="origin-left animate-scaleX delay-500" />
           {/* Windows */}
           {[25, 40, 55, 70].map((y, i) => (
             <rect
@@ -46,10 +32,7 @@ export default function NotFound() {
         </svg>
 
         {/* Error Sign */}
-        <svg
-          viewBox="0 0 100 100"
-          className="absolute inset-0 animate-slideInRight"
-        >
+        <svg viewBox="0 0 100 100" className="absolute inset-0 animate-slideInRight">
           <rect x="60" y="40" width="30" height="40" fill="#FFFFFF" />
           <text x="62" y="55" fontSize="6" fill="#000000">
             ERROR

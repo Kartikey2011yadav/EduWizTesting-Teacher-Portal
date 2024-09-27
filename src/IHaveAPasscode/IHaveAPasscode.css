@@ -1,0 +1,111 @@
+.i-passcode-container-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.i-passcode-middle-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.i-passcode-container {
+  width: 700px;
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 0px 0px 10px #010b1857;
+  border-radius: 10px;
+  min-height: 600px;
+  position: relative;
+}
+.dark .i-passcode-container {
+  box-shadow: 0px 0px 10px #ffffff;
+  background-color: #1f2937;
+  color: #ffffff;
+}
+.i-passcode-theme-toggle {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+}
+.i-passcode-heading {
+  font-size: 30px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.i-passcode-header {
+  font-size: 20px;
+  margin-bottom: 50px;
+  width: 80%;
+}
+.i-passcode-form label {
+  font-weight: 500;
+  font-size: 20px;
+}
+.dark .i-passcode-form label {
+  font-weight: normal;
+}
+.i-passcode-input-container {
+  width: 650px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+.i-passcode-input-container input {
+  width: 100%;
+  border-radius: 5px;
+  height: 50px;
+  padding-left: 7px;
+  padding-bottom: 2px;
+  border: 2px solid #0c19417a;
+  background-color: #f8f9fa;
+}
+.dark .i-passcode-input-container input {
+  border-color: transparent;
+}
+.i-passcode-submit {
+  margin-top: 30px;
+  width: 650px;
+  height: 50px;
+  margin-bottom: 15px;
+}
+.i-passcode-submit button {
+  width: 100%;
+  height: 100%;
+  background-color: #1e3a8a;
+  border-radius: 5px;
+  color: #ffffff;
+}
+.i-passcode-logo {
+  width: 5rem;
+  margin-top: 10px;
+}
+.i-passcode-submit button:hover {
+  background-color: #2c5282;
+}
+.dark .i-passcode-submit button {
+  background-color: #3b82f6;
+}
+.dark .i-passcode-submit button:hover {
+  background-color: #3b83f679;
+}
+.dark .i-passcode-container input {
+  background-color: #374151;
+}
+/* ---------------------------------------placeholders----------------------------- */
+input::placeholder {
+  color: rgba(0, 0, 0, 0.788);
+}
+.dark input::placeholder {
+  color: #ffffffa2;
+}
+@media (max-width: 720px) {
+  .i-passcode-container {
+    width: 275px;
+  }
+  .i-passcode-input-container,
+  .i-passcode-submit {
+    width: 225px;
+  }
+}

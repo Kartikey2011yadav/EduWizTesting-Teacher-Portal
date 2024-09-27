@@ -12,8 +12,31 @@ import { BsClipboardCheck } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { TbLogout } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
+import AlertModal from '../AlertModel/AlertModel';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const [modalOpen, setModalOpen] = useState(false); // Modal open state
+  const [modalMessage, setModalMessage] = useState(''); // Modal message
+  const [isError, setIsError] = useState(false); // Modal error state
+
+  const handleLogout = () => {
+    setModalMessage('Attempting to Logout');
+    setIsError(false);
+    setModalOpen(true);
+  };
+
+  const confirmLogout = () => {
+    localStorage.removeItem('sessionId');
+    setModalOpen(false);
+    navigate('/');
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const { theme } = useContext(ThemeContext);
   const menus = [
     { name: 'Dashboard', link: '/', icon: MdOutlineDashboard },
@@ -84,14 +107,16 @@ const Sidebar = () => {
         ))}
       </div>
       <div
-        className={`${open && 'bg-red-200 rounded-md'} absolute bottom-3 ${open ? 'w-50' : 'w-10'}`}
+        className={` absolute bottom-3 ${open ? 'w-50' : 'w-10'}`}
         style={{
           transitionDelay: `200ms`,
         }}
       >
         <Link
-          to={'/'}
-          className={` group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-red-300 hover:bg-red-300 rounded-md `}
+          onClick={() => {
+            handleLogout();
+          }}
+          className={` group flex items-center text-sm gap-3.5 font-medium p-2 rounded-md `}
         >
           <div>{React.createElement(TbLogout, { size: '28', color: 'red' })}</div>
           <h2
@@ -107,12 +132,20 @@ const Sidebar = () => {
           <h2
             className={`${
               open && 'hidden'
-            } z-20 absolute left-48 dark:bg-black bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-18 group-hover:duration-300 group-hover:w-fit text-red-600 `}
+            } z-20 absolute left-48 dark:bg-black bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-15 group-hover:duration-300 group-hover:w-fit text-red-600 `}
           >
             {'Logout'}
           </h2>
         </Link>
       </div>
+      <AlertModal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        message={modalMessage}
+        isError={isError}
+        isConfirm={true}
+        onConfirm={confirmLogout}
+      />
     </div>
   );
 };

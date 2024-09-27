@@ -1,16 +1,9 @@
-import PropTypes from "prop-types";
-import Modal from "react-modal";
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import { RxCrossCircled } from "react-icons/rx";
+import PropTypes from 'prop-types';
+import Modal from 'react-modal';
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
+import { RxCrossCircled } from 'react-icons/rx';
 
-const SuccessModal = ({
-  isOpen,
-  onClose,
-  message,
-  isError,
-  isConfirm,
-  onConfirm,
-}) => {
+const SuccessModal = ({ isOpen, onClose, message, isError, isConfirm, onConfirm }) => {
   const image = isError ? (
     <RxCrossCircled className="text-red-600 h-12 w-12" />
   ) : (
@@ -28,9 +21,7 @@ const SuccessModal = ({
     onClose(); // Close the modal on cancel
   };
 
-  const buttonColor = isError
-    ? "bg-red-600 hover:bg-red-700"
-    : "bg-green-600 hover:bg-green-700"; // Button color changes based on error state
+  const buttonColor = isError ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'; // Button color changes based on error state
 
   return (
     <>
@@ -44,10 +35,7 @@ const SuccessModal = ({
         <div className="space-y-4 " onClick={(e) => e.stopPropagation()}>
           <div className="flex justify-center items-center">
             {isConfirm ? (
-              <svg
-                className="h-12 w-12 fill-current text-yellow-400 mb-3"
-                viewBox="0 0 1920 1920"
-              >
+              <svg className="h-12 w-12 fill-current text-yellow-400 mb-3" viewBox="0 0 1920 1920">
                 <path d="M960 0c530.193 0 960 429.807 960 960s-429.807 960-960 960S0 1490.193 0 960 429.807 0 960 0Zm-9.838 1342.685c-84.47 0-153.19 68.721-153.19 153.19 0 84.47 68.72 153.192 153.19 153.192s153.19-68.721 153.19-153.191-68.72-153.19-153.19-153.19ZM1153.658 320H746.667l99.118 898.623h208.755L1153.658 320Z" />
               </svg>
             ) : (
@@ -90,10 +78,7 @@ const SuccessModal = ({
               </button>
             </div>
           ) : (
-            <button
-              onClick={handleClose}
-              className={`w-full rounded-md py-2 ${buttonColor} text-white`}
-            >
+            <button onClick={handleClose} className={`w-full rounded-md py-2 ${buttonColor} text-white`}>
               Close
             </button>
           )}

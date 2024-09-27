@@ -12,17 +12,8 @@ const ProtectedLayout = () => {
         <div className="p-4">
           <Outlet />
         </div>
-      </div>   
+      </div>
     </div>
-
-
-
-
-
-
-
-
-
   );
 };
 

@@ -2,7 +2,7 @@ name: Close Old Issues
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 
 jobs:
   close-issues:
@@ -18,7 +18,7 @@ jobs:
           open_issues=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/issues?state=open" \
             | jq -r '.[] | .number')
-          
+
           for issue in $open_issues; do
             # Get the last updated timestamp of the issue
             last_updated=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \

@@ -6,25 +6,23 @@
 
 /*---------------------- Light Theme--------------------*/
 :root {
-    --background-color: #F3F4F6;
-    --container-color: #FFFFFF;
-    --primary-button-color: #1E3A8A;
-    --hover-button-color: #1C3AA9;
-    --text-color: #000000;
-  }
-  
-  /*-------------------- Dark Theme-------------------- */
-  html.dark {
-    --background-color: #010B18;
-    --container-color: #1F2937;
-    --primary-button-color: #3B82F6;
-    --hover-button-color: #2563EB;
-    --text-color: #FFFFFF;
-  }
-  
+  --background-color: #f3f4f6;
+  --container-color: #ffffff;
+  --primary-button-color: #1e3a8a;
+  --hover-button-color: #1c3aa9;
+  --text-color: #000000;
+}
 
-  body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  
+/*-------------------- Dark Theme-------------------- */
+html.dark {
+  --background-color: #010b18;
+  --container-color: #1f2937;
+  --primary-button-color: #3b82f6;
+  --hover-button-color: #2563eb;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

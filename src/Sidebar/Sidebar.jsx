@@ -11,6 +11,7 @@ import { FaRegCalendarCheck } from 'react-icons/fa6';
 import { BsClipboardCheck } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { TbLogout } from 'react-icons/tb';
 
 const Sidebar = () => {
   const { theme } = useContext(ThemeContext);
@@ -22,7 +23,6 @@ const Sidebar = () => {
       name: 'Schedule Paper',
       link: '/schedule',
       icon: FaRegCalendarCheck,
-      margin: true,
     },
     { name: 'Questions Upload', link: '/', icon: FiFolder },
     { name: 'Assessment Report', link: '/', icon: PiExamBold },
@@ -32,7 +32,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={` dark:bg-black bg-zinc-200 min-h-screen ${open ? 'w-60' : 'w-16'} duration-500 text-gray-100 px-4`}
+      className={` dark:bg-black bg-zinc-200 min-h-screen ${open ? 'w-60' : 'w-16'} duration-500 text-gray-100 px-4 relative`}
     >
       <div className="py-3 flex justify-end">
         <HiMenuAlt3 size={26} className="cursor-pointer" onClick={() => setOpen(!open)} />
@@ -60,7 +60,7 @@ const Sidebar = () => {
             key={i}
             className={` ${
               menu?.margin && 'mt-5'
-            } group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-blue-800 hover:bg-blue-500} rounded-md`}
+            } group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-blue-800 hover:bg-blue-500 rounded-md ${!open && 'w-9'}`}
           >
             <div>{React.createElement(menu?.icon, { size: '20' })}</div>
             <h2
@@ -82,6 +82,36 @@ const Sidebar = () => {
             </h2>
           </Link>
         ))}
+      </div>
+      <div
+        className={`${open && 'bg-red-200 rounded-md'} absolute bottom-3 ${open ? 'w-50' : 'w-10'}`}
+        style={{
+          transitionDelay: `200ms`,
+        }}
+      >
+        <Link
+          to={'/'}
+          className={` group flex items-center text-sm gap-3.5 font-medium p-2 dark:hover:bg-red-300 hover:bg-red-300 rounded-md `}
+        >
+          <div>{React.createElement(TbLogout, { size: '28', color: 'red' })}</div>
+          <h2
+            style={{
+              transitionDelay: `200ms`,
+            }}
+            className={`whitespace-pre duration-500 z-20 text-red-500 font-bold ${
+              !open && 'opacity-0 translate-x-28 overflow-hidden'
+            }`}
+          >
+            {'Logout'}
+          </h2>
+          <h2
+            className={`${
+              open && 'hidden'
+            } z-20 absolute left-48 dark:bg-black bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-18 group-hover:duration-300 group-hover:w-fit text-red-600 `}
+          >
+            {'Logout'}
+          </h2>
+        </Link>
       </div>
     </div>
   );

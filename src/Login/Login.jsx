@@ -1,14 +1,16 @@
 import logodark from "../assets/logo-dark.svg";
 import logolight from "../assets/logo-light.svg";
 import { useNavigate, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import AlertModal from "../AlertModel/AlertModel";
 
+import { ThemeContext } from "../contexts/ThemeContext";
+
 export default function Login() {
-  const isDark = localStorage.theme === "dark" ? true : false;
+
   const [visible, setVisible] = useState(false);
   const [showOtp, setOtp] = useState(false);
   const [usrEmail, setusrEmail] = useState("");
@@ -21,7 +23,7 @@ export default function Login() {
   const [shouldNavigate, setShouldNavigate] = useState(false);
 
   const navigate = useNavigate();
-
+  const { theme } = useContext(ThemeContext);
   const handleLogout = () => {
     localStorage.removeItem("sessionId"); // Remove session ID from local storage
     navigate("/login"); // Redirect back to login page
@@ -37,7 +39,7 @@ export default function Login() {
         .post("http://localhost:5000/teacher/verify-session", { sessionId })
         .then((response) => {
           if (response.data.valid) {
-            navigate("/"); // Navigate to dashboard if session is valid
+            navigate("/dashboard"); // Navigate to dashboard if session is valid
           } else {
             handleLogout();
           }
@@ -49,7 +51,7 @@ export default function Login() {
   const closeModal = () => {
     setModalOpen(false);
     if (shouldNavigate) {
-      navigate("/");
+      navigate("/dashboard");
     }
   };
 
@@ -68,6 +70,7 @@ export default function Login() {
         setModalOpen(true); // Open modal
         setIsError(false); // It's a success
         setOtp(true); // Show OTP input field
+
       })
       .catch((error) => {
         console.error(error);
@@ -96,7 +99,7 @@ export default function Login() {
         setModalOpen(true);
         setShouldNavigate(true);
 
-        localStorage.setItem("adminId", response.data.adminId);
+        localStorage.setItem("teacherId", response.data.teacherId);
         localStorage.setItem("email", response.data.email);
         localStorage.setItem("name", response.data.name);
         localStorage.setItem("mobileNumber", response.data.mobileNumber);
@@ -117,10 +120,10 @@ export default function Login() {
     <div
       className={`flex items-center justify-center min-h-screen bg-gray-100 dark:bg-background-dark bg-background-light`}
     >
-      <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
+      <div className="w-full max-w-md shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img
-            src={isDark ? logodark : logolight}
+            src={theme === "dark" ? logodark : logolight}
             className={`${open && "w-20"} `}
             alt=""
           />
@@ -202,13 +205,13 @@ export default function Login() {
 
           <div className="flex items-center justify-between">
             <Link
-              to="/SignUp"
+              to="/signup"
               className="text-sm text-primary-light dark:text-white font-bold hover:underline"
             >
               Create account
             </Link>
             <Link
-              to="/ForgetPassword"
+              to="/forget_password"
               className="text-sm text-primary-light dark:text-white font-bold hover:underline"
             >
               Forgot password?

@@ -2,14 +2,16 @@ import logodark from "../assets/logo-dark.svg";
 import logolight from "../assets/logo-light.svg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import AlertModal from "../AlertModel/AlertModel";
+import { ThemeContext } from "../contexts/ThemeContext";
+
 
 
 
 export default function SignUp() {
-  const isDark = localStorage.theme === "dark" ? true : false;
+  const { theme } = useContext(ThemeContext);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [visible, setVisible] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -129,10 +131,11 @@ export default function SignUp() {
     <div
       className={`min-h-[80vh] flex items-center justify-center bg-gray-100 dark:bg-background-dark bg-background-light p-10`}
     >
-      <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
+
+      <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img
-            src={isDark ? logodark : logolight}
+            src={theme === "dark" ? logodark : logolight}
             className="w-20"
             alt="EduWiz Logo"
           />
@@ -269,7 +272,7 @@ export default function SignUp() {
             <p className="text-sm text-black dark:text-white">
               Already have an account?{" "}
               <Link
-                to="/login"
+                to="/"
                 className="text-primary-light dark:text-primary-dark hover:underline"
               >
                 Sign In

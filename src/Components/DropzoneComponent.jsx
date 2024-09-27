@@ -22,7 +22,7 @@ function MyDropzone({ onFileDrop }) {
         setIsUploading(true); // Set uploading state to true
 
         // API call to the backend
-        fetch("http://localhost:5000/teacher/upload", {
+        fetch("http://localhost:5000/paper/upload", {
           method: "POST",
           body: formData,
         })
@@ -53,7 +53,7 @@ function MyDropzone({ onFileDrop }) {
     if (uploadedFile) {
       try {
         const response = await fetch(
-          "http://localhost:5000/teacher/remove-file",
+          "http://localhost:5000/paper/remove-file",
           {
             method: "POST",
             body: JSON.stringify({ public_id: uploadedFile.public_id }),

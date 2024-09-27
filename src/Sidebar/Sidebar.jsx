@@ -55,10 +55,10 @@ const Sidebar = () => {
 
   return (
     <div
-      className={` dark:bg-black bg-zinc-200 min-h-screen ${open ? 'w-60' : 'w-16'} duration-500 text-gray-100 px-4 flex flex-col`}
+      className={` dark:bg-black bg-zinc-200 min-h-screen ${open ? 'w-55' : 'w-16'} duration-500 text-gray-100 px-4 flex flex-col`}
     >
       <div className=" items-end fixed">
-        <div className={`py-3 flex  ${open ? 'justify-end' : 'justify-start'}`}>
+        <div className={`py-3 flex  ${open ? 'justify-end' : 'justify-start pl-2'}`}>
           <HiMenuAlt3 size={26} className="cursor-pointer" onClick={() => setOpen(!open)} />
         </div>
         <div className={` ${open ? 'items-center' : 'items-start'} flex flex-col`}>

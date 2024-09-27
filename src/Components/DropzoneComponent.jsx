@@ -1,10 +1,11 @@
+import { IoCloudUploadOutline } from 'react-icons/io5'; // Import the icon
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import PropTypes from 'prop-types';
 
 function MyDropzone({ onFileDrop }) {
   const [uploadedFile, setUploadedFile] = useState(null); // State to store uploaded file
-  const [previewUrl, setPreviewUrl] = useState(null); // State to store preview URL
+  const [previewUrl, setPreviewUrl] = useState(null); // State to store preview URL from cloud
   const [isUploading, setIsUploading] = useState(false); // State to track uploading status
 
   const onDrop = useCallback(
@@ -13,11 +14,6 @@ function MyDropzone({ onFileDrop }) {
         const file = acceptedFiles[0]; // Get the first file
         const formData = new FormData();
         formData.append('file', file); // Append the file to FormData
-
-        // Create a local URL for the image preview
-        if (file.type.startsWith('image/')) {
-          setPreviewUrl(URL.createObjectURL(file)); // Set image preview URL
-        }
 
         setIsUploading(true); // Set uploading state to true
 
@@ -30,11 +26,12 @@ function MyDropzone({ onFileDrop }) {
             if (!response.ok) {
               throw new Error('File upload failed');
             }
-            return response.json();
+            return response.json(); // Assume the server responds with { secure_url: '...' }
           })
           .then((data) => {
             console.log('Response from server:', data);
             setUploadedFile({ name: file.name, public_id: data.public_id }); // Store the uploaded file info
+            setPreviewUrl(data.url); // Use the secure URL from Cloudinary (or any cloud provider)
             onFileDrop(data); // Pass the response data to the parent component
           })
           .catch((error) => {
@@ -77,32 +74,41 @@ function MyDropzone({ onFileDrop }) {
   });
 
   return (
-    <div className="flex flex-col h-fit w-full gap-6 items-center">
+    <div className="flex flex-col h-fit min-h-28 w-full gap-6 items-center">
       <div
         {...getRootProps()}
-        className={`flex flex-col text-center w-full px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline items-center justify-center cursor-pointer
+        className={`flex flex-col text-center w-full min-h-39 px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline bg-slate-200 items-center justify-center cursor-pointer
                     ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}`}
       >
         <input {...getInputProps()} />
+
         {isUploading ? (
-          <p className="text-graydark dark:text-[#949a9f]">Uploading, please wait...</p>
+          <p className="text-graydark text-base font-normal dark:text-[#949a9f]">Uploading, please wait...</p>
         ) : uploadedFile ? (
-          <p className="text-graydark dark:text-[#949a9f]">Uploaded: {uploadedFile.name}</p>
+          <p className="text-graydark text-base font-normal dark:text-[#949a9f]">Uploaded: {uploadedFile.name}</p>
         ) : isDragActive ? (
           <p className="text-blue-600">Drop the files here ...</p>
         ) : (
-          <p className="text-graydark dark:text-[#949a9f]">
-            Click to select Files to upload or drag and drop files here
-          </p>
+          <div className="flex flex-col items-center justify-center">
+            {/* Use the IoCloudUploadOutline icon */}
+            <IoCloudUploadOutline className="text-graydark dark:text-[#ffffff] w-12 h-12" />
+
+            {/* Text below the icon */}
+            <p className="mt-2 text-graydark text-base font-normal dark:text-[#ffffff]">
+              Click to select files to upload or drag and drop files here
+            </p>
+          </div>
         )}
+
         {previewUrl && (
           <div className="my-4">
             <img src={previewUrl} alt="Preview" className="w-48 h-48 object-contain rounded" />
           </div>
         )}
       </div>
+
       {uploadedFile && (
-        <button onClick={cancelUpload} className="bg-red-500  text-white px-4 py-2 rounded">
+        <button onClick={cancelUpload} className="bg-red-500 text-white px-4 py-2 rounded">
           Cancel Upload
         </button>
       )}

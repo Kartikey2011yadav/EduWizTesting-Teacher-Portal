@@ -1,12 +1,12 @@
-import Sidebar from "../Sidebar/Sidebar";
-import ThemeToggleButton from "../Components/ThemeToggle";
+import Sidebar from '../Sidebar/Sidebar';
+import ThemeToggleButton from '../Components/ThemeToggle';
 
 const Home = () => {
   return (
     <div>
-      <Sidebar/>
+      <Sidebar />
       <div className=" absolute right-5 top-50 ">
-        <ThemeToggleButton/>
+        <ThemeToggleButton />
       </div>
     </div>
   );

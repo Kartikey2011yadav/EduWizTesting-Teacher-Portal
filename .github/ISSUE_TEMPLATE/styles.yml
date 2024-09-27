@@ -5,7 +5,6 @@ title: '[style]: '
 labels: ['enhancement']
 
 ---
-
 body:
   - type: markdown
     attributes:
@@ -34,7 +33,7 @@ body:
       options:
         - label: I agree to follow this project's Code of Conduct
           required: true
-          
+
         - label: I have read the [Contributing Guidelines](https://github.com/Counselllor/Counsellor-Web/blob/master/CONTRIBUTING.md)
           required: true
 

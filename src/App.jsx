@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-
 import Login from './Login/Login.jsx';
 import SignUp from './SignUp/SignUp.jsx';
 import NotFound from './NotFound/NotFound.jsx';
@@ -13,6 +12,7 @@ import ProtectedLayout from './Layout/ProtectedLayout.jsx';
 
 import './index.css';
 import { initializeTheme } from './utils/theme.js';
+import Profile from './Profile/Profile.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -62,12 +62,12 @@ const App = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/reset_password" element={<Reset />} />
       <Route path="/forget_password" element={<Forget />} />
-
       {/* Protected Routes */}
       {isAuthenticated && (
         <Route element={<ProtectedLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/schedule" element={<SchedulePaper />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       )}
 

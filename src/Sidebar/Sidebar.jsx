@@ -9,7 +9,6 @@ import { PiExamBold } from 'react-icons/pi';
 import { FiFolder } from 'react-icons/fi';
 import { FaRegCalendarCheck } from 'react-icons/fa6';
 import { BsClipboardCheck } from 'react-icons/bs';
-import { MdUploadFile } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { TbLogout } from 'react-icons/tb';
@@ -50,8 +49,7 @@ const Sidebar = () => {
     },
     { name: 'Questions Upload', link: '/add-question', icon: FiFolder },
     { name: 'Assessment Report', link: '/', icon: PiExamBold },
-    { name: 'Checking & Results', link: '/', icon: BsClipboardCheck },
-    { name: 'UploadOmr', link: '/upload-omr', icon: MdUploadFile },
+    { name: 'Checking & Results', link: '/upload-omr', icon: BsClipboardCheck },
   ];
   const [open, setOpen] = useState(false);
 

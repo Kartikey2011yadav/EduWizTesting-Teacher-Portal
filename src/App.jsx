@@ -14,6 +14,8 @@ import ProtectedLayout from './Layout/ProtectedLayout.jsx';
 
 import './index.css';
 import { initializeTheme } from './utils/theme.js';
+import UploadOmr from './UploadOMR/UploadOmr.jsx';
+import SubmitPage from './Submit/SubmitPage.jsx';
 import IHaveAPasscode from './IHaveAPasscode/IHaveAPasscode.jsx';
 
 const App = () => {
@@ -71,6 +73,8 @@ const App = () => {
         <Route element={<ProtectedLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/schedule" element={<SchedulePaper />} />
+          <Route path="/upload-omr" element={<UploadOmr />} />
+          <Route path="/submit" element={<SubmitPage />} />
           <Route path="/add-question" element={<AddQuestion />} />
         </Route>
       )}

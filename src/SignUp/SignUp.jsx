@@ -118,7 +118,7 @@ export default function SignUp() {
   const closeModal = () => {
     setModalIsOpen(false);
     if (shouldNavigate && !isError) {
-      navigate('/login'); // Navigate to the desired page only on success
+      navigate('/ihaveapasscode'); // Navigate to the desired page only on success
     }
   };
 
@@ -247,7 +247,7 @@ export default function SignUp() {
               </Link>
             </p>
             <p>
-              <Link to="/IHavePassword" className="login_link text-sm text-black dark:text-white mt-2">
+              <Link to="/ihaveapasscode" className="login_link text-sm text-black dark:text-white mt-2">
                 Have a Passcode?
               </Link>
             </p>

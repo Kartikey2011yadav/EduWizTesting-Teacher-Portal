@@ -9,12 +9,14 @@ import Dashboard from './Dashboard/Dashboard.jsx';
 import SchedulePaper from './Schedule/Schedule.jsx';
 import Reset from './ResetPassword/Reset.jsx';
 import Forget from './ForgotPassword/Forget.jsx';
+import AddQuestion from './AddQuestion/AddQuestion.jsx';
 import ProtectedLayout from './Layout/ProtectedLayout.jsx';
 
 import './index.css';
 import { initializeTheme } from './utils/theme.js';
 import UploadOmr from './UploadOMR/UploadOmr.jsx';
 import SubmitPage from './Submit/SubmitPage.jsx';
+import IHaveAPasscode from './IHaveAPasscode/IHaveAPasscode.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,7 +24,7 @@ const App = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const publicRoutes = ['/', '/signup', '/forget_password', '/reset_password'];
+    const publicRoutes = ['/', '/signup', '/forget_password', '/reset_password', '/ihaveapasscode'];
     const sessionId = localStorage.getItem('sessionId');
 
     // If the current route is public, skip the authentication check
@@ -64,6 +66,7 @@ const App = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/reset_password" element={<Reset />} />
       <Route path="/forget_password" element={<Forget />} />
+      <Route path="/ihaveapasscode" element={<IHaveAPasscode />} />
 
       {/* Protected Routes */}
       {isAuthenticated && (
@@ -72,6 +75,7 @@ const App = () => {
           <Route path="/schedule" element={<SchedulePaper />} />
           <Route path="/upload-omr" element={<UploadOmr />} />
           <Route path="/submit" element={<SubmitPage />} />
+          <Route path="/add-question" element={<AddQuestion />} />
         </Route>
       )}
 

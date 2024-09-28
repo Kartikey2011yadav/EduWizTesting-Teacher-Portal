@@ -11,7 +11,7 @@
   transform: translate(-50%, -50%);
 }
 .i-passcode-container {
-  width: 700px;
+  width: 500px;
   background-color: #ffffff;
   color: black;
   box-shadow: 0px 0px 10px #010b1857;
@@ -48,7 +48,7 @@
   font-weight: normal;
 }
 .i-passcode-input-container {
-  width: 650px;
+  width: 450px;
   margin-bottom: 15px;
   margin-top: 10px;
 }
@@ -66,7 +66,7 @@
 }
 .i-passcode-submit {
   margin-top: 30px;
-  width: 650px;
+  width: 450px;
   height: 50px;
   margin-bottom: 15px;
 }
@@ -107,5 +107,14 @@ input::placeholder {
   .i-passcode-input-container,
   .i-passcode-submit {
     width: 225px;
+  }
+  .i-passcode-logo {
+    margin-top: 20px;
+  }
+  .i-passcode-heading {
+    margin-top: 5px;
+  }
+  .i-passcode-header {
+    margin-bottom: 20px;
   }
 }

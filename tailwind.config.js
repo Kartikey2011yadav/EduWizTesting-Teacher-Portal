@@ -1,10 +1,7 @@
-import defaultTheme from 'tailwindcss/defaultTheme'
+import defaultTheme from 'tailwindcss/defaultTheme';
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
       '2xsm': '375px',
@@ -22,7 +19,7 @@ export default {
         'primary-dark': '#3B82F6',
         'hover-light': '#2563EB',
         'hover-dark': '#2563EB',
-        'input-dark': '#374151',  
+        'input-dark': '#374151',
         current: 'currentColor',
         transparent: 'transparent',
         white: '#FFFFFF',
@@ -226,8 +223,7 @@ export default {
         default: '0px 8px 13px -3px rgba(0, 0, 0, 0.07)',
         card: '0px 1px 3px rgba(0, 0, 0, 0.12)',
         'card-2': '0px 1px 2px rgba(0, 0, 0, 0.05)',
-        switcher:
-          '0px 2px 4px rgba(0, 0, 0, 0.2), inset 0px 2px 2px #FFFFFF, inset 0px -1px 1px rgba(0, 0, 0, 0.1)',
+        switcher: '0px 2px 4px rgba(0, 0, 0, 0.2), inset 0px 2px 2px #FFFFFF, inset 0px -1px 1px rgba(0, 0, 0, 0.1)',
         'switch-1': '0px 0px 5px rgba(0, 0, 0, 0.15)',
         1: '0px 1px 3px rgba(0, 0, 0, 0.08)',
         2: '0px 1px 4px rgba(0, 0, 0, 0.12)',
@@ -247,15 +243,6 @@ export default {
           '0%, 100%': { transform: 'rotate(360deg)' },
           '50%': { transform: 'rotate(0deg)' },
         },
-      },
-      animation: {
-        'ping-once': 'ping 5s cubic-bezier(0, 0, 0.2, 1)',
-        rotating: 'rotating 30s linear infinite',
-        'spin-1.5': 'spin 1.5s linear infinite',
-        'spin-2': 'spin 2s linear infinite',
-        'spin-3': 'spin 3s linear infinite',
-      },
-      keyframes: {
         scaleY: {
           '0%': { transform: 'scaleY(0)' },
           '100%': { transform: 'scaleY(1)' },
@@ -278,6 +265,11 @@ export default {
         },
       },
       animation: {
+        'ping-once': 'ping 5s cubic-bezier(0, 0, 0.2, 1)',
+        rotating: 'rotating 30s linear infinite',
+        'spin-1.5': 'spin 1.5s linear infinite',
+        'spin-2': 'spin 2s linear infinite',
+        'spin-3': 'spin 3s linear infinite',
         scaleY: 'scaleY 0.5s forwards',
         scaleX: 'scaleX 0.5s forwards',
         fadeIn: 'fadeIn 0.3s forwards',
@@ -286,7 +278,6 @@ export default {
       },
     },
   },
-  darkMode: "class",
+  darkMode: 'class',
   plugins: [],
-}
-
+};

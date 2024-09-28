@@ -27,6 +27,8 @@ Dark Mode:
 - login/any central container: #1F2937
 - primary Button: #3B82F6 / bg-blue-500
 - hover Button: bg-blue-600
+- input field: dark:bg-input-dark
+- input text: dark:text-white
 
 ### How to Use Dark Mode
 

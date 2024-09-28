@@ -48,7 +48,7 @@ const Sidebar = () => {
       link: '/schedule',
       icon: FaRegCalendarCheck,
     },
-    { name: 'Questions Upload', link: '/', icon: FiFolder },
+    { name: 'Questions Upload', link: '/add-question', icon: FiFolder },
     { name: 'Assessment Report', link: '/', icon: PiExamBold },
     { name: 'Checking & Results', link: '/', icon: BsClipboardCheck },
     { name: 'UploadOmr', link: '/upload-omr', icon: MdUploadFile },

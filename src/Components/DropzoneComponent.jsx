@@ -77,7 +77,7 @@ function MyDropzone({ onFileDrop }) {
     <div className="flex flex-col h-fit min-h-28 w-full gap-6 items-center">
       <div
         {...getRootProps()}
-        className={`flex flex-col text-center w-full min-h-39 px-3 py-2 dark:bg-input-dark dark:text-white dark:shadow-white/10 border-none rounded-md shadow-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline bg-slate-200 items-center justify-center cursor-pointer
+        className={`flex flex-col text-center w-full min-h-39 px-3 py-2 dark:bg-input-dark dark:text-white border-none rounded-md text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline bg-slate-200 items-center justify-center cursor-pointer
                     ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}`}
       >
         <input {...getInputProps()} />
@@ -91,10 +91,10 @@ function MyDropzone({ onFileDrop }) {
         ) : (
           <div className="flex flex-col items-center justify-center">
             {/* Use the IoCloudUploadOutline icon */}
-            <IoCloudUploadOutline className="text-graydark dark:text-[#ffffff] w-12 h-12" />
+            <IoCloudUploadOutline className="text-[#949a9f] dark:text-[#ffffff] w-12 h-12" />
 
             {/* Text below the icon */}
-            <p className="mt-2 text-graydark text-base font-normal dark:text-[#ffffff]">
+            <p className="mt-2 text-[#949a9f] text-base font-normal dark:text-[#ffffff]">
               Click to select files to upload or drag and drop files here
             </p>
           </div>

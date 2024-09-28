@@ -39,7 +39,7 @@ const StyledTimePicker = styled(TimePicker)(({ theme }) => ({
   },
 }));
 const StyledDatePicker = styled(DatePicker)(({ theme }) => ({
- '& .MuiInputBase-root': {
+  '& .MuiInputBase-root': {
     backgroundColor: '#fff',
     color: '#000',
     borderRadius: theme.shape.borderRadius,
@@ -91,9 +91,9 @@ const SchedulePaper = () => {
     const regex = /^[0-9]*$/;
 
     if (!regex.test(value)) {
-      setMarksError("Marks can only contain numbers");
+      setMarksError('Marks can only contain numbers');
     } else if (value < 0) {
-      setMarksError("Marks cannot be negative");
+      setMarksError('Marks cannot be negative');
     } else {
       setMarksError('');
     }
@@ -101,7 +101,6 @@ const SchedulePaper = () => {
     // Update the state only if the value is valid
     setMarks(value);
   };
-
 
   const handleDurationChange = (field, value) => {
     if (value >= 0) {
@@ -159,15 +158,16 @@ const SchedulePaper = () => {
   };
 
   return (
-    <div className={`max-w-xl mx-auto mt-10 p-6 bg-container-light dark:bg-container-dark shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] rounded-lg transition-all duration-500}`}>
+    <div
+      className={`max-w-xl mx-auto mt-10 p-6 bg-container-light dark:bg-container-dark shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] rounded-lg transition-all duration-500}`}
+    >
       <div className="mb-4">
         <h2 className="text-2xl font-bold text-black text-left dark:text-white ">Schedule a Paper</h2>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 pb-8 gap-x-8 gap-y-6">
-
           {/* Class Name Input */}
-          <div className='flex gap-2 col-span-2'>
+          <div className="flex gap-2 col-span-2">
             <label className="block dark:text-white text-wrap text-lg w-50 font-semibold">Course Name</label>
             <select
               value={className}
@@ -175,14 +175,16 @@ const SchedulePaper = () => {
               required
               className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
-              <option value="" disabled>--Select a course--</option>
+              <option value="" disabled>
+                --Select a course--
+              </option>
               <option value="mtech">M.Tech.</option>
               <option value="mca">MCA</option>
             </select>
           </div>
 
           {/* Paper name */}
-          <div className='space-y-2 '>
+          <div className="space-y-2 ">
             <label className="block dark:text-white text-wrap w-full font-semibold">Paper Type</label>
             <select
               value={paperName}
@@ -190,7 +192,9 @@ const SchedulePaper = () => {
               required
               className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
-              <option value="" disabled>--Select paper type--</option>
+              <option value="" disabled>
+                --Select paper type--
+              </option>
               <option value="test1">Test 1</option>
               <option value="test2">Test 2</option>
               <option value="test3">Test 3</option>
@@ -199,7 +203,7 @@ const SchedulePaper = () => {
           </div>
 
           {/* Subject Dropdown */}
-          <div className='space-y-1 text-[#cccacd] dark:text-[#cccacd]'>
+          <div className="space-y-1 text-[#cccacd] dark:text-[#cccacd]">
             <label className="block w-full text-[#000] dark:text-white font-semibold mb-1">Subject</label>
             <select
               value={subject}
@@ -207,7 +211,9 @@ const SchedulePaper = () => {
               required
               className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
-              <option value="" disabled>--Select a subject--</option>
+              <option value="" disabled>
+                --Select a subject--
+              </option>
               {subjects.map((subj, index) => (
                 <option key={index} value={subj}>
                   {subj}
@@ -217,7 +223,7 @@ const SchedulePaper = () => {
           </div>
 
           {/* Marks Input */}
-          <div className='space-y-1'>
+          <div className="space-y-1">
             <label className="block w-full text-gray-700 font-semibold mb-1">Marks</label>
             <input
               type="tel"
@@ -231,51 +237,47 @@ const SchedulePaper = () => {
           </div>
 
           {/* Duration Input */}
-          <div className='space-y-1'>
+          <div className="space-y-1">
             <label className="block w-full font-semibold mb-1">Duration (in minutes)</label>
             <div className="flex justify-start items-center gap-2 ">
-            <input
-              type="number"
-              placeholder="Hours"
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
-              value={duration.hours}
-              onChange={(e) => handleDurationChange('hours', e.target.value)}
-            />
-            :
-            <input
-              type="number"
-              placeholder="Minutes"
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
-              value={duration.minutes}
-              onChange={(e) => handleDurationChange('minutes', e.target.value)}
-            />
+              <input
+                type="number"
+                placeholder="Hours"
+                className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+                value={duration.hours}
+                onChange={(e) => handleDurationChange('hours', e.target.value)}
+              />
+              :
+              <input
+                type="number"
+                placeholder="Minutes"
+                className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+                value={duration.minutes}
+                onChange={(e) => handleDurationChange('minutes', e.target.value)}
+              />
             </div>
           </div>
 
           {/* Date Picker */}
-          <div className='space-y-1 '>
+          <div className="space-y-1 ">
             <label className="block w-full font-semibold mb-1">Date</label>
-            <div className='w-full rounded-md  dark:bg-input-dark dark:text-white '>
+            <div className="w-full rounded-md  dark:bg-input-dark dark:text-white ">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StyledDatePicker
                   value={date}
                   onChange={(newDate) => setDate(newDate)}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      required
-
-                    />
-                  )}
+                  renderInput={(params) => <TextField {...params} required />}
                 />
               </LocalizationProvider>
             </div>
           </div>
 
           {/* Time Picker */}
-          <div className='space-y-1'>
-            <label className="block w-full text-gray-700 dark:text-gray-300 font-semibold mb-1">Time: (12 hrs format)</label>
-            <div className='w-full rounded-md  dark:bg-input-dark dark:text-white '>
+          <div className="space-y-1">
+            <label className="block w-full text-gray-700 dark:text-gray-300 font-semibold mb-1">
+              Time: (12 hrs format)
+            </label>
+            <div className="w-full rounded-md  dark:bg-input-dark dark:text-white ">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StyledTimePicker
                   value={time}
@@ -289,10 +291,9 @@ const SchedulePaper = () => {
                       variant="outlined"
                       fullWidth
                       required
-                      placeholder='HH:MM AA'
+                      placeholder="HH:MM AA"
                       InputProps={{
                         ...params.InputProps,
-                        
                       }}
                     />
                   )}
@@ -300,7 +301,6 @@ const SchedulePaper = () => {
               </LocalizationProvider>
             </div>
           </div>
-
         </div>
         {/* Submit Button */}
         <button
@@ -310,7 +310,6 @@ const SchedulePaper = () => {
         >
           Schedule Paper
         </button>
-
       </form>
     </div>
   );

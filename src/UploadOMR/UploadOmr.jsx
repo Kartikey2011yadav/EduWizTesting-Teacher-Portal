@@ -33,26 +33,30 @@ const UploadOmr = () => {
       <div
         className={`max-w-full mx-auto mt-10 p-1 lg:p-6 bg-container-light dark:bg-container-dark shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] rounded-lg transition-all duration-500}`}
       >
-        <div className="flex justify-between px-3 pt-3 items-center gap-4">
-          <div className="w-1/5 lg:text-2xl font-bold mb-2">Student Name</div>
-          <div className="w-1/5 lg:text-2xl font-bold mb-2 flex items-center justify-center">Student Roll No</div>
-          <div className="w-1/5 lg:text-2xl font-bold mb-2 flex items-center justify-end">Link </div>
+        <div className="flex  px-3 pt-3 items-center gap-4">
+          <div className="w-2/5  lg:text-2xl font-bold mb-2">Student Name</div>
+          <div className="lg:w-[55%]  w-2/5 lg:text-2xl font-bold mb-2 flex items-center justify-start">
+            Student Roll No
+          </div>
+          <div className="lg:w-[5%] w-1/5 lg:text-2xl font-bold mb-2 flex items-start justify-start">Link </div>
         </div>
         {students.map((student) => (
           <div
             key={student.rollNo}
             className="flex w-full font-normal text-base px-3 py-2 bg-slate-200 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline items-center gap-4 my-4"
           >
-            <div className="w-1/2">{student.studentName}</div>
-            <div className="w-1/2">{student.studentRollNo}</div>
-            <a
-              href={student.fileLink}
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-600 hover:underline text-nowrap"
-            >
-              View OMR
-            </a>
+            <div className="w-2/5  flex items-center justify-start">{student.studentName}</div>
+            <div className="lg:w-[55%] w-2/5 flex items-center justify-start">{student.studentRollNo}</div>
+            <div className="lg:w-[5%] w-1/5 flex items-center justify-start">
+              <a
+                href={student.fileLink}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-600 text-wrap hover:underline"
+              >
+                View OMR
+              </a>
+            </div>
           </div>
         ))}
       </div>
@@ -61,9 +65,3 @@ const UploadOmr = () => {
 };
 
 export default UploadOmr;
-
-// Dummy data for testing
-export const dummyData = [
-  { name: 'John Doe', rollNo: '101', fileLink: 'link-to-file-1' },
-  { name: 'Jane Smith', rollNo: '102', fileLink: 'link-to-file-2' },
-];

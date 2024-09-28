@@ -72,7 +72,6 @@ const App = () => {
           <Route path="/schedule" element={<SchedulePaper />} />
           <Route path="/upload-omr" element={<UploadOmr />} />
           <Route path="/submit" element={<SubmitPage />} />
-
         </Route>
       )}
 

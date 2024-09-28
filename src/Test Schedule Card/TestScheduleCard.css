@@ -1,20 +1,20 @@
-.dark .TEST_CARD_BOX{
-    background-color: #001B27;
+.dark .TEST_CARD_BOX {
+  background-color: #001b27;
 }
 
 .dark .TEST_CARD_BUTTON_EDDIT {
-    background-color: #001B27;
-    color:#F1F5F9 ;
+  background-color: #001b27;
+  color: #f1f5f9;
 }
 
 .dark .TEST_CARD_BUTTON_DUPLICATE {
-    background-color: #001B27;
-    color:#F1F5F9;
+  background-color: #001b27;
+  color: #f1f5f9;
 }
 .dark .TEST_CARD_DETAILS_COURSE {
-    color: #F1F5F9;
+  color: #f1f5f9;
 }
 
-.dark  .TEST_CARD_DETAILS_SMALL{
-    color: #F1F5F9;
+.dark .TEST_CARD_DETAILS_SMALL {
+  color: #f1f5f9;
 }

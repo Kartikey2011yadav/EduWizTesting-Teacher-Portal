@@ -44,7 +44,7 @@ export default function Login() {
         })
         .catch(() => handleLogout());
     }
-  }, [navigate]);
+  }, [handleLogout, navigate]);
 
   const closeModal = () => {
     setModalOpen(false);
@@ -136,7 +136,7 @@ export default function Login() {
               required
               value={usrEmail}
               onChange={(e) => setusrEmail(e.target.value)}
-              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+              className="w-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
           <div className="space-y-2 flex flex-col">
@@ -146,12 +146,12 @@ export default function Login() {
 
             <div className="relative w-full">
               <input
-                type={visible ? 'text' : 'password'}
+                type={!visible ? 'text' : 'password'}
                 placeholder="Enter Your Password"
                 required
                 value={usrPass}
                 onChange={(e) => setusrPass(e.target.value)}
-                className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
+                className="w-full border  p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
               <span
                 onClick={() => setVisible(!visible)}
@@ -169,7 +169,7 @@ export default function Login() {
               </label>
               <div className="relative w-full">
                 <input
-                  className="login_otp w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+                  className="login_otp w-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
                   type="text"
                   placeholder="Enter OTP"
                   required

@@ -145,7 +145,7 @@ export default function SignUp() {
               value={formData.name}
               onChange={handleInputChange}
               required
-              className="bw-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+              className="bw-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
@@ -160,7 +160,7 @@ export default function SignUp() {
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
               required
-              className="bw-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+              className="bw-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
@@ -176,7 +176,7 @@ export default function SignUp() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+              className="w-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
@@ -192,7 +192,7 @@ export default function SignUp() {
                 type={!visible ? 'text' : 'password'}
                 value={formData.password}
                 onChange={handleInputChange}
-                className="w-full border p-2 pr-10 rounded-md border-gray text-black  dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
+                className="w-full border p-2 pr-10 rounded-md  text-black  dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
               <span
                 onClick={() => setVisible(!visible)}
@@ -212,11 +212,11 @@ export default function SignUp() {
               <input
                 name="confirmPassword"
                 placeholder="Confirm Your Password"
-                type={!showConfirmPassword ? 'text' : 'password'}
+                type={showConfirmPassword ? 'text' : 'password'}
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
                 required
-                className="w-full border p-2 pr-10 rounded-md border-gray text-black  dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
+                className="w-full border p-2 pr-10 rounded-md  text-black  dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
               <span
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -240,16 +240,16 @@ export default function SignUp() {
 
           {/* Redirect to Sign In */}
           <div className="text-center">
-            <p className="text-sm text-black dark:text-white">
+            <p className="font-bold text-[16px] text-black dark:text-white">
               Already have an account?{' '}
-              <Link to="/" className="text-primary-light dark:text-primary-dark hover:underline text-md">
+              <Link to="/" className="text-primary-light font-bold text-[16px] dark:text-primary-dark hover:underline">
                 Sign In
               </Link>
             </p>
             <p className="mt-2">
               <Link
                 to="/ihaveapasscode"
-                className="login_link text-md text-primary-light dark:text-primary-dark hover:underline"
+                className="login_link font-bold text-[16px] text-primary-light dark:text-primary-dark hover:underline"
               >
                 Have a Passcode?
               </Link>

@@ -6,12 +6,13 @@ import axios from 'axios';
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { format } from 'date-fns';
+import SuccessModal from '../AlertModel/AlertModel';
 
-const StyledTimePicker = styled(TimePicker)(({ theme }) => ({
+const StyledTimePicker = styled(TimePicker)(() => ({
   '& .MuiInputBase-root': {
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     color: '#000',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: '10px',
     height: '40px',
     '& fieldset': {
       border: 'none',
@@ -38,11 +39,11 @@ const StyledTimePicker = styled(TimePicker)(({ theme }) => ({
     },
   },
 }));
-const StyledDatePicker = styled(DatePicker)(({ theme }) => ({
+const StyledDatePicker = styled(DatePicker)(() => ({
   '& .MuiInputBase-root': {
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     color: '#000',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: '10px',
     height: '40px',
     '& fieldset': {
       border: 'none',
@@ -84,6 +85,10 @@ const SchedulePaper = () => {
   const [marksError, setMarksError] = useState('');
   // const [durationError, setDurationError] = useState('');
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [isError, setIsError] = useState(false);
+
   const subjects = ['Math', 'Science', 'History', 'English', 'Computer Science'];
 
   const validateMarks = (value) => {
@@ -120,7 +125,9 @@ const SchedulePaper = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const minutes = duration.minutes === '' ? 0 : duration.minutes;
+    const minutes = duration.minutes.trim() === '' ? '00' : duration.minutes;
+    const teacherId = localStorage.getItem('teacherId');
+    // console.log(teacherId);
     if (!marksError) {
       const paperData = {
         paperName,
@@ -133,28 +140,35 @@ const SchedulePaper = () => {
         },
         date: formatDateForDB(date),
         time: formatTimeForDB(time),
+        teacherId,
       };
-
       try {
         await axios.post('http://localhost:5000/paper/schedule', paperData, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
-        alert('Paper scheduled successfully');
-
+        setModalMessage('Paper Scheduled Successfully');
+        setIsModalOpen(true);
         // Clear form fields after successful submission
         setpaperName('');
         setClassName('');
         setSubject('');
         setMarks('');
-        setDuration('');
+        setDuration({ hours: '', minutes: '' });
         setDate(null);
         setTime(null);
       } catch (error) {
         console.error('Error scheduling paper:', error);
+        setModalMessage('Error Scheduling paper');
+        setIsError(true);
+        setIsModalOpen(true);
       }
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -165,21 +179,21 @@ const SchedulePaper = () => {
         <h2 className="text-2xl font-bold text-black text-left dark:text-white ">Schedule a Paper</h2>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 pb-8 gap-x-8 gap-y-6">
+        <div className="md:grid grid-cols-2 pb-8 gap-x-8 gap-y-6">
           {/* Class Name Input */}
-          <div className="flex gap-2 col-span-2">
+          <div className="flex md:flex-row gap-2 col-span-2 flex-col">
             <label className="block dark:text-white text-wrap text-lg w-50 font-semibold">Course Name</label>
             <select
               value={className}
               onChange={(e) => setClassName(e.target.value)}
               required
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 border border-primary bg-input-light dark:border-white dark:bg-input-dark dark:text-white rounded-md  text-graydark focus:outline-none appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>
                 --Select a course--
               </option>
-              <option value="mtech">M.Tech.</option>
-              <option value="mca">MCA</option>
+              <option value="M.Tech">M.Tech.</option>
+              <option value="MCA">MCA</option>
             </select>
           </div>
 
@@ -190,15 +204,15 @@ const SchedulePaper = () => {
               value={paperName}
               onChange={(e) => setpaperName(e.target.value)}
               required
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 bg-input-light dark:bg-input-dark dark:border-white dark:text-white border border-primary rounded-md  text-graydark focus:outline-none appearance-none leading-tight focus:shadow-outline focus:shadow-outline"
             >
               <option value="" disabled>
                 --Select paper type--
               </option>
-              <option value="test1">Test 1</option>
-              <option value="test2">Test 2</option>
-              <option value="test3">Test 3</option>
-              <option value="endsem">End Sem</option>
+              <option value="Test 1">Test 1</option>
+              <option value="Test 2">Test 2</option>
+              <option value="Test 3">Test 3</option>
+              <option value="End Sem">End Sem</option>
             </select>
           </div>
 
@@ -209,7 +223,7 @@ const SchedulePaper = () => {
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white  rounded-md  text-graydark focus:outline-none appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>
                 --Select a subject--
@@ -224,12 +238,12 @@ const SchedulePaper = () => {
 
           {/* Marks Input */}
           <div className="space-y-1">
-            <label className="block w-full text-gray-700 font-semibold mb-1">Marks</label>
+            <label className="block w-full  text-gray-700 font-semibold mb-1">Marks</label>
             <input
               type="tel"
               value={marks}
               onChange={(e) => validateMarks(e.target.value)}
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white   rounded-md dark:placeholder:text-white  focus:outline-none appearance-none leading-tight focus:shadow-outline"
               placeholder="Enter marks"
               required
             />
@@ -243,7 +257,7 @@ const SchedulePaper = () => {
               <input
                 type="number"
                 placeholder="Hours"
-                className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+                className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white  rounded-md dark:placeholder:text-white  focus:outline-none appearance-none leading-tight focus:shadow-outline"
                 value={duration.hours}
                 onChange={(e) => handleDurationChange('hours', e.target.value)}
               />
@@ -251,7 +265,7 @@ const SchedulePaper = () => {
               <input
                 type="number"
                 placeholder="Minutes"
-                className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+                className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white rounded-md dark:placeholder:text-white  focus:outline-none appearance-none leading-tight focus:shadow-outline"
                 value={duration.minutes}
                 onChange={(e) => handleDurationChange('minutes', e.target.value)}
               />
@@ -261,7 +275,7 @@ const SchedulePaper = () => {
           {/* Date Picker */}
           <div className="space-y-1 ">
             <label className="block w-full font-semibold mb-1">Date</label>
-            <div className="w-full rounded-md  dark:bg-input-dark dark:text-white ">
+            <div className="w-full rounded-md bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white ">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StyledDatePicker
                   value={date}
@@ -277,7 +291,7 @@ const SchedulePaper = () => {
             <label className="block w-full text-gray-700 dark:text-gray-300 font-semibold mb-1">
               Time: (12 hrs format)
             </label>
-            <div className="w-full rounded-md  dark:bg-input-dark dark:text-white ">
+            <div className="w-full rounded-md bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white ">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StyledTimePicker
                   value={time}
@@ -311,6 +325,7 @@ const SchedulePaper = () => {
           Schedule Paper
         </button>
       </form>
+      <SuccessModal isOpen={isModalOpen} onClose={closeModal} message={modalMessage} isError={isError} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ const TestScheduleCard = (props) => {
   console.log(props);
   const [hover, setHover] = useState(false);
 
-  const formattedDate = new Date(props.test.scheduleDate).toLocaleString();
+  // const formattedDate = new Date(props.test.scheduleDate).toLocaleString();
 
   return (
     <div
@@ -40,12 +40,14 @@ const TestScheduleCard = (props) => {
         {/* info */}
         <div className="TEST_CARD_DETAILS relative flex flex-col">
           <p className="TEST_CARD_DETAILS_COURSE text-[#1E293B] font-bold text-[20px]">
-            Course Name: {props.test.course}
+            Course Name: {props.test.className}
           </p>
-          <p className="TEST_CARD_DETAILS_SMALL text-[#1E293B] text-[14px]">Duration: {`${props.test.duration}`}</p>
+          <p className="TEST_CARD_DETAILS_SMALL text-[#1E293B] text-[14px]">
+            Duration: {`${props.test.duration.hours}`} hour {`${props.test.duration.minutes}`} minutes
+          </p>
           <p className="TEST_CARD_DETAILS_SMALL text-[#1E293B] text-[14px]">Subject: {props.test.subject}</p>
         </div>
-        <p className=" relative text-[#FF2121] font-semibold">Scheduled on: {formattedDate}</p>
+        <p className=" relative text-[#FF2121] font-semibold">Scheduled on: {props.test.date}</p>
       </div>
     </div>
   );
@@ -53,10 +55,11 @@ const TestScheduleCard = (props) => {
 
 TestScheduleCard.propTypes = {
   test: PropTypes.shape({
-    course: PropTypes.string.isRequired,
+    className: PropTypes.string.isRequired,
     duration: PropTypes.string.isRequired,
     subject: PropTypes.string.isRequired,
-    scheduleDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
+    date: PropTypes.string.isRequired,
+    // scheduleDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]).isRequired,
   }).isRequired,
 };
 

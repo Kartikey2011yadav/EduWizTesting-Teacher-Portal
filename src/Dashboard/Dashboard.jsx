@@ -11,8 +11,7 @@ const Dashboard = () => {
   const [modalMessage, setModalMessage] = useState(''); // Modal message
   const [isError, setIsError] = useState(false); // Modal error state
   // const navigate = useNavigate();
-
-  let scheduleTests;
+  // let scheduleTests;
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -24,7 +23,7 @@ const Dashboard = () => {
       axios
         .post('http://localhost:5000/teacher/getDetails', { teacherID })
         .then((response) => {
-          scheduleTests = response.data.scheduleTests;
+          // scheduleTests = response.data.scheduleTests;
           setModalMessage(response.data.message);
           setModalOpen(true); // Open modal
           setIsError(false); // It's a success
@@ -40,26 +39,31 @@ const Dashboard = () => {
       // setIsError(true); // It's an error
       // setModalOpen(true); // Open modal
     }
+    fetchScheduledPapers();
   }, []);
 
-  // Data is not availble so using this sample data
+  const [scheduledPapers, setScheduledPapers] = useState([]);
 
-  scheduleTests = [
-    {
-      id: 0,
-      course: 'MTech',
-      duration: '1hr',
-      subject: 'Maths 2',
-      scheduleDate: new Date(2024, 8, 21, 10, 30),
-    },
-    {
-      id: 1,
-      course: 'MTech',
-      duration: '1hr',
-      subject: 'Maths 2',
-      scheduleDate: new Date(2024, 8, 21, 10, 30),
-    },
-  ];
+  const fetchScheduledPapers = async () => {
+    const teacherId = localStorage.getItem('teacherId');
+
+    if (!teacherId) {
+      return;
+    }
+    console.log('Fetching scheduled papers for teacherId:', teacherId);
+    try {
+      const response = await axios.get('http://localhost:5000/paper/schedule', {
+        headers: {
+          'Content-Type': 'application/json',
+          'teacher-Id': teacherId,
+        },
+      });
+      console.log('Received scheduled papers:', response.data);
+      setScheduledPapers(response.data);
+    } catch (error) {
+      console.error('Error fetching scheduled papers:', error);
+    }
+  };
 
   return (
     <div>
@@ -96,9 +100,11 @@ const Dashboard = () => {
           <h2 className=" relative text-[40px] bg-[#0369A1] text-white  font-bold px-3 rounded-t-lg">Upcoming Tests</h2>
 
           <div className="relative w-[95%]  mx-auto my-7 flex flex-col gap-10">
-            {scheduleTests.map((test) => (
-              <TestScheduleCard key={test.id} test={test} />
-            ))}
+            {scheduledPapers.length > 0 ? (
+              scheduledPapers.map((test) => <TestScheduleCard key={test._id} test={test} />)
+            ) : (
+              <p>No scheduled tests found.</p>
+            )}
           </div>
         </div>
       </div>

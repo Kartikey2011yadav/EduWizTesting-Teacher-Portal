@@ -192,8 +192,8 @@ const SchedulePaper = () => {
               <option value="" disabled>
                 --Select a course--
               </option>
-              <option value="mtech">M.Tech.</option>
-              <option value="mca">MCA</option>
+              <option value="M.Tech">M.Tech.</option>
+              <option value="MCA">MCA</option>
             </select>
           </div>
 
@@ -209,10 +209,10 @@ const SchedulePaper = () => {
               <option value="" disabled>
                 --Select paper type--
               </option>
-              <option value="test1">Test 1</option>
-              <option value="test2">Test 2</option>
-              <option value="test3">Test 3</option>
-              <option value="endsem">End Sem</option>
+              <option value="Test 1">Test 1</option>
+              <option value="Test 2">Test 2</option>
+              <option value="Test 3">Test 3</option>
+              <option value="End Sem">End Sem</option>
             </select>
           </div>
 

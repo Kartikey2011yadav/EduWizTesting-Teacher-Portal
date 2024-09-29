@@ -187,7 +187,7 @@ const SchedulePaper = () => {
               value={className}
               onChange={(e) => setClassName(e.target.value)}
               required
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 bg-input-light dark:bg-input-dark dark:text-white border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>
                 --Select a course--
@@ -204,7 +204,7 @@ const SchedulePaper = () => {
               value={paperName}
               onChange={(e) => setpaperName(e.target.value)}
               required
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 bg-input-light dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>
                 --Select paper type--
@@ -223,7 +223,7 @@ const SchedulePaper = () => {
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 bg-input-light dark:bg-input-dark dark:text-white  border-none rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>
                 --Select a subject--
@@ -238,12 +238,12 @@ const SchedulePaper = () => {
 
           {/* Marks Input */}
           <div className="space-y-1">
-            <label className="block w-full text-gray-700 font-semibold mb-1">Marks</label>
+            <label className="block w-full  text-gray-700 font-semibold mb-1">Marks</label>
             <input
               type="tel"
               value={marks}
               onChange={(e) => validateMarks(e.target.value)}
-              className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 bg-input-light dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
               placeholder="Enter marks"
               required
             />
@@ -257,7 +257,7 @@ const SchedulePaper = () => {
               <input
                 type="number"
                 placeholder="Hours"
-                className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+                className="w-full px-3 py-2 bg-input-light dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
                 value={duration.hours}
                 onChange={(e) => handleDurationChange('hours', e.target.value)}
               />
@@ -265,7 +265,7 @@ const SchedulePaper = () => {
               <input
                 type="number"
                 placeholder="Minutes"
-                className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+                className="w-full px-3 py-2 bg-input-light dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
                 value={duration.minutes}
                 onChange={(e) => handleDurationChange('minutes', e.target.value)}
               />
@@ -275,7 +275,7 @@ const SchedulePaper = () => {
           {/* Date Picker */}
           <div className="space-y-1 ">
             <label className="block w-full font-semibold mb-1">Date</label>
-            <div className="w-full rounded-md  dark:bg-input-dark dark:text-white ">
+            <div className="w-full rounded-md bg-input-light  dark:bg-input-dark dark:text-white ">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StyledDatePicker
                   value={date}
@@ -291,7 +291,7 @@ const SchedulePaper = () => {
             <label className="block w-full text-gray-700 dark:text-gray-300 font-semibold mb-1">
               Time: (12 hrs format)
             </label>
-            <div className="w-full rounded-md  dark:bg-input-dark dark:text-white ">
+            <div className="w-full rounded-md bg-input-light  dark:bg-input-dark dark:text-white ">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <StyledTimePicker
                   value={time}

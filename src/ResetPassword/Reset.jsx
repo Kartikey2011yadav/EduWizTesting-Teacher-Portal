@@ -11,7 +11,7 @@ const Reset = () => {
   const { theme } = useContext(ThemeContext);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+
   const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -22,6 +22,7 @@ const Reset = () => {
   const queryParams = new URLSearchParams(location.search);
   const token = queryParams.get('token');
   const email = queryParams.get('email');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const validatePasswordStrength = (password) => {
@@ -30,12 +31,13 @@ const Reset = () => {
   };
 
   const handleResetPassword = async () => {
-    setError('');
+    setLoading(true);
+
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
       setModalMessage('Passwords do not match');
       setIsError(true);
       setIsModalOpen(true);
+      setLoading(false);
       return;
     }
 
@@ -45,6 +47,7 @@ const Reset = () => {
       );
       setIsError(true);
       setIsModalOpen(true);
+      setLoading(false);
       return;
     }
 
@@ -78,6 +81,8 @@ const Reset = () => {
       setModalMessage('An unexpected error occurred. Please try again later.');
       setIsError(true);
       setIsModalOpen(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -98,53 +103,66 @@ const Reset = () => {
 
   return (
     <div className="m-0 w-screen px-[20px] h-screen flex justify-center items-center bg-[#F3F4F6] text-black dark:bg-[#010B18] dark:text-white">
-      <div className="m-auto rounded-lg py-[20px] flex flex-col justify-start items-center bg-[#FFFFFF] shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] text-black dark:bg-[#1F2937] dark:text-white">
-        <div className="flex-col px-10 w-full h-fit flex justify-start items-center">
-          <img src={theme === 'dark' ? logodark : logolight} className="w-[60px] h-[60px] mb-4" alt="logo" />
-          <h1 className="mt-4 text-3xl justify-center font-bold">Reset Password</h1>
-          <h1 className="text-lg justify-center text-center text-black dark:text-slate-400 mt-2">
+      <div className="w-full p-8 max-w-md m-auto rounded-lg py-[20px] flex flex-col justify-start items-center bg-[#FFFFFF] shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] text-black dark:bg-[#1F2937] dark:text-white">
+        <div className="flex-col  w-full h-fit flex justify-start items-center">
+          <img src={theme === 'dark' ? logodark : logolight} className="w-[80px] h-[80px]" alt="logo" />
+          <h1 className="mt-4 text-2xl justify-center font-bold">Reset Password</h1>
+          <p className=" justify-center text-center text-black dark:text-white mt-2">
             Enter Your Password and Confirm Password
-          </h1>
+          </p>
 
-          {error && <div className="text-red-500">{error}</div>}
+          <div className="w-full mt-6  space-y-2 flex flex-col">
+            <label htmlFor="password" className="text-sm font-medium text-black dark:text-white">
+              Password
+            </label>
 
-          <div className="flex flex-col font-bold mt-10 w-full gap-4 text-lg">
-            <h1>Password:</h1>
-            <div className="flex">
+            <div className=" flex relative flex-col   w-full gap-4">
               <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Enter Your Password"
+                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter Your Password"
-                type={showPassword ? 'text' : 'password'}
-                className="flex border-2 h-12 px-4 rounded-md w-full border-slate-200 dark:border-slate-500 items-center dark:bg-transparent dark:bg-slate-700"
+                className="w-full  text-base border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
-              <span onClick={togglePasswordVisibility} className="ml-[-30px] flex justify-center items-center">
+              <span
+                onClick={togglePasswordVisibility}
+                className="absolute right-2 top-2 cursor-pointer text-gray-500 dark:text-white mt-1"
+              >
                 {showPassword ? <FaEye /> : <FaEyeSlash />}
               </span>
             </div>
           </div>
 
-          <div className="flex flex-col mt-6 font-bold w-full gap-4 text-lg">
-            <h1>Confirm Password:</h1>
-            <div className="flex">
+          <div className="w-full mt-6 space-y-2 flex flex-col">
+            <label htmlFor="password" className="text-sm font-medium text-black dark:text-white">
+              Confirm Password:
+            </label>
+
+            <div className=" flex relative flex-col   w-full gap-4 text-lg">
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
+                placeholder="Enter Your Password"
+                required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm Your Password"
-                className="flex h-12 border-2 rounded-md px-4 w-full border-slate-200 dark:border-slate-500 items-center dark:bg-transparent dark:bg-slate-700"
+                className="w-full text-base border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
-              <span onClick={toggleConfirmPasswordVisibility} className="ml-[-30px] flex justify-center items-center">
+              <span
+                onClick={toggleConfirmPasswordVisibility}
+                className="absolute right-2 top-2 cursor-pointer text-gray-500 dark:text-white mt-1"
+              >
                 {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
               </span>
             </div>
           </div>
 
           <button
+            disabled={loading}
             onClick={handleResetPassword}
-            className="mt-6 w-full h-[50px] bg-blue-900 hover:bg-blue-800 dark:hover:bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-xl"
+            className="mt-6 w-full h-[40px] bg-blue-900 hover:bg-blue-800 dark:hover:bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-[16px]"
           >
-            Reset Password
+            {loading ? 'Please Wait' : 'Reset Password'}
           </button>
         </div>
       </div>

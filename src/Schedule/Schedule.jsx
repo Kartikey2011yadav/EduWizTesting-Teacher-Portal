@@ -6,6 +6,7 @@ import axios from 'axios';
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { format } from 'date-fns';
+import SuccessModal from '../AlertModel/AlertModel';
 
 const StyledTimePicker = styled(TimePicker)(({ theme }) => ({
   '& .MuiInputBase-root': {
@@ -84,6 +85,10 @@ const SchedulePaper = () => {
   const [marksError, setMarksError] = useState('');
   // const [durationError, setDurationError] = useState('');
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [isError, setIsError] = useState(false);
+
   const subjects = ['Math', 'Science', 'History', 'English', 'Computer Science'];
 
   const validateMarks = (value) => {
@@ -143,8 +148,8 @@ const SchedulePaper = () => {
             'Content-Type': 'application/json',
           },
         });
-        alert('Paper scheduled successfully');
-
+        setModalMessage('Paper Scheduled Successfully');
+        setIsModalOpen(true);
         // Clear form fields after successful submission
         setpaperName('');
         setClassName('');
@@ -155,8 +160,15 @@ const SchedulePaper = () => {
         setTime(null);
       } catch (error) {
         console.error('Error scheduling paper:', error);
+        setModalMessage('Error Scheduling paper');
+        setIsError(true);
+        setIsModalOpen(true);
       }
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -167,9 +179,9 @@ const SchedulePaper = () => {
         <h2 className="text-2xl font-bold text-black text-left dark:text-white ">Schedule a Paper</h2>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 pb-8 gap-x-8 gap-y-6">
+        <div className="md:grid grid-cols-2 pb-8 gap-x-8 gap-y-6">
           {/* Class Name Input */}
-          <div className="flex gap-2 col-span-2">
+          <div className="flex md:flex-row gap-2 col-span-2 flex-col">
             <label className="block dark:text-white text-wrap text-lg w-50 font-semibold">Course Name</label>
             <select
               value={className}
@@ -253,7 +265,7 @@ const SchedulePaper = () => {
               <input
                 type="number"
                 placeholder="Minutes"
-                className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+                className="w-full px-3 py-2 dark:bg-input-dark dark:text-white  border-none rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
                 value={duration.minutes}
                 onChange={(e) => handleDurationChange('minutes', e.target.value)}
               />
@@ -313,6 +325,7 @@ const SchedulePaper = () => {
           Schedule Paper
         </button>
       </form>
+      <SuccessModal isOpen={isModalOpen} onClose={closeModal} message={modalMessage} isError={isError} />
     </div>
   );
 };

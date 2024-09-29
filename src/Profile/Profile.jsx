@@ -1,27 +1,27 @@
 import { useState } from 'react';
 import './profile.css';
-
 import { FaPlus, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Modal from 'react-modal';
 import defaultPhoto from '../Assets/user photo default.jpg';
 import AlertModal from '../AlertModel/AlertModel';
 
-Modal.setAppElement('#root');
-
 const Profile = () => {
+  const name = localStorage.getItem('name');
+  const email = localStorage.getItem('email');
+  const mobileNumber = localStorage.getItem('mobileNumber');
   const [profileData, setProfileData] = useState({
     photo: defaultPhoto,
-    name: 'Niko',
-    email: 'niko@gmail.com',
-    mobile_no: '1234567890',
-    password: 'Qwerty@123',
-    confirmPassword: 'Qwerty@123',
+    name: '',
+    email: '',
+    mobile_no: '',
+    password: '',
+    confirmPassword: '',
   });
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [alertIsOpen, setAlertIsOpen] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const [isError, setIsError] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false); // Modal open state
+  const [modalMessage, setModalMessage] = useState(''); // Modal message
+  const [isError, setIsError] = useState(false); // Modal error state
+
   const [newProfileData, setNewProfileData] = useState(profileData);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -30,48 +30,51 @@ const Profile = () => {
     setNewProfileData(profileData);
     setModalIsOpen(true);
   };
-
   const closeModal = () => {
+    setModalOpen(false);
+  };
+  const closeIsModal = () => {
     setModalIsOpen(false);
   };
-
-  const openAlertModal = (message, isError = false) => {
-    setAlertMessage(message);
-    setIsError(isError);
-    setAlertIsOpen(true);
-  };
-
   const handleSave = () => {
     const { email, mobile_no, password, confirmPassword } = newProfileData;
 
     if (!email.includes('@')) {
-      openAlertModal('Please enter a valid email address.', true);
+      setModalMessage('Please enter a valid email address.');
+      setIsError(true);
+      setModalOpen(true);
       return;
     }
 
     const mobileRegex = /^\d{10}$/;
     if (!mobileRegex.test(mobile_no)) {
-      openAlertModal('Please enter a valid 10-digit mobile number.', true);
+      setModalMessage('Please enter a valid 10-digit mobile number.');
+      setIsError(true);
+      setModalOpen(true);
       return;
     }
 
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordRegex.test(password)) {
-      openAlertModal(
-        'Password must be at least 8 characters, contain one uppercase letter, one number, and one special character.',
-        true
+      setModalMessage(
+        'Password must be at least 8 characters, contain one uppercase letter, one number, and one special character.'
       );
+      setIsError(true);
+      setModalOpen(true);
       return;
     }
 
     if (password !== confirmPassword) {
-      openAlertModal('Passwords do not match.', true);
+      setModalMessage('Passwords do not match');
+      setIsError(true);
+      setModalOpen(true);
       return;
     }
 
     setProfileData(newProfileData);
-    setModalIsOpen(false);
-    openAlertModal('Profile updated successfully!');
+    setModalMessage('Profile updated successfully!');
+    setIsError(false);
+    setModalOpen(true);
   };
 
   const handleImageChange = (event) => {
@@ -110,9 +113,9 @@ const Profile = () => {
           />
         </div>
         <div className="profile-details">
-          <div className="profile-name">{profileData.name}</div>
-          <p className="profile-email">Email: {profileData.email}</p>
-          <p className="profile-mob">Mobile: {profileData.mobile_no}</p>
+          <div className="profile-name">{name}</div>
+          <p className="profile-email">Email: {email}</p>
+          <p className="profile-mob">Mobile: {mobileNumber}</p>
         </div>
         <button className="edit-button" onClick={openModal}>
           Edit Profile
@@ -131,6 +134,7 @@ const Profile = () => {
           <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
             Name:
             <input
+              placeholder="Enter your name"
               className="modallabel_input"
               type="text"
               value={newProfileData.name}
@@ -140,6 +144,7 @@ const Profile = () => {
           <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
             Email:
             <input
+              placeholder="Enter your email"
               type="email"
               value={newProfileData.email}
               onChange={(e) => setNewProfileData({ ...newProfileData, email: e.target.value })}
@@ -148,6 +153,7 @@ const Profile = () => {
           <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
             Mobile:
             <input
+              placeholder="Enter mobile no"
               type="text"
               value={newProfileData.mobile_no}
               onChange={(e) => setNewProfileData({ ...newProfileData, mobile_no: e.target.value })}
@@ -157,6 +163,7 @@ const Profile = () => {
             Password:
             <div className="password-field">
               <input
+                placeholder="Enter your password"
                 type={showPassword ? 'text' : 'password'}
                 className={passwordsMatch ? 'input-normal' : 'input-faded'}
                 value={newProfileData.password}
@@ -171,6 +178,7 @@ const Profile = () => {
             Confirm Password:
             <div className="password-field relative">
               <input
+                placeholder="Enter confirm password"
                 type={showConfirmPassword ? 'text' : 'password'}
                 className={passwordsMatch ? 'input-normal' : 'input-faded'}
                 value={newProfileData.confirmPassword}
@@ -185,15 +193,13 @@ const Profile = () => {
             <button type="button" onClick={handleSave}>
               Save
             </button>
-            <button type="button" onClick={closeModal}>
+            <button type="button" onClick={closeIsModal}>
               Cancel
             </button>
           </div>
         </form>
       </Modal>
-
-      {/* Alert Modal for Success or Error Messages */}
-      <AlertModal isOpen={alertIsOpen} onClose={() => setAlertIsOpen(false)} message={alertMessage} iserror={isError} />
+      <AlertModal isOpen={modalOpen} onClose={closeModal} message={modalMessage} isError={isError} />
     </div>
   );
 };

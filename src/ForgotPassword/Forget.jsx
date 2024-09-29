@@ -14,12 +14,14 @@ const Forget = () => {
   const [isError, setIsError] = useState(false); // State to determine if it's an error modal
   const [shouldNavigate, setShouldNavigate] = useState(false); // State to determine if navigation should happen after modal closes
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value); // Capture email input value
   };
 
   const handleResetPassword = () => {
+    setLoading(true);
     axios
       .post('http://localhost:5000/teacher/forgot-password', { email })
       .then((response) => {
@@ -33,6 +35,9 @@ const Forget = () => {
         setModalMessage('An error occurred: ' + error.message);
         setIsError(true);
         setIsModalOpen(true); // Open the modal for error
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -65,10 +70,11 @@ const Forget = () => {
           </div>
 
           <button
+            disabled={loading}
             onClick={handleResetPassword}
             className="mt-6 w-full h-[50px] bg-blue-900 hover:bg-blue-800 dark:hover:bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-xl"
           >
-            Reset Password
+            {loading ? 'Please Wait' : 'Reset Password'}
           </button>
 
           <div className="flex flex-row gap-1 items-center justify-center mt-4 w-full text-lg">

@@ -22,6 +22,7 @@ const Reset = () => {
   const queryParams = new URLSearchParams(location.search);
   const token = queryParams.get('token');
   const email = queryParams.get('email');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const validatePasswordStrength = (password) => {
@@ -30,12 +31,14 @@ const Reset = () => {
   };
 
   const handleResetPassword = async () => {
+    setLoading(true);
     setError('');
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       setModalMessage('Passwords do not match');
       setIsError(true);
       setIsModalOpen(true);
+      setLoading(false);
       return;
     }
 
@@ -45,6 +48,7 @@ const Reset = () => {
       );
       setIsError(true);
       setIsModalOpen(true);
+      setLoading(false);
       return;
     }
 
@@ -78,6 +82,8 @@ const Reset = () => {
       setModalMessage('An unexpected error occurred. Please try again later.');
       setIsError(true);
       setIsModalOpen(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -141,10 +147,11 @@ const Reset = () => {
           </div>
 
           <button
+            disabled={loading}
             onClick={handleResetPassword}
             className="mt-6 w-full h-[50px] bg-blue-900 hover:bg-blue-800 dark:hover:bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-xl"
           >
-            Reset Password
+            {loading ? 'Please Wait' : 'Reset Password'}
           </button>
         </div>
       </div>

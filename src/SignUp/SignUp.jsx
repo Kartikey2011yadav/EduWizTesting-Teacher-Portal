@@ -145,7 +145,7 @@ export default function SignUp() {
               value={formData.name}
               onChange={handleInputChange}
               required
-              className="bw-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+              className="bw-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
@@ -160,7 +160,7 @@ export default function SignUp() {
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
               required
-              className="bw-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+              className="bw-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
@@ -176,7 +176,7 @@ export default function SignUp() {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+              className="w-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
@@ -192,7 +192,7 @@ export default function SignUp() {
                 type={!visible ? 'text' : 'password'}
                 value={formData.password}
                 onChange={handleInputChange}
-                className="w-full border p-2 pr-10 rounded-md border-gray text-black  dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
+                className="w-full border p-2 pr-10 rounded-md  text-black  dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
               <span
                 onClick={() => setVisible(!visible)}
@@ -216,7 +216,7 @@ export default function SignUp() {
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
                 required
-                className="w-full border p-2 pr-10 rounded-md border-gray text-black  dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
+                className="w-full border p-2 pr-10 rounded-md  text-black  dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
               <span
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}

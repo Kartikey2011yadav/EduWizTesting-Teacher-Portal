@@ -68,7 +68,7 @@ const Forget = () => {
               required
               value={email}
               onChange={handleEmailChange}
-              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+              className="w-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 

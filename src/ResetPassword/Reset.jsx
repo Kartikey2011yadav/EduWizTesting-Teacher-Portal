@@ -123,7 +123,7 @@ const Reset = () => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full  text-base border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
+                className="w-full  text-base border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
               <span
                 onClick={togglePasswordVisibility}
@@ -146,7 +146,7 @@ const Reset = () => {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full text-base border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
+                className="w-full text-base border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none" // Adjusted padding-right (pr-10) for icon spacing
               />
               <span
                 onClick={toggleConfirmPasswordVisibility}

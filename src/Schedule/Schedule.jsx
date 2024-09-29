@@ -120,7 +120,9 @@ const SchedulePaper = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const minutes = duration.minutes === '' ? 0 : duration.minutes;
+    const minutes = duration.minutes.trim() === '' ? '00' : duration.minutes;
+    const teacherId = localStorage.getItem('teacherId');
+    // console.log(teacherId);
     if (!marksError) {
       const paperData = {
         paperName,
@@ -133,8 +135,8 @@ const SchedulePaper = () => {
         },
         date: formatDateForDB(date),
         time: formatTimeForDB(time),
+        teacherId,
       };
-
       try {
         await axios.post('http://localhost:5000/paper/schedule', paperData, {
           headers: {
@@ -148,7 +150,7 @@ const SchedulePaper = () => {
         setClassName('');
         setSubject('');
         setMarks('');
-        setDuration('');
+        setDuration({ hours: '', minutes: '' });
         setDate(null);
         setTime(null);
       } catch (error) {

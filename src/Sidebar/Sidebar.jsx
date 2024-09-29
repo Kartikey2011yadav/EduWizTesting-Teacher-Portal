@@ -40,7 +40,7 @@ const Sidebar = () => {
   const { theme } = useContext(ThemeContext);
   const menus = [
     { name: 'Dashboard', link: '/', icon: MdOutlineDashboard },
-    { name: 'User Profile', link: '/', icon: AiOutlineUser },
+    { name: 'User Profile', link: '/profile', icon: AiOutlineUser },
     { name: 'Analytics', link: '/', icon: TbReportAnalytics },
     {
       name: 'Schedule Paper',

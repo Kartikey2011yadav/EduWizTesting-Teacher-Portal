@@ -16,6 +16,7 @@ import { initializeTheme } from './utils/theme.js';
 import UploadOmr from './UploadOMR/UploadOmr.jsx';
 import SubmitPage from './Submit/SubmitPage.jsx';
 import IHaveAPasscode from './IHaveAPasscode/IHaveAPasscode.jsx';
+import Profile from './Profile/Profile.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -75,6 +76,7 @@ const App = () => {
           <Route path="/upload-omr" element={<UploadOmr />} />
           <Route path="/submit" element={<SubmitPage />} />
           <Route path="/add-question" element={<AddQuestion />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       )}
 

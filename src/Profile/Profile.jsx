@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import './profile.css';
+
 import { FaPlus, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Modal from 'react-modal';
-import defaultPhoto from '../assets/user photo default.jpg';
+import defaultPhoto from '../Assets/user photo default.jpg';
 import AlertModal from '../AlertModel/AlertModel';
 
 Modal.setAppElement('#root');
@@ -90,35 +92,29 @@ const Profile = () => {
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
   const passwordsMatch = newProfileData.password === newProfileData.confirmPassword;
-  // const toggleDarkMode = () => {
-  //   document.documentElement.classList.toggle('dark');
-  // };
+
   return (
-    <div className="bg-[#F3F4F6] h-full w-full py-50 dark:bg-[#010B18]">
-      <div className="bg-[#FFFFFF] dark:bg-[#1F2937] rounded-lg shadow-md w-1/2 mx-auto text-center p-6 relative border border-purple-500 shadow-gray-500/50">
-        <div className="relative inline-block">
-          <img
-            src={profileData.photo}
-            alt="Profile"
-            className="w-32 h-32 rounded-full object-cover border-4 border-white dark:border-black shadow-lg mx-auto -mt-24"
-          />
-          <label
-            htmlFor="file-input"
-            className="absolute bottom-0 right-0 bg-black text-white dark:bg-white dark:bg-black rounded-full p-2 cursor-pointer"
-          >
+    <div className="profile_card_main">
+      <div className="profile-card">
+        <div className="profile-header">
+          <img src={profileData.photo} alt="Profile" className="profile-image" />
+          <label htmlFor="file-input" className="plus-icon">
             <FaPlus />
           </label>
-          <input id="file-input" type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+          <input
+            id="file-input"
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            style={{ display: 'none' }}
+          />
         </div>
-        <div className="mt-4 text-black dark:text-white">
-          <div className="text-2xl font-bold mb-2 dark:text-white">{profileData.name}</div>
-          <p className="text-lg text-black mb-2 dark:text-white">Email: {profileData.email}</p>
-          <p className="text-gray-400 text-black mb-4 dark:text-white">Mobile: {profileData.mobile_no}</p>
+        <div className="profile-details">
+          <div className="profile-name">{profileData.name}</div>
+          <p className="profile-email">Email: {profileData.email}</p>
+          <p className="profile-mob">Mobile: {profileData.mobile_no}</p>
         </div>
-        <button
-          className="bg-blue-900 hover:bg-blue-800 text-white dark:bg-blue-500 dark:hover:bg-blue-600 py-2 px-4 rounded mt-4"
-          onClick={openModal}
-        >
+        <button className="edit-button" onClick={openModal}>
           Edit Profile
         </button>
       </div>
@@ -127,90 +123,75 @@ const Profile = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Edit Profile"
-        className="bg-gray-800 p-6 rounded-lg w-[90%] md:w-[500px] mx-auto text-white"
-        overlayClassName="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center"
+        className="modal"
+        overlayClassName="overlay"
       >
-        <h2 className="text-2xl font-bold mb-6 items-center justify-center flex">Edit Profile</h2>
-        <form className="grid gap-4">
-          <label className="flex flex-col">
+        <h2 className="profile_edit_heading">Edit Profile</h2>
+        <form className="modal-form">
+          <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
             Name:
             <input
+              className="modallabel_input"
               type="text"
               value={newProfileData.name}
               onChange={(e) => setNewProfileData({ ...newProfileData, name: e.target.value })}
-              className="bg-gray-700 text-black rounded px-3 py-2 mt-1"
             />
           </label>
-          <label className="flex flex-col">
+          <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
             Email:
             <input
               type="email"
               value={newProfileData.email}
               onChange={(e) => setNewProfileData({ ...newProfileData, email: e.target.value })}
-              className="bg-gray-700 text-black rounded px-3 py-2 mt-1"
             />
           </label>
-          <label className="flex flex-col">
+          <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
             Mobile:
             <input
               type="text"
               value={newProfileData.mobile_no}
               onChange={(e) => setNewProfileData({ ...newProfileData, mobile_no: e.target.value })}
-              className="bg-gray-700 text-black rounded px-3 py-2 mt-1"
             />
           </label>
-          <label className="flex flex-col">
+          <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
             Password:
-            <div className="relative">
+            <div className="password-field">
               <input
                 type={showPassword ? 'text' : 'password'}
-                className={`bg-gray-700 text-black rounded px-3 py-2 mt-1 w-full ${passwordsMatch ? 'border' : 'border-red-500'}`}
+                className={passwordsMatch ? 'input-normal' : 'input-faded'}
                 value={newProfileData.password}
                 onChange={(e) => setNewProfileData({ ...newProfileData, password: e.target.value })}
               />
-              <span
-                onClick={togglePasswordVisibility}
-                className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
-              >
+              <span onClick={togglePasswordVisibility} className="eye-icon">
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
           </label>
-          <label className="flex flex-col">
+          <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
             Confirm Password:
-            <div className="relative">
+            <div className="password-field relative">
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
-                className={`bg-gray-700 text-black rounded px-3 py-2 mt-1 w-full ${passwordsMatch ? 'border' : 'border-red-500'}`}
+                className={passwordsMatch ? 'input-normal' : 'input-faded'}
                 value={newProfileData.confirmPassword}
                 onChange={(e) => setNewProfileData({ ...newProfileData, confirmPassword: e.target.value })}
               />
-              <span
-                onClick={toggleConfirmPasswordVisibility}
-                className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
-              >
+              <span onClick={toggleConfirmPasswordVisibility} className="eye-icon">
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
           </label>
-          <div className="flex justify-end gap-2 mt-4">
-            <button
-              type="button"
-              className="bg-purple-500 hover:bg-purple-700 text-black py-2 px-4 rounded"
-              onClick={handleSave}
-            >
+          <div className="modal-buttons">
+            <button type="button" onClick={handleSave}>
               Save
             </button>
-            <button
-              type="button"
-              className="bg-purple-500 hover:bg-purple-700 text-black py-2 px-4 rounded"
-              onClick={closeModal}
-            >
+            <button type="button" onClick={closeModal}>
               Cancel
             </button>
           </div>
         </form>
       </Modal>
+
       {/* Alert Modal for Success or Error Messages */}
       <AlertModal isOpen={alertIsOpen} onClose={() => setAlertIsOpen(false)} message={alertMessage} iserror={isError} />
     </div>

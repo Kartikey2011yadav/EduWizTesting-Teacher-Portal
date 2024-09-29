@@ -20,6 +20,7 @@ export default {
         'hover-light': '#2563EB',
         'hover-dark': '#2563EB',
         'input-dark': '#374151',
+        'input-light': '#f8f9fa',
         current: 'currentColor',
         transparent: 'transparent',
         white: '#FFFFFF',

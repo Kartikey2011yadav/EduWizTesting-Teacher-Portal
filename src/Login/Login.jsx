@@ -44,7 +44,7 @@ export default function Login() {
         })
         .catch(() => handleLogout());
     }
-  }, [navigate]);
+  }, [handleLogout, navigate]);
 
   const closeModal = () => {
     setModalOpen(false);
@@ -146,7 +146,7 @@ export default function Login() {
 
             <div className="relative w-full">
               <input
-                type={visible ? 'text' : 'password'}
+                type={!visible ? 'text' : 'password'}
                 placeholder="Enter Your Password"
                 required
                 value={usrPass}

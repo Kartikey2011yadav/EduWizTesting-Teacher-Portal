@@ -50,36 +50,39 @@ const Forget = () => {
 
   return (
     <div className="m-0 w-screen px-[20px] h-screen flex justify-center items-center bg-[#F3F4F6] text-black dark:bg-[#010B18] dark:text-white">
-      <div className="m-auto rounded-lg  py-[20px] flex flex-col justify-start items-center shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] bg-[#FFFFFF] text-black dark:bg-[#1F2937] dark:text-white">
-        <div className="flex-col mt-6 px-10 w-full h-fit flex justify-start items-center">
-          <img src={theme === 'dark' ? logodark : logolight} className="w-[60px] h-[60px] mb-4" alt="logo" />
+      <div className="w-full max-w-md m-auto rounded-lg  p-8 flex flex-col justify-start items-center shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] bg-[#FFFFFF] text-black dark:bg-[#1F2937] dark:text-white">
+        <div className="flex-col  w-full h-fit flex justify-start items-center">
+          <img src={theme === 'dark' ? logodark : logolight} className="w-[80px] h-[80px]" alt="logo" />
 
-          <h1 className="mt-4 text-3xl justify-center font-bold">Forget Password</h1>
-          <h1 className="text-lg justify-center text-center text-black dark:text-slate-400 mt-3">
+          <h1 className="mt-4 text-2xl justify-center font-bold">Forget Password</h1>
+          <p className=" justify-center text-center text-black dark:text-white mt-3">
             Enter Your Email to Reset Your Password
-          </h1>
-
-          <div className="flex flex-col font-bold mt-10 w-full gap-4 text-lg">
-            <h1>Email:</h1>
+          </p>
+          <div className="flex flex-col  mt-10 w-full gap-4 text-lg">
+            <label htmlFor="email" className="text-sm font-medium text-black dark:text-white">
+              Email
+            </label>
             <input
-              placeholder="Enter Your Email"
+              type="text"
+              placeholder="Enter Username or Email"
+              required
               value={email}
               onChange={handleEmailChange}
-              className="flex border-2 h-12 rounded-md border-slate-200 dark:border-slate-500 items-center px-4 dark:bg-transparent dark:bg-slate-700 min-h-8"
+              className="w-full border p-2 pr-10 rounded-md border-gray text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
           <button
             disabled={loading}
             onClick={handleResetPassword}
-            className="mt-6 w-full h-[50px] bg-blue-900 hover:bg-blue-800 dark:hover:bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-xl"
+            className="mt-6 w-full h-[40px] bg-blue-900 hover:bg-blue-800 dark:hover:bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-[16px]"
           >
             {loading ? 'Please Wait' : 'Reset Password'}
           </button>
 
           <div className="flex flex-row gap-1 items-center justify-center mt-4 w-full text-lg">
-            <h1>Remember Your Password?</h1>
-            <Link to="/" className="text-blue-500">
+            <h1 className="font-bold text-[16px]">Remember Your Password?</h1>
+            <Link to="/" className="text-blue-500 font-bold text-[16px] hover:underline">
               Sign In
             </Link>
           </div>

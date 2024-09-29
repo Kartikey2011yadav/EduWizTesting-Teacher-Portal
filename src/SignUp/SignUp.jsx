@@ -212,7 +212,7 @@ export default function SignUp() {
               <input
                 name="confirmPassword"
                 placeholder="Confirm Your Password"
-                type={!showConfirmPassword ? 'text' : 'password'}
+                type={showConfirmPassword ? 'text' : 'password'}
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
                 required
@@ -240,16 +240,16 @@ export default function SignUp() {
 
           {/* Redirect to Sign In */}
           <div className="text-center">
-            <p className="text-sm text-black dark:text-white">
+            <p className="font-bold text-[16px] text-black dark:text-white">
               Already have an account?{' '}
-              <Link to="/" className="text-primary-light dark:text-primary-dark hover:underline text-md">
+              <Link to="/" className="text-primary-light font-bold text-[16px] dark:text-primary-dark hover:underline">
                 Sign In
               </Link>
             </p>
             <p className="mt-2">
               <Link
                 to="/ihaveapasscode"
-                className="login_link text-md text-primary-light dark:text-primary-dark hover:underline"
+                className="login_link font-bold text-[16px] text-primary-light dark:text-primary-dark hover:underline"
               >
                 Have a Passcode?
               </Link>

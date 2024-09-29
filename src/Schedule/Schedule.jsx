@@ -187,7 +187,7 @@ const SchedulePaper = () => {
               value={className}
               onChange={(e) => setClassName(e.target.value)}
               required
-              className="w-full px-3 py-2 border border-primary bg-input-light dark:border-white dark:bg-input-dark dark:text-white rounded-md  text-graydark focus:outline-none focus:ring-1 ring-primary focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 border border-primary bg-input-light dark:border-white dark:bg-input-dark dark:text-white rounded-md  text-graydark focus:outline-none appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>
                 --Select a course--
@@ -204,7 +204,7 @@ const SchedulePaper = () => {
               value={paperName}
               onChange={(e) => setpaperName(e.target.value)}
               required
-              className="w-full px-3 py-2 bg-input-light dark:bg-input-dark dark:border-white dark:text-white border border-primary rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline focus:shadow-outline"
+              className="w-full px-3 py-2 bg-input-light dark:bg-input-dark dark:border-white dark:text-white border border-primary rounded-md  text-graydark focus:outline-none appearance-none leading-tight focus:shadow-outline focus:shadow-outline"
             >
               <option value="" disabled>
                 --Select paper type--
@@ -223,7 +223,7 @@ const SchedulePaper = () => {
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               required
-              className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white  rounded-md  text-graydark focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white  rounded-md  text-graydark focus:outline-none appearance-none leading-tight focus:shadow-outline"
             >
               <option value="" disabled>
                 --Select a subject--
@@ -243,7 +243,7 @@ const SchedulePaper = () => {
               type="tel"
               value={marks}
               onChange={(e) => validateMarks(e.target.value)}
-              className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white   rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+              className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white   rounded-md dark:placeholder:text-white  focus:outline-none appearance-none leading-tight focus:shadow-outline"
               placeholder="Enter marks"
               required
             />
@@ -257,7 +257,7 @@ const SchedulePaper = () => {
               <input
                 type="number"
                 placeholder="Hours"
-                className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white  rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+                className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white  rounded-md dark:placeholder:text-white  focus:outline-none appearance-none leading-tight focus:shadow-outline"
                 value={duration.hours}
                 onChange={(e) => handleDurationChange('hours', e.target.value)}
               />
@@ -265,7 +265,7 @@ const SchedulePaper = () => {
               <input
                 type="number"
                 placeholder="Minutes"
-                className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white rounded-md dark:placeholder:text-white  focus:outline-none focus:ring-1 focus:ring-primary appearance-none leading-tight focus:shadow-outline"
+                className="w-full px-3 py-2 bg-input-light border border-primary dark:border-white dark:bg-input-dark dark:text-white rounded-md dark:placeholder:text-white  focus:outline-none appearance-none leading-tight focus:shadow-outline"
                 value={duration.minutes}
                 onChange={(e) => handleDurationChange('minutes', e.target.value)}
               />

@@ -68,7 +68,7 @@ const Forget = () => {
               required
               value={email}
               onChange={handleEmailChange}
-              className="w-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+              className="w-full border p-1 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
@@ -77,12 +77,12 @@ const Forget = () => {
             onClick={handleResetPassword}
             className="mt-6 w-full h-[40px] bg-blue-900 hover:bg-blue-800 dark:hover:bg-blue-600 dark:bg-blue-500 text-white rounded-lg text-[16px]"
           >
-            {loading ? 'Please Wait' : 'Reset Password'}
+            {loading ? 'PLEASE WAIT...' : 'RESET PASSWORD'}
           </button>
 
           <div className="flex flex-row gap-1 items-center justify-center mt-4 w-full text-lg">
-            <h1 className="font-bold text-[16px]">Remember Your Password?</h1>
-            <Link to="/" className="text-blue-500 font-bold text-[16px] hover:underline">
+            <h1 className="font-bold text-sm">Remember Your Password?</h1>
+            <Link to="/" className="text-blue-500 font-bold text-sm hover:underline">
               Sign In
             </Link>
           </div>

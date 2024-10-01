@@ -242,16 +242,16 @@ export default function SignUp() {
 
           {/* Redirect to Sign In */}
           <div className="text-center">
-            <p className="font-bold text-[16px] text-black dark:text-white">
+            <p className="font-bold text-sm text-black dark:text-white">
               Already have an account?{' '}
-              <Link to="/" className="text-primary-light font-bold text-[16px] dark:text-primary-dark hover:underline">
+              <Link to="/" className="text-primary-light font-bold text-sm dark:text-primary-dark hover:underline">
                 Sign In
               </Link>
             </p>
             <p className="mt-2">
               <Link
                 to="/ihaveapasscode"
-                className="login_link font-bold text-[16px] text-primary-light dark:text-primary-dark hover:underline"
+                className="login_link font-bold text-sm text-primary-light dark:text-primary-dark hover:underline"
               >
                 Have a Passcode?
               </Link>

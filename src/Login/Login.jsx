@@ -117,7 +117,7 @@ export default function Login() {
     <div
       className={`flex items-center justify-center min-h-screen bg-gray-100 dark:bg-background-dark bg-background-light`}
     >
-      <div className="w-full max-w-md shadow-[0px_0px_10px_#010b1857;] dark:shadow-[0px_0px_10px_#ffffff7a;] p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
+      <div className="w-full max-w-md shadow-[0px_0px_10px_#010b1857;] dark:shadow-[0px_0px_10px_#ffffff7a;] p-8 space-y-6 rounded-lg bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img src={theme === 'dark' ? logodark : logolight} className={`${open && 'w-20'} `} alt="" />
           <h1 className="text-2xl font-[600] text-center text-black dark:text-white">Sign In to EduWiz</h1>
@@ -157,7 +157,11 @@ export default function Login() {
                 onClick={() => setVisible(!visible)}
                 className="absolute right-2 top-2 cursor-pointer text-gray-500 dark:text-white mt-1"
               >
-                {visible ? <FaEyeSlash /> : <FaEye />}
+                {visible ? (
+                  <FaEyeSlash className="dark:autofill:bg-black" />
+                ) : (
+                  <FaEye className="dark:autofill:bg-black" />
+                )}
               </span>
             </div>
           </div>
@@ -179,7 +183,15 @@ export default function Login() {
               </div>
             </div>
           )}
-
+          <div>
+            <button
+              disabled={loading}
+              className="w-full bg-primary-light hover:bg-hover-light dark:bg-primary-dark dark:hover:bg-hover-dark text-white rounded-md p-2"
+              type="submit"
+            >
+              {loading ? 'Please wait...' : showOtp ? 'LOGIN' : 'SEND OTP'}
+            </button>
+          </div>
           <div className="flex items-center justify-between">
             <Link to="/signup" className="text-sm text-primary-light dark:text-white font-bold hover:underline">
               Create account
@@ -190,15 +202,6 @@ export default function Login() {
             >
               Forgot password?
             </Link>
-          </div>
-          <div className="">
-            <button
-              disabled={loading}
-              className="w-full bg-primary-light hover:bg-hover-light dark:bg-primary-dark dark:hover:bg-hover-dark text-white rounded-md p-2"
-              type="submit"
-            >
-              {loading ? 'Please wait...' : showOtp ? 'Login' : 'Send OTP'}
-            </button>
           </div>
         </form>
       </div>

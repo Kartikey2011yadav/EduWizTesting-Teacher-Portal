@@ -129,14 +129,16 @@ export default function SignUp() {
       <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img src={theme === 'dark' ? logodark : logolight} className="w-20" alt="EduWiz Logo" />
-          <h1 className="text-2xl font-bold text-center text-black dark:text-white">Create an Account</h1>
-          <p className="text-gray-500 text-center text-black dark:text-white">Join EduWiz and start learning today!</p>
+          <h1 className="text-2xl font-[600] text-center text-black dark:text-white">Create an Account</h1>
+          <p className="text-gray-500 text-center text-black dark:text-white font-[500]">
+            Join EduWiz and start learning today!
+          </p>
         </div>
         <form className="space-y-4" onSubmit={handleSubmit}>
           {/* Full Name Input */}
           <div className="space-y-2 flex flex-col">
-            <label htmlFor="fullName" className="text-sm font-medium text-black dark:text-white">
-              Full Name
+            <label htmlFor="fullName" className="text-sm text-black dark:text-white font-[500] dark:font-[400]">
+              Full Name:
             </label>
             <input
               name="name"
@@ -145,14 +147,14 @@ export default function SignUp() {
               value={formData.name}
               onChange={handleInputChange}
               required
-              className="bw-full border p-2 pr-10 rounded-md  text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
+              className="bw-full border p-2 pr-10 rounded-md text-black dark:bg-[#374151] dark:text-white bg-[#f8f9fa] outline-none"
             />
           </div>
 
           {/* Phone Number */}
           <div className="space-y-2 flex flex-col">
-            <label htmlFor="PhoneNumber" className="text-sm font-medium text-black dark:text-white">
-              Phone Number
+            <label htmlFor="PhoneNumber" className="font-[500] dark:font-[400] text-sm text-black dark:text-white">
+              Phone Number:
             </label>
             <input
               type="tel"
@@ -166,8 +168,8 @@ export default function SignUp() {
 
           {/* Email Input */}
           <div className="space-y-2 flex flex-col">
-            <label htmlFor="email" className="text-sm font-medium text-black dark:text-white">
-              Email
+            <label htmlFor="email" className="text-sm font-[500] dark:font-[400] text-black dark:text-white">
+              Email:
             </label>
             <input
               name="email"
@@ -182,8 +184,8 @@ export default function SignUp() {
 
           {/* Password Input */}
           <div className="space-y-2 flex flex-col">
-            <label htmlFor="password" className="text-sm font-medium text-black dark:text-white">
-              Password
+            <label htmlFor="password" className="text-sm dark:font-[400] font-[500] text-black dark:text-white">
+              Password:
             </label>
             <div className="relative w-full">
               <input
@@ -205,8 +207,8 @@ export default function SignUp() {
 
           {/* Confirm Password Input */}
           <div className="space-y-2 flex flex-col">
-            <label htmlFor="ConfirmPassword" className="text-sm font-medium text-black dark:text-white">
-              Confirm Password
+            <label htmlFor="ConfirmPassword" className="text-sm font-[500] dark:font-[400] text-black dark:text-white">
+              Confirm Password:
             </label>
             <div className="relative w-full">
               <input

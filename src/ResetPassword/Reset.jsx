@@ -106,14 +106,14 @@ const Reset = () => {
       <div className="w-full p-8 max-w-md m-auto rounded-lg py-[20px] flex flex-col justify-start items-center bg-[#FFFFFF] shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] text-black dark:bg-[#1F2937] dark:text-white">
         <div className="flex-col  w-full h-fit flex justify-start items-center">
           <img src={theme === 'dark' ? logodark : logolight} className="w-[80px] h-[80px]" alt="logo" />
-          <h1 className="mt-4 text-2xl justify-center font-bold">Reset Password</h1>
-          <p className=" justify-center text-center text-black dark:text-white mt-2">
+          <h1 className="mt-4 text-2xl justify-center font-[600]">Reset Password</h1>
+          <p className=" justify-center text-center text-black dark:text-white mt-2 font-[400]">
             Enter Your Password and Confirm Password
           </p>
 
           <div className="w-full mt-6  space-y-2 flex flex-col">
-            <label htmlFor="password" className="text-sm font-medium text-black dark:text-white">
-              Password
+            <label htmlFor="password" className="text-sm font-[500] text-black dark:text-white">
+              Password:
             </label>
 
             <div className=" flex relative flex-col   w-full gap-4">
@@ -135,7 +135,7 @@ const Reset = () => {
           </div>
 
           <div className="w-full mt-6 space-y-2 flex flex-col">
-            <label htmlFor="password" className="text-sm font-medium text-black dark:text-white">
+            <label htmlFor="password" className="text-sm font-[500] text-black dark:text-white">
               Confirm Password:
             </label>
 

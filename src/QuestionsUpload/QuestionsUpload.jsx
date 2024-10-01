@@ -129,6 +129,7 @@ const QuestionsUpload = () => {
                 </div>
               </div>
             )}
+            <div className="question-upload-answer">Answer: &nbsp;{question.mcqAnswer}</div>
           </div>
         ))}
       </div>

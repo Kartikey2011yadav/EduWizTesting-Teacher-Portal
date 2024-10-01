@@ -5,8 +5,10 @@ import './AddQuestion.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AlertModal from '../AlertModel/AlertModel';
+import { useNavigate } from 'react-router-dom';
 
 const AddQuestion = () => {
+  const navigate = useNavigate();
   const [isFlex, setIsFlex] = useState(true);
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -22,6 +24,7 @@ const AddQuestion = () => {
   const [marks, setMarks] = useState('');
   const [option, setOption] = useState('');
   const [mcqOptions, setMcqOptions] = useState([]);
+  const [mcqAnswer, setMcqAnswer] = useState('');
   const [expectedTime, setExpectedTime] = useState({});
   const [hours, setHours] = useState('');
   const [minutes, setMinutes] = useState('');
@@ -103,9 +106,24 @@ const AddQuestion = () => {
     return true;
   };
 
+  const validateAnswer = () => {
+    if (option === 'mcq') {
+      const index = mcqOptions.indexOf(mcqAnswer);
+      if (index === -1) return false;
+      return true;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateTime()) return;
+    if (!validateAnswer()) {
+      setModalMessage('In MCQ type question, answer should be among the options provided!!!');
+      setModalIsError(true);
+      setModalIsOpen(true);
+      return;
+    }
     setLoading(true);
     const teacherId = localStorage.getItem('teacherId');
     try {
@@ -117,6 +135,7 @@ const AddQuestion = () => {
         marks,
         option,
         mcqOptions,
+        mcqAnswer,
         expectedTime,
         divTag,
       });
@@ -357,6 +376,19 @@ const AddQuestion = () => {
             ) : (
               <></>
             )}
+            <label>Question Answer:</label>
+            <center>
+              <div className="add-question-input-container">
+                <input
+                  type="text"
+                  placeholder="Enter the Answer:"
+                  onChange={(e) => {
+                    setMcqAnswer(e.target.value);
+                  }}
+                  required
+                />
+              </div>
+            </center>
             <label>Question Tags:</label>
             <center>
               <div className="add-question-input-container">
@@ -430,6 +462,7 @@ const AddQuestion = () => {
         isOpen={modalIsOpen}
         onClose={() => {
           setModalIsOpen(false);
+          navigate('/questions-upload');
         }}
         isError={modalIsError}
         message={modalMessage}

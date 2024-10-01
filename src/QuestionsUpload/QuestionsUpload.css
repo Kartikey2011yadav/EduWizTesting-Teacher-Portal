@@ -155,6 +155,9 @@ hr {
   object-fit: cover;
   border-radius: 5px;
 }
+.question-upload-answer {
+  padding-bottom: 10px;
+}
 @media (max-width: 720px) {
   .question-upload-add-question {
     font-size: 12px;

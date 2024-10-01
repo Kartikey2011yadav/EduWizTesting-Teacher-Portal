@@ -32,17 +32,16 @@
 .i-passcode-heading {
   font-size: 30px;
   margin-top: 15px;
-  margin-bottom: 20px;
   font-weight: 600;
 }
 .i-passcode-header {
   font-size: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   width: 80%;
 }
 .i-passcode-form label {
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: 400;
+  font-size: 14px;
 }
 .dark .i-passcode-form label {
   font-weight: 400;
@@ -55,19 +54,29 @@
 .i-passcode-input-container input {
   width: 100%;
   border-radius: 5px;
-  height: 50px;
+  height: 42px;
   padding-left: 7px;
   padding-bottom: 2px;
   border: 1px solid #1c2434;
   background-color: #f8f9fa;
 }
+
 .dark .i-passcode-input-container input {
   border-color: #ffffff;
+}
+.i-passcode-input-container input:focus {
+  outline: none;
+  border-color: #ffffff !important;
+}
+
+.dark .i-passcode-input-container input:focus {
+  outline: none;
+  border-color: #ffffff !important;
 }
 .i-passcode-submit {
   margin-top: 30px;
   width: 450px;
-  height: 50px;
+  height: 42px;
   margin-bottom: 15px;
 }
 .i-passcode-submit button {
@@ -92,6 +101,29 @@
 }
 .dark .i-passcode-container input {
   background-color: #374151;
+}
+
+.i-passcode-already-have-account {
+  text-align: center;
+}
+.i-passcode-already-have-account p {
+  font-weight: 700;
+  font-size: 14px;
+  color: black;
+}
+.dark .i-passcode-already-have-account p {
+  color: #ffffff;
+}
+.i-passcode-already-have-account p a {
+  font-weight: 700;
+  font-size: 14px;
+  color: #2c5282;
+}
+.i-passcode-already-have-account p a:hover {
+  text-decoration-line: underline;
+}
+.dark .i-passcode-already-have-account p a {
+  color: #3b82f6;
 }
 /* ---------------------------------------placeholders----------------------------- */
 input::placeholder {

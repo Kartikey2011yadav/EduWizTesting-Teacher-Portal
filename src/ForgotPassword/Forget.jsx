@@ -54,13 +54,13 @@ const Forget = () => {
         <div className="flex-col  w-full h-fit flex justify-start items-center">
           <img src={theme === 'dark' ? logodark : logolight} className="w-[80px] h-[80px]" alt="logo" />
 
-          <h1 className="mt-4 text-2xl justify-center font-bold">Forget Password</h1>
-          <p className=" justify-center text-center text-black dark:text-white mt-3">
+          <h1 className="mt-4 text-2xl justify-center font-[600]">Forget Password</h1>
+          <p className=" justify-center text-center text-black dark:text-white mt-3 font-[400]">
             Enter Your Email to Reset Your Password
           </p>
           <div className="flex flex-col  mt-10 w-full gap-4 text-lg">
-            <label htmlFor="email" className="text-sm font-medium text-black dark:text-white">
-              Email
+            <label htmlFor="email" className="text-md font-[500] text-black dark:text-white">
+              Email:
             </label>
             <input
               type="text"

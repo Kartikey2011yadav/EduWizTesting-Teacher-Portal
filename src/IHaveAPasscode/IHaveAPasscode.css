@@ -45,7 +45,7 @@
   font-size: 20px;
 }
 .dark .i-passcode-form label {
-  font-weight: normal;
+  font-weight: 400;
 }
 .i-passcode-input-container {
   width: 450px;
@@ -58,11 +58,11 @@
   height: 50px;
   padding-left: 7px;
   padding-bottom: 2px;
-  border: 2px solid #0c19417a;
+  border: 1px solid #1c2434;
   background-color: #f8f9fa;
 }
 .dark .i-passcode-input-container input {
-  border-color: transparent;
+  border-color: #ffffff;
 }
 .i-passcode-submit {
   margin-top: 30px;
@@ -96,6 +96,7 @@
 /* ---------------------------------------placeholders----------------------------- */
 input::placeholder {
   color: rgba(0, 0, 0, 0.788);
+  font-size: 18px;
 }
 .dark input::placeholder {
   color: #ffffffa2;

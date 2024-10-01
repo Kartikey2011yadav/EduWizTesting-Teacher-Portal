@@ -10,7 +10,7 @@ import AlertModal from '../AlertModel/AlertModel';
 import { ThemeContext } from '../contexts/ThemeContext';
 
 export default function Login() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [showOtp, setOtp] = useState(false);
   const [usrEmail, setusrEmail] = useState('');
   const [usrPass, setusrPass] = useState('');
@@ -117,18 +117,18 @@ export default function Login() {
     <div
       className={`flex items-center justify-center min-h-screen bg-gray-100 dark:bg-background-dark bg-background-light`}
     >
-      <div className="w-full max-w-md shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
+      <div className="w-full max-w-md shadow-[0px_0px_10px_#010b1857;] dark:shadow-[0px_0px_10px_#ffffff7a;] p-8 space-y-6 rounded-lg shadow-md bg-container-light dark:bg-container-dark">
         <div className="flex flex-col items-center space-y-2">
           <img src={theme === 'dark' ? logodark : logolight} className={`${open && 'w-20'} `} alt="" />
-          <h1 className="text-2xl font-bold text-center text-black dark:text-white">Sign In to EduWiz</h1>
-          <p className="text-gray-500 text-center text-black dark:text-white">
+          <h1 className="text-2xl font-[600] text-center text-black dark:text-white">Sign In to EduWiz</h1>
+          <p className="text-gray-500 text-center text-black dark:text-white font-[400]">
             Welcome back! Please sign in to continue.
           </p>
         </div>
         <form onSubmit={showOtp ? handleOTP : handleLogin} className="space-y-4">
           <div className="space-y-2 flex flex-col">
-            <label htmlFor="email" className="text-sm font-medium text-black dark:text-white">
-              Email
+            <label htmlFor="email" className="text-sm font-[500] text-black dark:text-white">
+              Email:
             </label>
             <input
               type="text"
@@ -140,8 +140,8 @@ export default function Login() {
             />
           </div>
           <div className="space-y-2 flex flex-col">
-            <label htmlFor="password" className="text-sm font-medium text-black dark:text-white">
-              Password
+            <label htmlFor="password" className="text-sm font-[500] text-black dark:text-white">
+              Password:
             </label>
 
             <div className="relative w-full">

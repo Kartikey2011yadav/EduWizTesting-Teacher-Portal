@@ -13,6 +13,11 @@
 }
 .add-question-form label {
   margin-left: 25px;
+  font-weight: 500;
+}
+.dark,
+.add-question-form label {
+  font-weight: 400;
 }
 .add-question-input-container {
   width: 650px;
@@ -28,14 +33,16 @@
 .add-question-form select {
   border-radius: 3px;
   width: 100%;
-  padding-left: 10px;
+  padding-left: 7px;
   box-sizing: border-box;
   margin-top: 3px;
+  border: 1px solid #1c2434cc;
 }
 .dark .add-question-form input,
 .dark .add-question-form textarea,
 .dark .add-question-form select {
   background-color: #374151;
+  border-color: #ffffff;
 }
 .add-question-heading {
   font-size: 30px;
@@ -81,6 +88,7 @@
   height: 40px;
   background-color: #1e3a8a;
   color: #ffffff;
+  border-color: transparent;
 }
 .add-question-input-container [type='submit']:hover {
   cursor: pointer;
@@ -88,6 +96,7 @@
 }
 .dark .add-question-input-container [type='submit'] {
   background-color: #3b82f6;
+  border-color: transparent;
 }
 .dark .add-question-input-container [type='submit']:hover {
   background-color: #3b83f679;

@@ -8,15 +8,15 @@ import Dashboard from './Dashboard/Dashboard.jsx';
 import SchedulePaper from './Schedule/Schedule.jsx';
 import Reset from './ResetPassword/Reset.jsx';
 import Forget from './ForgotPassword/Forget.jsx';
-import AddQuestion from './AddQuestion/AddQuestion.jsx';
 import ProtectedLayout from './Layout/ProtectedLayout.jsx';
-
+import Profile from './Profile/Profile.jsx';
 import './index.css';
 import { initializeTheme } from './utils/theme.js';
 import UploadOmr from './UploadOMR/UploadOmr.jsx';
 import SubmitPage from './Submit/SubmitPage.jsx';
 import IHaveAPasscode from './IHaveAPasscode/IHaveAPasscode.jsx';
-import Profile from './Profile/Profile.jsx';
+import QuestionsUpload from './QuestionsUpload/QuestionsUpload.jsx';
+import AddQuestion from './AddQuestion/AddQuestion.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -75,6 +75,7 @@ const App = () => {
           <Route path="/schedule" element={<SchedulePaper />} />
           <Route path="/upload-omr" element={<UploadOmr />} />
           <Route path="/submit" element={<SubmitPage />} />
+          <Route path="/questions-upload" element={<QuestionsUpload />} />
           <Route path="/add-question" element={<AddQuestion />} />
           <Route path="/profile" element={<Profile />} />
         </Route>

@@ -90,9 +90,15 @@ const IHaveAPasscode = () => {
                     />
                   </div>
                   <div className="i-passcode-submit">
-                    <button type="submit">{loading ? 'Verifying' : 'Verify'}</button>
+                    <button type="submit">{loading ? 'VERIFYING...' : 'VERIFY'}</button>
                   </div>
                 </center>
+                {/* Redirect to Sign In */}
+                <div className="i-passcode-already-have-account">
+                  <p className="">
+                    Already have an account? <a href="/">Sign In</a>
+                  </p>
+                </div>
               </form>
             </div>
           </div>

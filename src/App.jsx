@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-
 import Login from './Login/Login.jsx';
 import SignUp from './SignUp/SignUp.jsx';
 import NotFound from './NotFound/NotFound.jsx';
@@ -10,7 +9,7 @@ import SchedulePaper from './Schedule/Schedule.jsx';
 import Reset from './ResetPassword/Reset.jsx';
 import Forget from './ForgotPassword/Forget.jsx';
 import ProtectedLayout from './Layout/ProtectedLayout.jsx';
-
+import Profile from './Profile/Profile.jsx';
 import './index.css';
 import { initializeTheme } from './utils/theme.js';
 import UploadOmr from './UploadOMR/UploadOmr.jsx';
@@ -78,6 +77,7 @@ const App = () => {
           <Route path="/submit" element={<SubmitPage />} />
           <Route path="/questions-upload" element={<QuestionsUpload />} />
           <Route path="/add-question" element={<AddQuestion />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       )}
 

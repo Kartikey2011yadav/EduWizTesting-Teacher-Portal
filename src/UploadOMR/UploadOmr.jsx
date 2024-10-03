@@ -16,6 +16,7 @@ const UploadOmr = () => {
     };
 
     fetchStudents();
+    document.title = 'Forget Password';
   }, []);
 
   useEffect(() => {

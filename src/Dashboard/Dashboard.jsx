@@ -17,6 +17,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    document.title = 'Dashboard';
     const teacherID = localStorage.getItem('teacherID');
 
     if (teacherID) {

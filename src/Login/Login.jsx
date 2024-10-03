@@ -29,6 +29,7 @@ export default function Login() {
   };
 
   useEffect(() => {
+    document.title = 'Login';
     // Check if session ID exists in local storage and is still valid
     const sessionId = localStorage.getItem('sessionId');
     if (sessionId) {

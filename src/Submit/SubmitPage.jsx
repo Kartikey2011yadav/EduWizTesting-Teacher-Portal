@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MyDropzone from '../Components/DropzoneComponent';
 
@@ -50,6 +50,9 @@ const SubmitPage = () => {
     navigate('/upload-omr');
   };
 
+  useEffect(() => {
+    document.title = 'Submit';
+  }, []);
   return (
     <div
       className={`max-w-xl mx-auto mt-10 p-6 bg-container-light dark:bg-container-dark shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] rounded-lg transition-all duration-500}`}

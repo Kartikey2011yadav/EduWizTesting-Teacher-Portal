@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import logodark from '../assets/logo-dark.svg';
 import logolight from '../assets/logo-light.svg';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import SuccessModal from '../AlertModel/AlertModel';
 import axios from 'axios';
@@ -100,6 +100,10 @@ const Reset = () => {
       navigate('/'); // Navigate to the home page or login after successful reset
     }
   };
+
+  useEffect(() => {
+    document.title = 'Reset Password';
+  }, []);
 
   return (
     <div className="m-0 w-screen px-[20px] h-screen flex justify-center items-center bg-[#F3F4F6] text-black dark:bg-[#010B18] dark:text-white">

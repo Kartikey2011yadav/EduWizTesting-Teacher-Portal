@@ -2,7 +2,7 @@ import logodark from '../assets/logo-dark.svg';
 import logolight from '../assets/logo-light.svg';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import AlertModal from '../AlertModel/AlertModel';
 import { ThemeContext } from '../contexts/ThemeContext';
@@ -18,6 +18,10 @@ export default function SignUp() {
   const [shouldNavigate, setShouldNavigate] = useState(false); // Control navigation
   const [isLoading, setIsLoading] = useState(false); // Loading state for sign up button
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = 'Sign-Up';
+  }, []);
 
   const [formData, setFormData] = useState({
     name: '',

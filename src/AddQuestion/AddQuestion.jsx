@@ -1,13 +1,14 @@
 import { useDropzone } from 'react-dropzone';
-import { FaTimes } from 'react-icons/fa';
+import { FaArrowLeft, FaTimes } from 'react-icons/fa';
 import { IoCloudUploadOutline } from 'react-icons/io5';
 import './AddQuestion.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AlertModal from '../AlertModel/AlertModel';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const AddQuestion = () => {
+const AddQuestion = ({ questionData, onBack }) => {
   const navigate = useNavigate();
   const [isFlex, setIsFlex] = useState(true);
   const [tags, setTags] = useState([]);
@@ -32,7 +33,25 @@ const AddQuestion = () => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
+    if (questionData) {
+      // Populate form with existing data
+      setHeading(questionData.heading || '');
+      setDescription(questionData.description || '');
+      setDifficultyLevel(questionData.difficultyLevel || '');
+      setMarks(questionData.marks || '');
+      setOption(questionData.option || '');
+      setMcqOptions(questionData.mcqOptions || ['']);
+      setMcqAnswer(questionData.mcqAnswer || '');
+      setHours(questionData.expectedTime?.hours || '');
+      setMinutes(questionData.expectedTime?.minutes || '');
+      setTags(questionData.tags || []);
+      setDivTag(questionData.tags || []);
+    }
+  }, [questionData]);
+
+  useEffect(() => {
     setExpectedTime({ hours, minutes });
+    // console.log(expectedTime);
   }, [hours, minutes]);
 
   const onDrop = (acceptedFiles) => {
@@ -126,8 +145,15 @@ const AddQuestion = () => {
     }
     setLoading(true);
     const teacherId = localStorage.getItem('teacherId');
+
     try {
-      const response = await axios.post('http://localhost:5000/question/addQuestion', {
+      const endpoint = questionData
+        ? `http://localhost:5000/question/updateQuestion/${questionData._id}`
+        : 'http://localhost:5000/question/addQuestion';
+
+      const method = questionData ? 'put' : 'post';
+
+      const response = await axios[method](endpoint, {
         teacherId,
         heading,
         description,
@@ -139,10 +165,11 @@ const AddQuestion = () => {
         expectedTime,
         divTag,
       });
+
       if (response.status === 200) {
         setModalIsError(false);
         setModalIsOpen(true);
-        setModalMessage(response.data.message);
+        setModalMessage(questionData ? 'Question updated successfully!' : 'Question added successfully!');
       }
     } catch (error) {
       setModalIsError(true);
@@ -174,9 +201,15 @@ const AddQuestion = () => {
   return (
     <div className="add-question-container-display">
       <div className="add-question-container">
+        <button
+          onClick={onBack}
+          className="mb-4 bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-md flex items-center gap-2"
+        >
+          <FaArrowLeft /> Back to Questions
+        </button>
         <div className="add-question-form">
           <center>
-            <div className="add-question-heading">Question Upload</div>
+            <div className="add-question-heading">{questionData ? 'Edit Question' : 'Add Question'}</div>
           </center>
           <form
             onSubmit={(e) => {
@@ -190,9 +223,8 @@ const AddQuestion = () => {
                   type="text"
                   placeholder="Enter Question Heading:"
                   required
-                  onChange={(e) => {
-                    setHeading(e.target.value);
-                  }}
+                  value={heading}
+                  onChange={(e) => setHeading(e.target.value)}
                 />
               </div>
             </center>
@@ -202,6 +234,7 @@ const AddQuestion = () => {
                 <textarea
                   placeholder="Enter Question Description:"
                   required
+                  value={description}
                   onChange={(e) => {
                     setDescription(e.target.value);
                   }}
@@ -215,6 +248,7 @@ const AddQuestion = () => {
                   <div className="add-question-input-container">
                     <select
                       required
+                      value={difficultyLevel}
                       onChange={(e) => {
                         setDifficultyLevel(e.target.value);
                       }}
@@ -237,6 +271,7 @@ const AddQuestion = () => {
                       type="number"
                       placeholder="Enter Marks:"
                       required
+                      value={marks}
                       onChange={(e) => {
                         setMarks(e.target.value);
                       }}
@@ -255,6 +290,7 @@ const AddQuestion = () => {
                         handleMCQ(e);
                       }}
                       required
+                      value={mcqOptions}
                     >
                       <option selected>Select Question Type</option>
                       <option value="mcq">MCQ</option>
@@ -316,6 +352,7 @@ const AddQuestion = () => {
                           onChange={(e) => {
                             setHours(e.target.value);
                           }}
+                          value={hours}
                           required
                         />
                       </div>
@@ -385,6 +422,7 @@ const AddQuestion = () => {
                   onChange={(e) => {
                     setMcqAnswer(e.target.value);
                   }}
+                  value={mcqAnswer}
                   required
                 />
               </div>
@@ -452,7 +490,19 @@ const AddQuestion = () => {
             </div>
             <center>
               <div className="add-question-input-container">
-                <input type="submit" value={loading ? 'Adding...' : 'Add Question'} disabled={loading} />
+                <input
+                  type="submit"
+                  value={
+                    loading
+                      ? questionData
+                        ? 'Updating...'
+                        : 'Adding...'
+                      : questionData
+                        ? 'Update Question'
+                        : 'Add Question'
+                  }
+                  disabled={loading}
+                />
               </div>
             </center>
           </form>
@@ -469,6 +519,29 @@ const AddQuestion = () => {
       />
     </div>
   );
+};
+
+AddQuestion.propTypes = {
+  questionData: PropTypes.shape({
+    _id: PropTypes.string,
+    heading: PropTypes.string,
+    description: PropTypes.string,
+    difficultyLevel: PropTypes.string,
+    marks: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    option: PropTypes.string,
+    mcqOptions: PropTypes.arrayOf(PropTypes.string),
+    mcqAnswer: PropTypes.string,
+    expectedTime: PropTypes.shape({
+      hours: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      minutes: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }),
+    tags: PropTypes.arrayOf(PropTypes.string),
+  }),
+  onBack: PropTypes.func.isRequired,
+};
+
+AddQuestion.defaultProps = {
+  questionData: null,
 };
 
 export default AddQuestion;

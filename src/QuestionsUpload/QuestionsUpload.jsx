@@ -1,16 +1,37 @@
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import './QuestionsUpload.css';
 import { useContext, useEffect, useState } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import { FaCopy, FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
 import { SiLevelsdotfyi } from 'react-icons/si';
 import { FaRegClock, FaTag } from 'react-icons/fa6';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { GoDotFill } from 'react-icons/go';
 import questionImage from '../assets/user photo default.jpg';
+import AddQuestion from '../AddQuestion/AddQuestion';
+import PropTypes from 'prop-types';
+
+const Question = PropTypes.shape({
+  _id: PropTypes.string.isRequired,
+  heading: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  difficultyLevel: PropTypes.string.isRequired,
+  marks: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  option: PropTypes.string.isRequired,
+  mcqOptions: PropTypes.arrayOf(PropTypes.string),
+  mcqAnswer: PropTypes.string,
+  expectedTime: PropTypes.shape({
+    hours: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    minutes: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string),
+});
 
 const QuestionsUpload = () => {
   const { theme } = useContext(ThemeContext);
+  const [questions, setQuestions] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editQuestionData, setEditQuestionData] = useState(null);
 
   const lightColors = {
     '#1e3a8a': 'rgba(0, 255, 255, 0.253)',
@@ -25,8 +46,33 @@ const QuestionsUpload = () => {
 
   const colorKeysLight = Object.keys(lightColors);
   const colorKeysDark = Object.keys(darkColors);
-  const navigate = useNavigate();
-  const [questions, setQuestions] = useState([]);
+  // const navigate = useNavigate();
+
+  const handleEdit = (question) => {
+    setEditQuestionData(question);
+    setIsEditing(true);
+  };
+
+  const handleAddNewQuestion = () => {
+    setEditQuestionData(null);
+    setIsEditing(true);
+  };
+
+  const handleBack = () => {
+    setIsEditing(false);
+    setEditQuestionData(null);
+    // Refresh questions list after edit
+    axios
+      .post('http://localhost:5000/question/getQuestionDetailsByTeacherId', {
+        teacherId: localStorage.getItem('teacherId'),
+      })
+      .then((response) => {
+        setQuestions(response.data.questions);
+      })
+      .catch((err) => {
+        console.error(err?.response?.data.error || 'Server Error');
+      });
+  };
 
   useEffect(() => {
     axios
@@ -41,15 +87,20 @@ const QuestionsUpload = () => {
       });
   }, []);
 
+  if (isEditing) {
+    return <AddQuestion questionData={editQuestionData} onBack={handleBack} />;
+  }
+
   return (
     <>
       <div className="question-upload-container">
         <div className="question-upload-heading">Questions</div>
         <div
           className="question-upload-add-question"
-          onClick={() => {
-            navigate('/add-question');
-          }}
+          onClick={handleAddNewQuestion}
+          // onClick={() => {
+          //   navigate('/add-question');
+          // }}
         >
           <FaPlus />
           <div>Add Question</div>
@@ -58,6 +109,20 @@ const QuestionsUpload = () => {
       <div className="question-upload-card-container">
         {questions.map((question, key) => (
           <div className="question-upload-card" key={key}>
+            <div className=" TEST_CARD_BUTTONS relative mr-6 flex justify-end gap-2 text-white font-thin">
+              <button
+                className="TEST_CARD_BUTTON_EDDIT bg-[#1E293B] hover:bg-[#2b3c56] rounded-md px-3 py-1 flex items-center gap-1"
+                onClick={() => handleEdit(question)}
+              >
+                <FaEdit /> Edit
+              </button>
+              <button className="TEST_CARD_BUTTON_DUPLICATE bg-[#1E293B] hover:bg-[#2b3c56] rounded-md px-3 py-1 flex items-center gap-1">
+                <FaCopy /> Duplicate
+              </button>
+              <button className="TEST_CARD_BUTTON_DELETE bg-[#FF2121] hover:bg-[#dc1c1c] rounded-md px-3 py-1 flex items-center gap-1">
+                <FaTrash /> Delete
+              </button>
+            </div>
             <div className="question-upload-difficultyLevel">
               <SiLevelsdotfyi />
               <div>{question.difficultyLevel}</div>
@@ -135,6 +200,14 @@ const QuestionsUpload = () => {
       </div>
     </>
   );
+};
+
+QuestionsUpload.propTypes = {
+  questions: PropTypes.arrayOf(Question),
+};
+
+QuestionsUpload.defaultProps = {
+  questions: [],
 };
 
 export default QuestionsUpload;

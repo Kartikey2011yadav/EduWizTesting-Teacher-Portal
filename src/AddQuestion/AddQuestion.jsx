@@ -512,6 +512,7 @@ const AddQuestion = ({ questionData, onBack }) => {
         isOpen={modalIsOpen}
         onClose={() => {
           setModalIsOpen(false);
+          if (!modalIsError) onBack();
           navigate('/questions-upload');
         }}
         isError={modalIsError}

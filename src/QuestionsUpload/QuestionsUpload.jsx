@@ -1,7 +1,7 @@
 // import { useNavigate } from 'react-router-dom';
 import './QuestionsUpload.css';
 import { useContext, useEffect, useState } from 'react';
-import { FaCopy, FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
 import { SiLevelsdotfyi } from 'react-icons/si';
 import { FaRegClock, FaTag } from 'react-icons/fa6';
@@ -10,6 +10,7 @@ import { GoDotFill } from 'react-icons/go';
 import questionImage from '../assets/user photo default.jpg';
 import AddQuestion from '../AddQuestion/AddQuestion';
 import PropTypes from 'prop-types';
+import SuccessModal from '../AlertModel/AlertModel';
 
 const Question = PropTypes.shape({
   _id: PropTypes.string.isRequired,
@@ -32,6 +33,18 @@ const QuestionsUpload = () => {
   const [questions, setQuestions] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editQuestionData, setEditQuestionData] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  //for modal
+  const [confirmModal, setConfirmModal] = useState({
+    isOpen: false,
+    questionIdToDelete: null,
+  });
+  const [resultModal, setResultModal] = useState({
+    isOpen: false,
+    isError: false,
+    message: '',
+  });
 
   const lightColors = {
     '#1e3a8a': 'rgba(0, 255, 255, 0.253)',
@@ -72,6 +85,49 @@ const QuestionsUpload = () => {
       .catch((err) => {
         console.error(err?.response?.data.error || 'Server Error');
       });
+  };
+
+  const initiateDelete = (questionId) => {
+    setConfirmModal({
+      isOpen: true,
+      questionIdToDelete: questionId,
+    });
+  };
+
+  const handleDelete = async () => {
+    const questionId = confirmModal.questionIdToDelete;
+
+    try {
+      setIsDeleting(true);
+      const response = await axios.delete(`http://localhost:5000/question/deleteQuestion/${questionId}`, {
+        data: {
+          teacherId: localStorage.getItem('teacherId'),
+        },
+      });
+
+      if (response.status === 200) {
+        // Update the local state to remove the deleted question
+        setQuestions((prevQuestions) => prevQuestions.filter((q) => q._id !== questionId));
+
+        // Show success modal
+        setResultModal({
+          isOpen: true,
+          isError: false,
+          message: 'Question deleted successfully',
+        });
+      }
+    } catch (error) {
+      console.error('Error deleting question:', error);
+      // Show error modal
+      setResultModal({
+        isOpen: true,
+        isError: true,
+        message: error.response?.data?.message || 'Failed to delete question',
+      });
+    } finally {
+      setIsDeleting(false);
+      setConfirmModal({ isOpen: false, questionIdToDelete: null });
+    }
   };
 
   useEffect(() => {
@@ -116,10 +172,11 @@ const QuestionsUpload = () => {
               >
                 <FaEdit /> Edit
               </button>
-              <button className="TEST_CARD_BUTTON_DUPLICATE bg-[#1E293B] hover:bg-[#2b3c56] rounded-md px-3 py-1 flex items-center gap-1">
-                <FaCopy /> Duplicate
-              </button>
-              <button className="TEST_CARD_BUTTON_DELETE bg-[#FF2121] hover:bg-[#dc1c1c] rounded-md px-3 py-1 flex items-center gap-1">
+              <button
+                className="TEST_CARD_BUTTON_DELETE bg-[#FF2121] hover:bg-[#dc1c1c] rounded-md px-3 py-1 flex items-center gap-1"
+                onClick={() => initiateDelete(question._id)}
+                disabled={isDeleting}
+              >
                 <FaTrash /> Delete
               </button>
             </div>
@@ -198,6 +255,23 @@ const QuestionsUpload = () => {
           </div>
         ))}
       </div>
+      {/* Confirmation Modal */}
+      <SuccessModal
+        isOpen={confirmModal.isOpen}
+        onClose={() => setConfirmModal({ isOpen: false, questionIdToDelete: null })}
+        message="Are you sure you want to delete this question?"
+        isError={false}
+        isConfirm={true}
+        onConfirm={handleDelete}
+      />
+
+      {/* Result Modal */}
+      <SuccessModal
+        isOpen={resultModal.isOpen}
+        onClose={() => setResultModal({ isOpen: false, isError: false, message: '' })}
+        message={resultModal.message}
+        isError={resultModal.isError}
+      />
     </>
   );
 };

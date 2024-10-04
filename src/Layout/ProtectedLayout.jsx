@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import logo from '../assets/user photo default.jpg';
+import logo from '../assets/user-photo-default.jpg';
 import Sidebar from '../Sidebar/Sidebar';
 import TeacherNavbar from '../Navbar/TeacherNavbar';
 

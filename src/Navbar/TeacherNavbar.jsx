@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import ThemeToggleButton from '../Components/ThemeToggle';
-import defaultUserPhoto from '../assets/user photo default.jpg';
+import defaultUserPhoto from '../assets/user-photo-default.jpg';
 
 const TeacherNavbar = (props) => {
   return (

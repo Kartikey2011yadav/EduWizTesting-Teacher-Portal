@@ -7,7 +7,7 @@ import { SiLevelsdotfyi } from 'react-icons/si';
 import { FaRegClock, FaTag } from 'react-icons/fa6';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { GoDotFill } from 'react-icons/go';
-import questionImage from '../assets/user photo default.jpg';
+import questionImage from '../assets/user-photo-default.jpg';
 import AddQuestion from '../AddQuestion/AddQuestion';
 import PropTypes from 'prop-types';
 import SuccessModal from '../AlertModel/AlertModel';

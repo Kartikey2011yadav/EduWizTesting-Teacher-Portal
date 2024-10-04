@@ -1,7 +1,7 @@
 import './IHaveAPasscode.css';
 import logoDark from '../assets/logo-dark.svg';
 import logoLight from '../assets/logo-light.svg';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 import AlertModal from '../AlertModel/AlertModel';
 import axios from 'axios';
@@ -45,6 +45,9 @@ const IHaveAPasscode = () => {
     setModalIsOpen(false);
     if (!isError && shouldNavigate) navigate('/');
   };
+  useEffect(() => {
+    document.title = 'Passcode | EduWiz';
+  }, []);
   return (
     <>
       <div className="i-passcode-container-display">

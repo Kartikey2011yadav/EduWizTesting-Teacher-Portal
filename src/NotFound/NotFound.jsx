@@ -1,4 +1,9 @@
+import { useEffect } from 'react';
+
 export default function NotFound() {
+  useEffect(() => {
+    document.title = 'Not Found | EduWiz';
+  }, []);
   return (
     <div className="flex items-center justify-center min-h-screen bg-container-light dark:bg-container-dark">
       <div className="relative w-96 h-96">

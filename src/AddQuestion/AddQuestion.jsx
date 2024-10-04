@@ -50,6 +50,10 @@ const AddQuestion = ({ questionData, onBack }) => {
   }, [questionData]);
 
   useEffect(() => {
+    document.title = 'Add Questions | EduWiz';
+  }, []);
+
+  useEffect(() => {
     setExpectedTime({ hours, minutes });
     // console.log(expectedTime);
   }, [hours, minutes]);

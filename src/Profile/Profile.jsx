@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './profile.css';
 import { FaPlus, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Modal from 'react-modal';
@@ -95,6 +95,10 @@ const Profile = () => {
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
   const passwordsMatch = newProfileData.password === newProfileData.confirmPassword;
+
+  useEffect(() => {
+    document.title = 'Profile | EduWiz';
+  }, []);
 
   return (
     <div className="profile_card_main">

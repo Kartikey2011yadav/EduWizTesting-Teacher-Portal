@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import logodark from '../assets/logo-dark.svg';
 import logolight from '../assets/logo-light.svg';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import SuccessModal from '../AlertModel/AlertModel';
 import { ThemeContext } from '../contexts/ThemeContext';
@@ -47,6 +47,10 @@ const Forget = () => {
       navigate('/'); // Navigate after modal closes if password reset is successful
     }
   };
+
+  useEffect(() => {
+    document.title = 'Forget Password | EduWiz';
+  }, []);
 
   return (
     <div className="m-0 w-screen px-[20px] h-screen flex justify-center items-center bg-[#F3F4F6] text-black dark:bg-[#010B18] dark:text-white">

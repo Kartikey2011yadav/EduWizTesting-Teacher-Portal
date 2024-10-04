@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker, TimePicker } from '@mui/x-date-pickers';
@@ -171,6 +171,9 @@ const SchedulePaper = () => {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    document.title = 'Schedule Paper | EduWiz';
+  }, []);
   return (
     <div
       className={`max-w-xl mx-auto mt-10 p-6 bg-container-light dark:bg-container-dark shadow-[0px_0px_10px_#00000059;] dark:shadow-[0px_0px_10px_#ffffff7a;] rounded-lg transition-all duration-500}`}

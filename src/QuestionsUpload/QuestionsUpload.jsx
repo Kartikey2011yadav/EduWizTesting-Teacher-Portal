@@ -141,6 +141,7 @@ const QuestionsUpload = () => {
       .catch((err) => {
         console.error(err?.response?.data.error || 'Server Error');
       });
+    document.title = 'Upload Questions | EduWiz';
   }, []);
 
   if (isEditing) {
@@ -233,7 +234,7 @@ const QuestionsUpload = () => {
                 <img src={questionImage} alt="Question" />
               </div>
             </div>
-            <hr></hr>
+            <hr className="questionupload-hr"></hr>
             <div className="question-upload-type">
               Question Type: &nbsp;<b>{question.option}</b>
             </div>

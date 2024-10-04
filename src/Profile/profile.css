@@ -1,8 +1,8 @@
 /* Profile container */
 .profile_card_main {
   min-height: 73vh;
-  height: 100vh;
-  padding-top: 213px;
+
+  padding-top: 150px;
 }
 
 .profile-card {

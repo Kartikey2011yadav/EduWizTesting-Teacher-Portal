@@ -39,7 +39,7 @@ const QuestionsUpload = () => {
       .catch((err) => {
         console.error(err?.response?.data.error || 'Server Error');
       });
-    document.title = 'Upload Questions';
+    document.title = 'Upload Questions | EduWiz';
   }, []);
 
   return (

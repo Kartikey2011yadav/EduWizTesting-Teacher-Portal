@@ -16,7 +16,7 @@ const UploadOmr = () => {
     };
 
     fetchStudents();
-    document.title = 'Forget Password';
+    document.title = 'Forget Password | EduWiz';
   }, []);
 
   useEffect(() => {

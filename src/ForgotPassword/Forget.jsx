@@ -49,7 +49,7 @@ const Forget = () => {
   };
 
   useEffect(() => {
-    document.title = 'Forget Password';
+    document.title = 'Forget Password | EduWiz';
   }, []);
 
   return (

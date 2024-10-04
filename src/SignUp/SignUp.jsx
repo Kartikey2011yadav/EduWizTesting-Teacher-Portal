@@ -20,7 +20,7 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = 'Sign-Up';
+    document.title = 'SignUp | EduWiz';
   }, []);
 
   const [formData, setFormData] = useState({

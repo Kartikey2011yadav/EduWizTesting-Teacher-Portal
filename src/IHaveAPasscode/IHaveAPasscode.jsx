@@ -46,7 +46,7 @@ const IHaveAPasscode = () => {
     if (!isError && shouldNavigate) navigate('/');
   };
   useEffect(() => {
-    document.title = 'Passcode';
+    document.title = 'Passcode | EduWiz';
   }, []);
   return (
     <>

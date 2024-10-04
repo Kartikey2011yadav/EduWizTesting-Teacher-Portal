@@ -32,7 +32,7 @@ const AddQuestion = () => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    document.title = 'Add Questions';
+    document.title = 'Add Questions | EduWiz';
   }, []);
 
   useEffect(() => {

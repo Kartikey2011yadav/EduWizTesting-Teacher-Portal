@@ -102,7 +102,7 @@ const Reset = () => {
   };
 
   useEffect(() => {
-    document.title = 'Reset Password';
+    document.title = 'Reset Password | EduWiz';
   }, []);
 
   return (

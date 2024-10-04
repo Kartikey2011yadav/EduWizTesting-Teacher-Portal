@@ -172,7 +172,7 @@ const SchedulePaper = () => {
   };
 
   useEffect(() => {
-    document.title = 'Schedule Paper';
+    document.title = 'Schedule Paper | EduWiz';
   }, []);
   return (
     <div

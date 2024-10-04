@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './profile.css';
 import { FaPlus, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Modal from 'react-modal';
-import defaultPhoto from '../assets/user-photo-default.jpg';
+import defaultPhoto from '../assets/user photo default.jpg';
 import AlertModal from '../AlertModel/AlertModel';
 
 const Profile = () => {
@@ -97,7 +97,7 @@ const Profile = () => {
   const passwordsMatch = newProfileData.password === newProfileData.confirmPassword;
 
   useEffect(() => {
-    document.title = 'Profile';
+    document.title = 'Profile | EduWiz';
   }, []);
 
   return (

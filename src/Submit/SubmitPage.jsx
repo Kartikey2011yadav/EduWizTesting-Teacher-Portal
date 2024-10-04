@@ -51,7 +51,7 @@ const SubmitPage = () => {
   };
 
   useEffect(() => {
-    document.title = 'Submit';
+    document.title = 'Submit | EduWiz';
   }, []);
   return (
     <div

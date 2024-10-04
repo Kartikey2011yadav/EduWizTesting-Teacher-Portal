@@ -74,12 +74,12 @@
   font-size: 18px;
   margin-top: 20px;
 }
-hr {
+.questionupload-hr {
   margin-left: -20px;
   margin-top: 10px;
   color: rgba(0, 0, 0, 0.322);
 }
-.dark hr {
+.dark .questionupload-hr {
   color: #ffffff4b;
 }
 .question-upload-marks {

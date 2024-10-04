@@ -7,7 +7,7 @@ import { SiLevelsdotfyi } from 'react-icons/si';
 import { FaRegClock, FaTag } from 'react-icons/fa6';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { GoDotFill } from 'react-icons/go';
-import questionImage from '../assets/user photo default.jpg';
+import questionImage from '../assets/user-photo-default.jpg';
 
 const QuestionsUpload = () => {
   const { theme } = useContext(ThemeContext);
@@ -112,7 +112,7 @@ const QuestionsUpload = () => {
                 <img src={questionImage} alt="Question" />
               </div>
             </div>
-            <hr></hr>
+            <hr className="questionupload-hr"></hr>
             <div className="question-upload-type">
               Question Type: &nbsp;<b>{question.option}</b>
             </div>

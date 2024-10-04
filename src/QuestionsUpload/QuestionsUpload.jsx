@@ -162,12 +162,12 @@ const QuestionsUpload = () => {
           <div>Add Question</div>
         </div>
       </div>
-      <div className="question-upload-card-container">
+      <div className="question-upload-card-container space-y-16 h-full ">
         {questions.map((question, key) => (
-          <div className="question-upload-card" key={key}>
-            <div className=" TEST_CARD_BUTTONS relative mr-6 flex justify-end gap-2 text-white font-thin">
+          <div className="question-upload-card relative top-12" key={key}>
+            <div className="-top-16 TEST_CARD_BUTTONS relative flex justify-end gap-2 text-white font-thin">
               <button
-                className="TEST_CARD_BUTTON_EDDIT bg-[#1E293B] hover:bg-[#2b3c56] rounded-md px-3 py-1 flex items-center gap-1"
+                className="TEST_CARD_BUTTON_EDDIT bg-[#1E293B] hover:bg-[#2b3c56] rounded-md px-3 flex items-center gap-1"
                 onClick={() => handleEdit(question)}
               >
                 <FaEdit /> Edit

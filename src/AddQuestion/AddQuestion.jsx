@@ -203,7 +203,7 @@ const AddQuestion = ({ questionData, onBack }) => {
       <div className="add-question-container">
         <button
           onClick={onBack}
-          className="mb-4 bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-md flex items-center gap-2"
+          className="mb-4 bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-md flex items-center gap-2 absolute top-16 left-16"
         >
           <FaArrowLeft /> Back to Questions
         </button>

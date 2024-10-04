@@ -4,7 +4,7 @@ import { FaEdit, FaCopy, FaTrash } from 'react-icons/fa';
 import { useState } from 'react';
 
 const TestScheduleCard = (props) => {
-  console.log(props);
+  // console.log(props);
   const [hover, setHover] = useState(false);
 
   // const formattedDate = new Date(props.test.scheduleDate).toLocaleString();

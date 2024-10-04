@@ -74,7 +74,7 @@ const Sidebar = () => {
             {'EduWiz'}
           </h3>
           <hr
-            className={`h-0.5 bg-gray-100 border-0 rounded md:my-1 dark:bg-gray-3 bg-black ${open ? ' w-[90%] mx-auto' : 'w-10'} `}
+            className={`h-0.5 bg-gray-100 border-0 rounded md:my-1 dark:bg-gray-3 bg-black ${open ? ' w-30' : 'w-10'} `}
           />
         </div>
         <div className="mt-4 flex flex-col gap-4 relative">

@@ -32,6 +32,10 @@ const AddQuestion = () => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
+    document.title = 'Add Questions | EduWiz';
+  }, []);
+
+  useEffect(() => {
     setExpectedTime({ hours, minutes });
   }, [hours, minutes]);
 

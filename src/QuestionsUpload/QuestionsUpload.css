@@ -82,8 +82,16 @@
 .dark .questionupload-hr {
   color: #ffffff4b;
 }
+.question-upload-main-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-right: 20px;
+}
+.question_uploadfirst_hr {
+  transform: translateX(-10px);
+}
 .question-upload-marks {
-  position: absolute;
   top: 60px;
   right: 20px;
   background-color: rgba(0, 255, 255, 0.253);

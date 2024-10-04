@@ -166,7 +166,7 @@ const QuestionsUpload = () => {
       <div className="question-upload-card-container space-y-16 h-full ">
         {questions.map((question, key) => (
           <div className="question-upload-card relative top-12" key={key}>
-            <div className="-top-16 TEST_CARD_BUTTONS relative flex justify-end gap-2 text-white font-thin">
+            <div className="-top-14 TEST_CARD_BUTTONS relative flex justify-end gap-2 text-white font-thin">
               <button
                 className="TEST_CARD_BUTTON_EDDIT bg-[#1E293B] hover:bg-[#2b3c56] rounded-md px-3 flex items-center gap-1"
                 onClick={() => handleEdit(question)}
@@ -181,19 +181,24 @@ const QuestionsUpload = () => {
                 <FaTrash /> Delete
               </button>
             </div>
-            <div className="question-upload-difficultyLevel">
-              <SiLevelsdotfyi />
-              <div>{question.difficultyLevel}</div>
-            </div>
-            <div className="question-upload-expectedTime">
-              <FaRegClock />
+            <div className="question-upload-main-div">
               <div>
-                Expected Time: &nbsp;{question.expectedTime.hours} Hours&nbsp;&nbsp;
-                {Number(question.expectedTime.minutes)} Minutes
+                <div className="question-upload-difficultyLevel">
+                  <SiLevelsdotfyi />
+                  <div>{question.difficultyLevel}</div>
+                </div>
+                <div className="question-upload-expectedTime">
+                  <FaRegClock />
+                  <div>
+                    Expected Time: &nbsp;{question.expectedTime.hours} Hours&nbsp;&nbsp;
+                    {Number(question.expectedTime.minutes)} Minutes
+                  </div>
+                </div>
               </div>
+              <div className="question-upload-marks">Marks: {question.marks}</div>
             </div>
-            <div className="question-upload-marks">Marks: {question.marks}</div>
-            <hr></hr>
+
+            <hr className="question_uploadfirst_hr"></hr>
             <div className="question-upload-image-flex">
               <div>
                 <div className="question-upload-question-heading">{question.heading}</div>

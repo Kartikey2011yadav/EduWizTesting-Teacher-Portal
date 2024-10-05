@@ -138,8 +138,19 @@ const AddQuestion = ({ questionData, onBack }) => {
     return true;
   };
 
+  const validateTag = () => {
+    if (divTag.length === 0) {
+      setModalIsError(true);
+      setModalIsOpen(true);
+      setModalMessage('At least one tag should be provided to the question!!!');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateTag()) return;
     if (!validateTime()) return;
     if (!validateAnswer()) {
       setModalMessage('In MCQ type question, answer should be among the options provided!!!');

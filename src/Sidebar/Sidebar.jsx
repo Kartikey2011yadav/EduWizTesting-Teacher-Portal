@@ -55,7 +55,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={` dark:bg-black bg-zinc-200 min-h-screen ${open ? 'w-55' : 'w-16'} duration-500 text-gray-100 px-4 flex flex-col`}
+      className={` flex dark:bg-black bg-zinc-200 flex-col min-h-screen ${open ? 'w-55' : 'w-16'} duration-500 text-gray-100 px-4`}
     >
       <div className=" items-end fixed">
         <div className={`py-3 flex  ${open ? 'justify-end' : 'justify-start pl-2'}`}>
@@ -108,7 +108,6 @@ const Sidebar = () => {
           ))}
         </div>
       </div>
-
       <div
         className={` fixed bottom-3 ${open ? 'w-50' : 'w-10'}`}
         style={{
@@ -140,6 +139,11 @@ const Sidebar = () => {
             {'Logout'}
           </h2>
         </Link>
+      </div>
+      <div className="">
+        <div
+          className={`fixed h-15 -z-1 bottom-0 left-0 dark:bg-black bg-white ${open ? 'w-55' : 'w-16'} duration-500`}
+        />
       </div>
       <AlertModal
         isOpen={modalOpen}

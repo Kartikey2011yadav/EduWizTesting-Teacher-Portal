@@ -4,6 +4,7 @@ import { FaPlus, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Modal from 'react-modal';
 import defaultPhoto from '../assets/user-photo-default.jpg';
 import AlertModal from '../AlertModel/AlertModel';
+import axios from 'axios';
 
 const Profile = () => {
   const name = localStorage.getItem('name');
@@ -11,9 +12,9 @@ const Profile = () => {
   const mobileNumber = localStorage.getItem('mobileNumber');
   const [profileData, setProfileData] = useState({
     photo: defaultPhoto,
-    name: '',
-    email: '',
-    mobile_no: '',
+    name: name,
+    email: email,
+    mobile_no: mobileNumber,
     password: '',
     confirmPassword: '',
   });
@@ -32,19 +33,13 @@ const Profile = () => {
   };
   const closeModal = () => {
     setModalOpen(false);
+    if (!isError) window.location.reload();
   };
   const closeIsModal = () => {
     setModalIsOpen(false);
   };
-  const handleSave = () => {
-    const { email, mobile_no, password, confirmPassword } = newProfileData;
-
-    if (!email.includes('@')) {
-      setModalMessage('Please enter a valid email address.');
-      setIsError(true);
-      setModalOpen(true);
-      return;
-    }
+  const handleSave = async () => {
+    const { name, mobile_no, password, confirmPassword } = newProfileData;
 
     const mobileRegex = /^\d{10}$/;
     if (!mobileRegex.test(mobile_no)) {
@@ -71,10 +66,26 @@ const Profile = () => {
       return;
     }
 
+    try {
+      const response = await axios.post('http://localhost:5000/teacher/edit-profile', {
+        email,
+        name,
+        mobile_no,
+        password,
+      });
+      if (response.status === 200) {
+        localStorage.setItem('name', name);
+        localStorage.setItem('mobileNumber', mobile_no);
+        setModalOpen(true);
+        setIsError(false);
+        setModalMessage(response.data.message);
+      }
+    } catch (err) {
+      setModalOpen(true);
+      setIsError(true);
+      setModalMessage(err?.response?.data.error || 'Server Error!!!');
+    }
     setProfileData(newProfileData);
-    setModalMessage('Profile updated successfully!');
-    setIsError(false);
-    setModalOpen(true);
   };
 
   const handleImageChange = (event) => {
@@ -97,6 +108,24 @@ const Profile = () => {
   const passwordsMatch = newProfileData.password === newProfileData.confirmPassword;
 
   useEffect(() => {
+    axios
+      .post('http://localhost:5000/teacher/getUserProfileDetailsByTeacherId', {
+        teacherId: localStorage.getItem('teacherId'),
+      })
+      .then((res) => {
+        setProfileData({
+          photo: defaultPhoto,
+          email: email,
+          name: res.data.teacher.name,
+          mobile_no: res.data.teacher.mobileNumber,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
+  useEffect(() => {
     document.title = 'Profile | EduWiz';
   }, []);
 
@@ -117,9 +146,9 @@ const Profile = () => {
           />
         </div>
         <div className="profile-details">
-          <div className="profile-name">{name}</div>
-          <p className="profile-email">Email: {email}</p>
-          <p className="profile-mob">Mobile: {mobileNumber}</p>
+          <div className="profile-name">{profileData.name}</div>
+          <p className="profile-email">Email: {profileData.email}</p>
+          <p className="profile-mob">Mobile: {profileData.mobile_no}</p>
         </div>
         <button className="edit-button" onClick={openModal}>
           Edit Profile
@@ -133,12 +162,18 @@ const Profile = () => {
         className="modal"
         overlayClassName="overlay"
       >
-        <h2 className="profile_edit_heading">Edit Profile</h2>
+        <center>
+          <h2 className="profile_edit_heading">Edit Profile</h2>
+        </center>
         <form className="modal-form">
+          <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
+            Email:
+            <input placeholder="Enter your email:" type="email" value={email} disabled />
+          </label>
           <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
             Name:
             <input
-              placeholder="Enter your name"
+              placeholder="Enter your name:"
               className="modallabel_input"
               type="text"
               value={newProfileData.name}
@@ -146,18 +181,9 @@ const Profile = () => {
             />
           </label>
           <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
-            Email:
-            <input
-              placeholder="Enter your email"
-              type="email"
-              value={newProfileData.email}
-              onChange={(e) => setNewProfileData({ ...newProfileData, email: e.target.value })}
-            />
-          </label>
-          <label className="flex flex-col gap-3 dark:text-white text-lg w-full font-semibold">
             Mobile:
             <input
-              placeholder="Enter mobile no"
+              placeholder="Enter mobile no:"
               type="text"
               value={newProfileData.mobile_no}
               onChange={(e) => setNewProfileData({ ...newProfileData, mobile_no: e.target.value })}
@@ -167,7 +193,7 @@ const Profile = () => {
             Password:
             <div className="password-field">
               <input
-                placeholder="Enter your password"
+                placeholder="Enter your password:"
                 type={showPassword ? 'text' : 'password'}
                 className={passwordsMatch ? 'input-normal' : 'input-faded'}
                 value={newProfileData.password}
@@ -182,7 +208,7 @@ const Profile = () => {
             Confirm Password:
             <div className="password-field relative">
               <input
-                placeholder="Enter confirm password"
+                placeholder="Enter confirm password:"
                 type={showConfirmPassword ? 'text' : 'password'}
                 className={passwordsMatch ? 'input-normal' : 'input-faded'}
                 value={newProfileData.confirmPassword}

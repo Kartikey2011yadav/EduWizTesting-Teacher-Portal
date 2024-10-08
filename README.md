@@ -47,3 +47,5 @@ Dark Mode:
 ```
   dark:bg-red-400
 ```
+
+Day 1 of redemption ark

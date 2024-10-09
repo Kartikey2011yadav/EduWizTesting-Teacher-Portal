@@ -49,3 +49,4 @@ Dark Mode:
 ```
 
 Day 1 of redemption ark
+Day 2 of redemption ark

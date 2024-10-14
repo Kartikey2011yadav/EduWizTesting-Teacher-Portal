@@ -54,3 +54,4 @@ Day 3 of redemption ark
 Day 4 of redemption ark
 Day 5 of redemption ark
 Day 6 of redemption ark
+Day 7 of redemption ark

@@ -65,3 +65,4 @@ Day 14 of redemption ark
 Day 15 of redemption ark
 Day 16 of redemption ark
 Day 17 of redemption ark
+Day 18 of redemption ark

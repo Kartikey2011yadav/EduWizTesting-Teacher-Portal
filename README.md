@@ -69,3 +69,4 @@ Day 18 of redemption ark
 Day 19 of redemption ark
 Day 20 of redemption ark
 Day 21 of redemption ark
+Day 22 of redemption ark
